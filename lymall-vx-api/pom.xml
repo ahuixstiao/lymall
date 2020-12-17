@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent><!-- 父项目 -->
+        <artifactId>lymall</artifactId>
+        <groupId>com.ly.lymall</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>lymall-vx-api</artifactId><!-- 项目名称 -->
+
+    <dependencies>
+        <!-- 引入子db项目依赖  子项目之间只需要一方引入另一方就会形成间接依赖 如dao模块依赖了base模块，那么service模块依赖dao模块时就会间接依赖base模块 -->
+        <dependency>
+            <groupId>com.ly.lymall</groupId>
+            <artifactId>lymall-db</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+</project>

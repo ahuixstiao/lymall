@@ -1,0 +1,31 @@
+#数据库连接信息
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      url: jdbc:mysql://192.168.7.125:3306/lymall?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      username: root
+      password: 123456
+  redis:
+    host: 192.168.7.125
+#-----------------------------------------------------------------------------------------------
+
+#分页配置
+pagehelper:
+  #分页插件 数据库方言
+  helper-dialect: mysql
+  #参数
+  params: count=countSql
+  #合理化分页
+  reasonable: true
+  #支持方法参数
+  support-methods-arguments: true
+#-----------------------------------------------------------------------------------------------
+
+#mybatis开启驼峰命名支持
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+#-----------------------------------------------------------------------------------------------

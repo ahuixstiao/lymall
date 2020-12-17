@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/lymall.iml" filepath="$PROJECT_DIR$/lymall.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lymall-core/lymall-core.iml" filepath="$PROJECT_DIR$/lymall-core/lymall-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lymall-db/lymall-db.iml" filepath="$PROJECT_DIR$/lymall-db/lymall-db.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lymall-vx-api/lymall-vx-api.iml" filepath="$PROJECT_DIR$/lymall-vx-api/lymall-vx-api.iml" />
+    </modules>
+  </component>
+</project>
