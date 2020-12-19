@@ -7,8 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="lymall-db" />
-        <module name="lymall-core" />
         <module name="lymall-vx-api" />
+        <module name="lymall-core" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

@@ -61,54 +61,58 @@ public class LymallIndexController {
     private LymallBrandService brandService;
 
     /**
+     * 专题精选 业务层接口
+     */
+    @Resource
+    private LymallTopicService topicService;
+
+    /**
      * 记录器
      */
     Logger logger= LoggerFactory.getLogger(getClass());
 
 
+    /**
+     * 主页查询
+     * @param categoryPid
+     * @param currentPage
+     * @param limit
+     * @return Object
+     */
     @RequestMapping("/home/index")
     public Object indexPageInforMationQuery(Integer categoryPid, Integer currentPage,Integer limit){
         //http://localhost:8080/wx/home/index?categoryPid=0&currentPage=1&limit=2
-        //查询商品总数
+        //商品总数
         int goodsCount=goodsService.selectByAllCount();
-        //查询广告信息
-        List<LymallAd> adList=adService.selectfindAllAd();
-        //查询商品类别
-        List<LymallCategory> categoryList=categoryService.selectfindByCategory(categoryPid);
-        //查询优惠券信息
-        List<LymallCoupon> couponList=couponService.selectFindAll(currentPage,limit);
-        //查询全部团购商品
-        List<LymallGrouponRulesDTO> grouponList=grouponRulesService.findAllGroupbuy(currentPage,limit);
-        //查询品牌制造商直供商品
-        List<LymallBrand> brandList=brandService.selectFindAll(currentPage,limit);
-        //查询周一、周四新品商品信息
-        List<LymallGoods> newProductList=goodsService.findAllnewProductList(currentPage,limit);
-        //查询人气推荐商品信息
-        List<LymallGoods> popularGoodsList=goodsService.findAllPopularGoods(currentPage,limit);
 
-
-        if(goodsCount!=0 && adList.size()!=0 && categoryList.size()!=0 && couponList.size()!=0 && grouponList.size()!=0 && brandList.size()!=0){
-            //使用Map集合封装返回
-            Map<String,Object> map=new HashMap<>();
-            //商品总数
-            map.put("goodsCount",goodsCount);
-            //广告信息
-            map.put("banner",adList);
-            //商品类别
-            map.put("channel",categoryList);
-            //优惠券
-            map.put("coupon",ResponseUtil.okListPage(couponList));
-            //团购规则
-            map.put("groupons",ResponseUtil.okListPage(grouponList));
-            //品牌制造商直供商品
-            map.put("brands",ResponseUtil.okListPage(brandList));
-            //查询新品商品信息
-            map.put("newProduct",ResponseUtil.okListPage(newProductList));
-            //查询人气推荐商品信息
-            map.put("popularGoodsList",ResponseUtil.okListPage(popularGoodsList));
-
-            return ResponseUtil.ok(map);
+        //判断商品条数是否为空
+        if(goodsCount==0){
+            return ResponseUtil.fail();
         }
-        return ResponseUtil.fail();
+
+        //使用Map集合封装返回
+        Map<String,Object> map=new HashMap<>();
+        //商品总数
+        map.put("goodsCount",goodsCount);
+        //广告信息
+        map.put("banner",adService.selectfindAllAd());
+        //商品类别
+        map.put("channel",categoryService.selectfindByCategory(categoryPid));
+        //优惠券
+        map.put("coupon",ResponseUtil.okListPage(couponService.selectFindAll(currentPage,limit)));
+        //团购规则
+        map.put("groupons",ResponseUtil.okListPage(grouponRulesService.findAllGroupbuy(currentPage,limit)));
+        //品牌制造商直供商品
+        map.put("brands",ResponseUtil.okListPage(brandService.selectFindAll(currentPage,limit)));
+        //新品发布
+        map.put("newGoods",ResponseUtil.okListPage(goodsService.selectfindAllGoods("goods_is_new",currentPage,limit)));
+        //人气推荐
+        map.put("hotGoods",ResponseUtil.okListPage(goodsService.selectfindAllGoods("goods_is_hot",currentPage,limit)));
+        //专题精选商品信息
+        map.put("topics",ResponseUtil.okListPage(topicService.selectByfindAll(currentPage,limit)));
+        //更多好物
+
+        //返回
+        return ResponseUtil.ok(map);
     }
 }

@@ -95,19 +95,22 @@ public interface LymallGoodsMapper {
     LymallGoods selectByPrimaryKey(Integer goodsId);
 
     /**
-     * 查询新品首发商品信息
+     * 根据字段来查询商品
+     * @param productTypes 要查询的商品字段
      * @return List<LymallGoods>
      */
-    @Select("select * from lymall_goods where goods_is_new=${1} and goods_deleted=${0} order by goods_retail_price asc")
-    @ResultMap("goodsResult")
-    List<LymallGoods> findAllnewProductList();
+    @SelectProvider(value=LymallGoodsSqlProvider.class,method="selectfindAllGoods")
+    List<LymallGoods> selectfindAllGoods(String productTypes);
 
     /**
-     * 查询人气推荐商品信息
-     * @return List<LymallGoods>
+     * 根据商品名称或关键字搜索商品并排序
+     * @param keyword
+     * @param orderCloumn
+     * @param orderType
+     * @return
      */
-    @Select("select * from lymall_goods where goods_is_hot=${1} and goods_deleted=${0} order by goods_retail_price asc")
-    List<LymallGoods> findAllPopularGoods();
+    @SelectProvider(value=LymallGoodsSqlProvider.class,method="searchProductsBasedOnKeywords")
+    List<LymallGoods> searchProducts(String keyword, String orderCloumn,String orderType);
 
     /**
      * 获取商品总条数
@@ -115,10 +118,6 @@ public interface LymallGoodsMapper {
      */
     @Select("select count(*) from lymall_goods")
     int selectByAllCount();
-
-
-
-
 
     //------------------------------------------------------------------------------------------------------------------------------------------------
 

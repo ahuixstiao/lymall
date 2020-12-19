@@ -107,4 +107,31 @@ public class LymallCategorySqlProvider {
         
         return sql.toString();
     }
+
+    /**
+     * 根据传入的分类名称查询商品信息
+     * @param categoryName
+     * @return String
+     */
+    public String selectfindAllCategoryGoods(String categoryName){
+        /*
+        select A.goods_id,A.goods_name,A.goods_retail_price,
+        A.goods_pic_url,B.category_name,B.category_id,B.category_pid
+        from lymall_goods A,lymall_category B
+        where A.category_id = B.category_id
+        and B.category_pid=(select category_id from lymall_category where category_name ='居家');
+        */
+        SQL sql=new SQL();
+
+        sql.SELECT("A.goods_id,A.goods_name,A.goods_retail_price,A.goods_pic_url,B.category_name,B.category_id,B.category_pid")
+                .FROM("lymall_goods A,lymall_category B")
+                .WHERE("A.category_id = B.category_id")
+                .AND().WHERE("B.category_pid=(")
+                .SELECT("category_id")
+                .FROM("lymall_category")
+                .WHERE("category_name ='"+categoryName+"')");
+
+        return sql.toString();
+    }
+
 }

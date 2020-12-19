@@ -2,6 +2,7 @@ package com.ly.lymall.db.service.imple;
 
 import com.ly.lymall.db.dao.mapper.LymallCategoryMapper;
 import com.ly.lymall.db.domian.LymallCategory;
+import com.ly.lymall.db.dto.LymallGoodsCategoryDTO;
 import com.ly.lymall.db.service.LymallCategoryService;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +30,18 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
     public List<LymallCategory> selectfindByCategory(Integer categoryPid) {
 
         return categoryMapper.selectfindByCategory(categoryPid);
+    }
+
+    /**
+     * 根据传入的分类名称查询商品信息
+     * @param currentPage
+     * @param categoryPid
+     * @param limit
+     * @return String
+     */
+    @Override
+    public List<LymallGoodsCategoryDTO> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage,Integer limit) {
+
+        return null;
     }
 }

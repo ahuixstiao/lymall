@@ -1,11 +1,9 @@
 
 M
 java:S1128"7Remove this unused import 'com.github.pagehelper.Page'.(ó˜”Û
-B
-java:S1128"-Remove this unused import 'org.slf4j.Logger'.(íØ®6
-e
-java:S3252$"OUse static access with "com.github.pagehelper.page.PageMethod" for "startPage".(÷µ¶
 J
 java:S1128	"4Remove this unused import 'org.slf4j.LoggerFactory'.(–ÿÚŞ
 l
-java:S32523"OUse static access with "com.github.pagehelper.page.PageMethod" for "startPage".(÷µ¶8³÷Ëóæ.
+java:S3252%"OUse static access with "com.github.pagehelper.page.PageMethod" for "startPage".(÷µ¶8…¡ªÉç.
+B
+java:S1128"-Remove this unused import 'org.slf4j.Logger'.(íØ®6

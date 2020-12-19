@@ -23,34 +23,34 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
     @Resource(name="lymallGoodsMapper")
     LymallGoodsMapper goodsMapper;
 
+
     /**
-     * 查询新品商品信息
-     * @param currentPage
-     * @param limit
+     * 根据字段来查询商品
+     * @param productTypes 要查询的商品字段
+     * @param currentPage 页数
+     * @param limit 显示的条数
      * @return List<LymallGoods>
      */
     @Override
-    public List<LymallGoods> findAllnewProductList(Integer currentPage,Integer limit){
+    public List<LymallGoods> selectfindAllGoods(String productTypes,Integer currentPage,Integer limit){
 
-        //设置分页
         PageHelper.startPage(currentPage,limit);
 
-        return goodsMapper.findAllnewProductList();
+        return goodsMapper.selectfindAllGoods(productTypes);
     }
 
     /**
-     * 查询人气推荐商品信息
+     * 根据商品名称或关键字搜索商品并排序
      *
-     * @param currentPage
-     * @param limit
+     * @param keyword
+     * @param orderCloumn
+     * @param orderType
      * @return List<LymallGoods>
      */
     @Override
-    public List<LymallGoods> findAllPopularGoods(Integer currentPage, Integer limit) {
+    public List<LymallGoods> searchProducts(String keyword, String orderCloumn, String orderType) {
 
-        PageHelper.startPage(currentPage,limit);
-
-        return goodsMapper.findAllPopularGoods();
+        return goodsMapper.searchProducts(keyword, orderCloumn, orderType);
     }
 
     /**

@@ -4,14 +4,14 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
-      url: jdbc:mysql://192.168.7.125:3306/lymall?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://47.115.3.27:3306/lymall?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
       username: root
       password: 123456
   redis:
-    host: 192.168.7.125
+    host: 47.115.3.27
 #-----------------------------------------------------------------------------------------------
 
-#分页配置
+#分页插件配置
 pagehelper:
   #分页插件 数据库方言
   helper-dialect: mysql
@@ -23,9 +23,12 @@ pagehelper:
   support-methods-arguments: true
 #-----------------------------------------------------------------------------------------------
 
-#mybatis开启驼峰命名支持
+#mybatis配置
 mybatis:
   configuration:
+    #开启驼峰命名支持
     map-underscore-to-camel-case: true
+    #开启缓存
+    cache-enabled: true
 
 #-----------------------------------------------------------------------------------------------

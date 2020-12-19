@@ -5,6 +5,8 @@ import com.ly.lymall.db.domian.LymallKeyword;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
+import java.util.List;
+
 @Mapper
 public interface LymallKeywordMapper {
     @Delete({
@@ -49,6 +51,14 @@ public interface LymallKeywordMapper {
         @Result(column="keyword_deleted", property="keywordDeleted", jdbcType=JdbcType.BIT)
     })
     LymallKeyword selectByPrimaryKey(Integer keywordId);
+
+    /**
+     * 查询热门关键字或默认关键字
+     * @param type
+     * @return List<LymallKeyword>
+     */
+    @SelectProvider(value=LymallKeywordSqlProvider.class,method="selectAllisHotOrDefaultSelective")
+    List<LymallKeyword> selectAllHotOrDefault(String type);
 
     @UpdateProvider(type=LymallKeywordSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(LymallKeyword record);

@@ -12,20 +12,20 @@ import java.util.List;
 public interface LymallGoodsService {
 
     /**
-     * 查询新品商品信息
-     * @param currentPage
-     * @param limit
-     * @return 返回List<LymallGoods>集合
-     */
-    List<LymallGoods> findAllnewProductList(Integer currentPage,Integer limit);
-
-    /**
-     * 查询人气推荐商品信息
-     * @param currentPage
-     * @param limit
+     * 根据字段来查询商品
+     * @param productTypes 要查询的商品字段
      * @return List<LymallGoods>
      */
-    List<LymallGoods> findAllPopularGoods(Integer currentPage,Integer limit);
+    List<LymallGoods> selectfindAllGoods(String productTypes,Integer currentPage,Integer limit);
+
+    /**
+     * 根据商品名称或关键字搜索商品并排序
+     * @param keyword
+     * @param orderCloumn
+     * @param orderType
+     * @return List<LymallGoods>
+     */
+    List<LymallGoods> searchProducts(String keyword, String orderCloumn,String orderType);
 
     /**
      * 查询商品总条数

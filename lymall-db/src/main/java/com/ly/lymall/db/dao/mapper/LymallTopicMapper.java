@@ -5,6 +5,8 @@ import com.ly.lymall.db.domian.LymallTopic;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
+import java.util.List;
+
 @Mapper
 public interface LymallTopicMapper {
     @Delete({
@@ -57,6 +59,13 @@ public interface LymallTopicMapper {
         @Result(column="topic_content", property="topicContent", jdbcType=JdbcType.LONGVARCHAR)
     })
     LymallTopic selectByPrimaryKey(Integer topicId);
+
+    /**
+     * 查询专题精选商品信息
+     * @return List<LymallTopic>
+     */
+    @Select("select * from lymall_topic where topic_deleted=${0}")
+    List<LymallTopic> selectByfindAll();
 
     @UpdateProvider(type=LymallTopicSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(LymallTopic record);

@@ -179,4 +179,49 @@ public class LymallGoodsSqlProvider {
         
         return sql.toString();
     }
+
+    /**
+     * 根据要查询的字段名来查询商品信息
+     * @param productTypes
+     * @return String
+     */
+    public String selectfindAllGoods(String productTypes){
+
+        /*select * from lymall_goods where goods_is_hot=1 order by goods_retail_price asc*/
+
+        SQL sql=new SQL();
+
+        sql.SELECT("*")
+                .FROM("lymall_goods")
+                .WHERE(productTypes+"=1")
+                .AND().WHERE("goods_deleted=0")
+                .ORDER_BY("goods_retail_price asc");
+
+        return sql.toString();
+    }
+
+    /**
+     * 按用户输入的关键字查询商品
+     * @param keyword
+     * @param orderCloumn
+     * @param orderType
+     * @return String
+     */
+    public String searchProductsBasedOnKeywords(String keyword, String orderCloumn,String orderType){
+        /**
+         * select * from lymall_goods
+         * where goods_name like '%抱枕%'
+         * or goods_keywords like '%抱枕%'
+         * and goods_deleted=0
+         * order by goods_name asc
+         */
+        SQL sql=new SQL();
+        sql.SELECT("*").FROM("lymall_goods")
+                .WHERE("goods_name like '%"+orderCloumn+"%'")
+                .OR().WHERE("goods_keywords like '%"+keyword+"%'")
+                .AND().WHERE("goods_deleted="+0)
+                .ORDER_BY("goods_name"+orderType);
+
+        return sql.toString();
+    }
 }

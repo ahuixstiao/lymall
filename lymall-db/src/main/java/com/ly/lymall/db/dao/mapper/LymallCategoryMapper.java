@@ -2,6 +2,7 @@ package com.ly.lymall.db.dao.mapper;
 
 import com.ly.lymall.db.dao.provider.LymallCategorySqlProvider;
 import com.ly.lymall.db.domian.LymallCategory;
+import com.ly.lymall.db.dto.LymallGoodsCategoryDTO;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
@@ -68,6 +69,14 @@ public interface LymallCategoryMapper {
     @Select("select * from lymall_category where category_pid=#{categoryPid} and category_deleted=${0}")
     @ResultMap("categoryResults")
     List<LymallCategory> selectfindByCategory(Integer categoryPid);
+
+    /**
+     * 根据传入的分类名称查询商品信息
+     * @param categoryName
+     * @return String
+     */
+    @SelectProvider(value=LymallCategorySqlProvider.class,method="selectfindAllCategoryGoods")
+    List<LymallGoodsCategoryDTO> selectfindByGoodsCategory(String categoryName);
 
 
     @UpdateProvider(type=LymallCategorySqlProvider.class, method="updateByPrimaryKeySelective")
