@@ -1,15 +1,0 @@
-
-v
-java:S1128"`Remove this unused import 'org.springframework.boot.context.properties.ConfigurationProperties'.(¦Õ¸Ç
-v
-java:S1488e"[Immediately return this expression instead of assigning it to the temporary variable "url".(§Àû¬øÿÿÿÿ
-B
-java:S1128"-Remove this unused import 'org.slf4j.Logger'.(íØ®6
-n
-java:S1128	"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ
-R
-java:S1128"<Remove this unused import 'com.aliyun.oss.OSSClientBuilder'.(ÕŞ—©
->
-java:S1125Q"(Remove the literal "true" boolean value.(İø
-J
-java:S1128"4Remove this unused import 'org.slf4j.LoggerFactory'.(–ÿÚŞ
