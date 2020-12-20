@@ -75,7 +75,9 @@ public interface LymallCategoryMapper {
      * @param categoryName
      * @return String
      */
-    @SelectProvider(value=LymallCategorySqlProvider.class,method="selectfindAllCategoryGoods")
+    @Select("select A.goods_id,A.goods_name,A.goods_retail_price,A.goods_pic_url,B.category_name,B.category_id,B.category_pid " +
+            "from lymall_goods A,lymall_category B where A.category_id=B.category_id " +
+            "and B.category_pid=(select category_id from lymall_category where category_name=#{categoryName}) order by A.goods_retail_price asc")
     List<LymallGoodsCategoryDTO> selectfindByGoodsCategory(String categoryName);
 
 

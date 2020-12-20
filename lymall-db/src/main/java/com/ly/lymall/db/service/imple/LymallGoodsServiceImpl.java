@@ -23,7 +23,6 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
     @Resource(name="lymallGoodsMapper")
     LymallGoodsMapper goodsMapper;
 
-
     /**
      * 根据字段来查询商品
      * @param productTypes 要查询的商品字段

@@ -186,9 +186,6 @@ public class LymallGoodsSqlProvider {
      * @return String
      */
     public String selectfindAllGoods(String productTypes){
-
-        /*select * from lymall_goods where goods_is_hot=1 order by goods_retail_price asc*/
-
         SQL sql=new SQL();
 
         sql.SELECT("*")
