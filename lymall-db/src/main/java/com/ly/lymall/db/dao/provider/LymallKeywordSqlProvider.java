@@ -84,13 +84,18 @@ public class LymallKeywordSqlProvider {
         return sql.toString();
     }
 
-    public String selectAllisHotOrDefaultSelective(String type){
+    /**
+     * 查询默认关键字与热门关键字信息
+     * @param type
+     * @return String
+     */
+    public String selectFindAllPopularOrDefaultKeyWords(Integer type){
         SQL sql=new SQL();
-        sql.SELECT("*");
-        sql.FROM("lymall_keyword");
-        sql.WHERE("keyword_is_hot=${"+type+"}");
-        sql.OR();
-        sql.WHERE("keyword_is_default=${"+type+"}");
+        sql.SELECT("*")
+                .FROM("lymall_keyword")
+                .WHERE("keyword_is_hot=${"+type+"}")
+                .OR()
+                .WHERE("keyword_is_default=${"+type+"}");
 
         return sql.toString();
     }

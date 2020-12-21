@@ -67,4 +67,18 @@ public class LymallSearchHistorySqlProvider {
         
         return sql.toString();
     }
+
+    /**
+     * 根据用户id来查询历史关键字
+     * @param userId
+     * @return 返回String类型的sql语句
+     */
+    public String selectByUserIdFindAllHistory(Integer userId){
+        SQL sql=new SQL();
+        sql.SELECT("*")
+                .FROM("lymall_search_history")
+                .WHERE("user_id=${"+userId+"}");
+
+        return sql.toString();
+    }
 }

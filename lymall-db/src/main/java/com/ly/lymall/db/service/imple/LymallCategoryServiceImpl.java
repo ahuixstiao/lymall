@@ -8,7 +8,7 @@ import com.ly.lymall.db.service.LymallCategoryService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Author: ahui
@@ -34,27 +34,35 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
     }
 
     /**
-     * 根据传入的分类名称查询商品信息
+     * 根据传入的分类名称 查询分类下的商品信息 并将分类名称与商品数据返回
      * @param currentPage
      * @param categoryPid
      * @param limit
      * @return String
      */
     @Override
-    public List<LymallGoodsCategoryDTO> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage,Integer limit) {
+    public List<LymallGoodsCategoryDTO> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage, Integer limit) {
         //执行查询父分类的方法
-        List<LymallCategory> categories = this.selectfindByCategory(categoryPid);
+        List<LymallCategory> categorieNames = this.selectfindByCategory(categoryPid);
         //分页配置
         PageHelper.startPage(currentPage,limit);
-        List<LymallGoodsCategoryDTO> categoryDTOList=null;
+
+
+        //声明一个返回对象保存 要返回的 分类名称与商品信息
+        List<LymallGoodsCategoryDTO> list=null;
+
+        //保存每个分类的返回参数
+        Map<Integer,Object> map=null;
+
         //遍历分类方法返回的参数
-        for (LymallCategory category : categories) {
-            if(category.getCategoryPid()==0) {
-                //执行方法 并保存返回的参数
-                categoryDTOList = categoryMapper.selectfindByGoodsCategory(category.getCategoryName());
+        for(int i=0;i<=categorieNames.size();i++){
+            for (LymallCategory category : categorieNames) {
+
+                //保存 分类名称 String类型  与 分类的商品信息List<LymallGoodsCategoryDTO>  将这两个参数保存到同一个容器中
+
             }
         }
         //返回
-        return categoryDTOList;
+        return null;
     }
 }

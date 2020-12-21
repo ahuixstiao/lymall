@@ -53,12 +53,13 @@ public interface LymallKeywordMapper {
     LymallKeyword selectByPrimaryKey(Integer keywordId);
 
     /**
-     * 查询热门关键字或默认关键字
+     * 查询热门关键字与默认关键字
      * @param type
      * @return List<LymallKeyword>
      */
-    @SelectProvider(value=LymallKeywordSqlProvider.class,method="selectAllisHotOrDefaultSelective")
-    List<LymallKeyword> selectAllHotOrDefault(String type);
+    @SelectProvider(value=LymallKeywordSqlProvider.class,method="selectFindAllPopularOrDefaultKeyWords")
+    List<LymallKeyword> selectAllHotOrDefault(Integer type);
+
 
     @UpdateProvider(type=LymallKeywordSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(LymallKeyword record);

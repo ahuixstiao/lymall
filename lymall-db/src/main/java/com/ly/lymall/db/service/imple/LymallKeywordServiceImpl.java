@@ -1,5 +1,6 @@
 package com.ly.lymall.db.service.imple;
 
+import com.github.pagehelper.PageHelper;
 import com.ly.lymall.db.dao.mapper.LymallKeywordMapper;
 import com.ly.lymall.db.domian.LymallKeyword;
 import com.ly.lymall.db.service.LymallKeywordService;
@@ -11,7 +12,7 @@ import java.util.List;
 /**
  * @Author: ahui
  * @Date: 2020-12-18/ 15:34
- * @Description: 搜索框 业务层实现类
+ * @Description: 关键字 业务层实现类
  */
 @Service
 public class LymallKeywordServiceImpl implements LymallKeywordService {
@@ -20,13 +21,17 @@ public class LymallKeywordServiceImpl implements LymallKeywordService {
     private LymallKeywordMapper keywordMapper;
 
     /**
-     * 查询关键字
+     * 查询默认关键字与热门关键字
      * @param type
      * @return List<LymallKeyword>
      */
     @Override
-    public List<LymallKeyword> selectAllHotOrDefault(String type) {
+    public List<LymallKeyword> selectAllHotOrDefaultKeywords(Integer type,Integer currentPage,Integer limit) {
 
+        //分页
+        PageHelper.startPage(currentPage,limit);
+
+        //返回
         return keywordMapper.selectAllHotOrDefault(type);
     }
 }

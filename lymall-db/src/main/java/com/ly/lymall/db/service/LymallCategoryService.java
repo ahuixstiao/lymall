@@ -4,6 +4,7 @@ import com.ly.lymall.db.domian.LymallCategory;
 import com.ly.lymall.db.dto.LymallGoodsCategoryDTO;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: ahui
@@ -26,6 +27,6 @@ public interface LymallCategoryService {
      * @param limit
      * @return String
      */
-    List<LymallGoodsCategoryDTO> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage,Integer limit);
+    List<LymallGoodsCategoryDTO> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage, Integer limit);
 
 }

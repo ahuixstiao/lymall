@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @Author: ahui
  * @Date: 2020-12-18/ 15:34
- * @Description: 搜索框 业务层接口
+ * @Description: 关键字 业务层接口
  */
 public interface LymallKeywordService {
 
@@ -16,6 +16,6 @@ public interface LymallKeywordService {
      * @param type
      * @return List<LymallKeyword>
      */
-    List<LymallKeyword> selectAllHotOrDefault(String type);
+    List<LymallKeyword> selectAllHotOrDefaultKeywords(Integer type,Integer currentPage,Integer limit);
 
 }

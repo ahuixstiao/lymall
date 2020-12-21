@@ -5,6 +5,8 @@ import com.ly.lymall.db.domian.LymallSearchHistory;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
+import java.util.List;
+
 @Mapper
 public interface LymallSearchHistoryMapper {
     @Delete({
@@ -45,6 +47,13 @@ public interface LymallSearchHistoryMapper {
         @Result(column="search_history_deleted", property="searchHistoryDeleted", jdbcType=JdbcType.BIT)
     })
     LymallSearchHistory selectByPrimaryKey(Integer searchHistoryId);
+
+    /**
+     * 根据用户id查询 历史关键字
+     * @return List<LymallSearchHistory>
+     */
+    @SelectProvider(type=LymallSearchHistorySqlProvider.class,method="selectByUserIdFindAllHistory")
+    List<LymallSearchHistory> selectByUserIdFindHistory(Integer userId);
 
     @UpdateProvider(type=LymallSearchHistorySqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(LymallSearchHistory record);
