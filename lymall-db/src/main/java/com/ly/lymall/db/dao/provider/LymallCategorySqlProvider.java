@@ -108,4 +108,35 @@ public class LymallCategorySqlProvider {
         return sql.toString();
     }
 
+    /**
+     * 根据categoryId查询分类信息
+     * @param categoryId
+     * @return String
+     */
+    public String selectByPidFindCategory(Integer categoryId){
+        SQL sql=new SQL();
+        sql.SELECT("*")
+                .FROM("lymall_category")
+                .WHERE("category_pid="+categoryId)
+                .AND().WHERE("category_deleted=0");
+
+        return sql.toString();
+    }
+
+    /**
+     * 根据传入的categoryName查询商品信息
+     * @param categoryName
+     * @return String
+     */
+    public String selectByCategoryFindGoods(String categoryName){
+        SQL sql=new SQL();
+
+        sql.SELECT("A.goods_id,A.goods_name,A.goods_retail_price,A.goods_pic_url,B.category_name,B.category_id,B.category_pid")
+                .FROM("lymall_goods A,lymall_category B")
+                .WHERE("where A.category_id=B.category_id")
+                .AND().WHERE("B.category_pid=(select category_id from lymall_category where category_name="+categoryName+") order by A.goods_retail_price asc");
+
+        return sql.toString();
+    }
+
 }

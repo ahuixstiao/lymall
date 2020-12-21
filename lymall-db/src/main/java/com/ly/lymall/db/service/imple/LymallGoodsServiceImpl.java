@@ -47,9 +47,9 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
      * @return List<LymallGoods>
      */
     @Override
-    public List<LymallGoods> searchProducts(String keyword, String orderCloumn, String orderType) {
+    public List<LymallGoods> searchProducts(String keyword, String orderCloumn, String orderType,Integer categoryId) {
 
-        return goodsMapper.searchProducts(keyword, orderCloumn, orderType);
+        return goodsMapper.searchProducts(keyword, orderCloumn, orderType,categoryId);
     }
 
     /**

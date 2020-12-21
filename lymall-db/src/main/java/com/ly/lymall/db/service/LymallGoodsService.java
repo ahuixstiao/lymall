@@ -25,9 +25,10 @@ public interface LymallGoodsService {
      * @param keyword
      * @param orderCloumn
      * @param orderType
+     * @param categoryId
      * @return List<LymallGoods>
      */
-    List<LymallGoods> searchProducts(String keyword, String orderCloumn,String orderType);
+    List<LymallGoods> searchProducts(String keyword, String orderCloumn,String orderType,Integer categoryId);
 
     /**
      * 查询商品总条数

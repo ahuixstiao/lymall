@@ -107,10 +107,11 @@ public interface LymallGoodsMapper {
      * @param keyword
      * @param orderCloumn
      * @param orderType
-     * @return
+     * @param categoryId
+     * @return List<LymallGoods>
      */
     @SelectProvider(value=LymallGoodsSqlProvider.class,method="searchProductsBasedOnKeywords")
-    List<LymallGoods> searchProducts(String keyword, String orderCloumn,String orderType);
+    List<LymallGoods> searchProducts(String keyword, String orderCloumn,String orderType,Integer categoryId);
 
     /**
      * 获取商品总条数

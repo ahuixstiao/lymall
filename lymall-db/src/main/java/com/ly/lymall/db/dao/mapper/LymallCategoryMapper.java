@@ -63,10 +63,12 @@ public interface LymallCategoryMapper {
 
     /**
      * 根据pid查询商品类别
+     * ResultMap注解作用 使用将数据库字段与实体类对应的Results返回结果集 防止字段名与属性名不对应无法接收参数
+     * 开启了Mybatis的驼峰命名支持后可不使用
      * @param categoryPid
      * @return List<LymallCategory>
      */
-    @Select("select * from lymall_category where category_pid=#{categoryPid} and category_deleted=${0}")
+    @SelectProvider(type =LymallCategorySqlProvider.class,method ="selectByPidFindCategory")
     @ResultMap("categoryResults")
     List<LymallCategory> selectfindByCategory(Integer categoryPid);
 
@@ -75,9 +77,7 @@ public interface LymallCategoryMapper {
      * @param categoryName
      * @return String
      */
-    @Select("select A.goods_id,A.goods_name,A.goods_retail_price,A.goods_pic_url,B.category_name,B.category_id,B.category_pid " +
-            "from lymall_goods A,lymall_category B where A.category_id=B.category_id " +
-            "and B.category_pid=(select category_id from lymall_category where category_name=#{categoryName}) order by A.goods_retail_price asc")
+    @SelectProvider(type=LymallCategorySqlProvider.class,method ="selectByCategoryFindGoods")
     List<LymallGoodsCategoryDTO> selectfindByGoodsCategory(String categoryName);
 
 
