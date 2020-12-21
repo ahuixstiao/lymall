@@ -26,12 +26,12 @@ public class LymallKeywordServiceImpl implements LymallKeywordService {
      * @return List<LymallKeyword>
      */
     @Override
-    public List<LymallKeyword> selectAllHotOrDefaultKeywords(Integer type,Integer currentPage,Integer limit) {
+    public List<LymallKeyword> selectAllHotOrDefaultKeywords(String keywordName,Integer type,Integer currentPage,Integer limit) {
 
         //分页
         PageHelper.startPage(currentPage,limit);
 
         //返回
-        return keywordMapper.selectAllHotOrDefault(type);
+        return keywordMapper.selectAllHotOrDefault(keywordName,type);
     }
 }

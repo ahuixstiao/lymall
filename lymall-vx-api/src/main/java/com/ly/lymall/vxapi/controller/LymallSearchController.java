@@ -3,6 +3,7 @@ package com.ly.lymall.vxapi.controller;
 import com.ly.lymall.core.utils.ResponseUtil;
 import com.ly.lymall.db.dao.mapper.LymallSearchHistoryMapper;
 import com.ly.lymall.db.domian.LymallKeyword;
+import com.ly.lymall.db.domian.LymallUser;
 import com.ly.lymall.db.service.LymallKeywordService;
 import com.ly.lymall.db.service.LymallSearchHistoryService;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,33 +37,26 @@ public class LymallSearchController {
 
     /**
      *
-     * @param userId 用户id
+     * @param userInfo 用户id
      * @param keywrod 用户输入的关键字
      * @param type 是否搜索默认关键字与热门关键字
      * @param currentPage 当前页
      * @param limit 信息条数
-     * @return
+     * @return Object 返回
      */
-    @RequestMapping("")
-    public Object selectFindAllKeyWords(Integer userId,String keywrod,Integer type,Integer currentPage,Integer limit){
-        //保存 默认关键字与热门关键字返回值
-        List<LymallKeyword> keywordList=keywordService.selectAllHotOrDefaultKeywords(type,currentPage,limit);
-        //声明一个实体类保存默认关键字信息
-        LymallKeyword defaultandhotKeyword=new LymallKeyword();
-        //取出默认关键字保存到对象中
-        if(keywordList.get(0).getKeywordIsDefault()){
-            defaultandhotKeyword=keywordList.get(0);
-        }
-
+    @RequestMapping("search/index")
+    public Object selectFindAllKeyWords(LymallUser userInfo, String keywrod, Integer type, Integer currentPage, Integer limit){
+        List<LymallKeyword> lymallKeywordList=keywordService.selectAllHotOrDefaultKeywords("keyword_is_default",1,currentPage,limit);
+        LymallKeyword lymallKeyword=lymallKeywordList.get(0);
         //声明一个map接口封装 返回值
         Map<String,Object> map=new HashMap<>();
 
         //默认关键字
-        map.put("defaultandhotKeyword",defaultandhotKeyword);
+        map.put("defaultKeyword",lymallKeyword);
         //热门关键字
-        map.put("hotKeyword",ResponseUtil.okListPage(keywordList));
+        map.put("hotKeyword",ResponseUtil.okListPage(keywordService.selectAllHotOrDefaultKeywords("keyword_is_hot",1,currentPage,limit)));
         //历史关键字
-        map.put("historyKeyword",searchHistoryService.selectByHistory(userId,currentPage,limit));
+        map.put("historyKeyword",searchHistoryService.selectByHistory(userInfo.getUserId(),currentPage,limit));
 
         return map;
     }

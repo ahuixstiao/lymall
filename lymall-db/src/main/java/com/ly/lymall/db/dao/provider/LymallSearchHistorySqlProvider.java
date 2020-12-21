@@ -77,7 +77,7 @@ public class LymallSearchHistorySqlProvider {
         SQL sql=new SQL();
         sql.SELECT("*")
                 .FROM("lymall_search_history")
-                .WHERE("user_id=${"+userId+"}");
+                .WHERE("user_id="+userId);
 
         return sql.toString();
     }

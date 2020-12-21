@@ -86,17 +86,15 @@ public class LymallKeywordSqlProvider {
 
     /**
      * 查询默认关键字与热门关键字信息
-     * @param type
+     * @param keywordName 要查询的关键字字段
+     * @param type 参数
      * @return String
      */
-    public String selectFindAllPopularOrDefaultKeyWords(Integer type){
+    public String selectFindAllPopularOrDefaultKeyWords(String keywordName,Integer type){
         SQL sql=new SQL();
         sql.SELECT("*")
                 .FROM("lymall_keyword")
-                .WHERE("keyword_is_hot=${"+type+"}")
-                .OR()
-                .WHERE("keyword_is_default=${"+type+"}");
-
+                .WHERE(keywordName+"="+type);
         return sql.toString();
     }
 }

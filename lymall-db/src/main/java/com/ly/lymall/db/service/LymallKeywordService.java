@@ -13,9 +13,12 @@ public interface LymallKeywordService {
 
     /**
      * 热门关键字或默认关键字
+     * @param keywordName
      * @param type
+     * @param currentPage
+     * @param limit
      * @return List<LymallKeyword>
      */
-    List<LymallKeyword> selectAllHotOrDefaultKeywords(Integer type,Integer currentPage,Integer limit);
+    List<LymallKeyword> selectAllHotOrDefaultKeywords(String keywordName,Integer type,Integer currentPage,Integer limit);
 
 }
