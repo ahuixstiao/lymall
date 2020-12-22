@@ -102,6 +102,8 @@ public interface LymallGoodsMapper {
     @SelectProvider(value=LymallGoodsSqlProvider.class,method="selectfindAllGoods")
     List<LymallGoods> selectfindAllGoods(String productTypes);
 
+
+
     /**
      * 根据商品名称或关键字搜索商品并排序
      * @param keyword

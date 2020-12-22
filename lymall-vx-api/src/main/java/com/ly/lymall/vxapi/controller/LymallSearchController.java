@@ -8,7 +8,9 @@ import com.ly.lymall.db.service.LymallGoodsService;
 import com.ly.lymall.db.service.LymallKeywordService;
 import com.ly.lymall.db.service.LymallSearchHistoryService;
 import jdk.nashorn.internal.objects.NativeNumber;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -64,13 +66,13 @@ public class LymallSearchController {
         //热门关键字
         result.put("hotKeyword",ResponseUtil.okListPage(keywordService.selectAllHotOrDefaultKeywords("keyword_is_hot",1,currentPage,limit)));
         //历史关键字
-        result.put("historyKeyword",searchHistoryService.selectByHistory(userInfo.getUserId(),currentPage,limit));
+        result.put("historyKeyword",ResponseUtil.okListPage(searchHistoryService.selectByHistory(userInfo.getUserId(),currentPage,limit)));
 
         return result;
     }
 
     /**
-     * 搜索商品信息 并排序
+     * 搜索商品信息并进行排序 且向历史关键字表插入用户搜索的关键字
      * @param keyword 关键字
      * @param orderCloumn // 根据什么排序
      * @param orderType //排序类型 升序或降序
