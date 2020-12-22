@@ -181,7 +181,7 @@ public class LymallGoodsSqlProvider {
     }
 
     /**
-     * 根据要查询的字段名来查询商品信息
+     * 根据热门或者新品商品的字段名来查询商品信息
      * @param productTypes
      * @return String
      */
@@ -190,8 +190,7 @@ public class LymallGoodsSqlProvider {
 
         sql.SELECT("*")
                 .FROM("lymall_goods")
-                .WHERE(productTypes+"=1")
-                .AND().WHERE("goods_deleted=0")
+                .WHERE(productTypes+"=1 and goods_deleted=0")
                 .ORDER_BY("goods_retail_price asc");
 
         return sql.toString();
@@ -199,10 +198,10 @@ public class LymallGoodsSqlProvider {
 
     /**
      * 按用户输入的关键字与商品分类查询商品
-     * @param keyword
-     * @param orderCloumn
-     * @param orderType
-     * @param categoryId
+     * @param keyword 关键字
+     * @param orderCloumn 排序所依据的字段
+     * @param orderType 排序类型 asc or desc
+     * @param categoryId 分类id
      * @return String
      */
     public String searchProductsBasedOnKeywords(String keyword, String orderCloumn,String orderType,Integer categoryId){
@@ -212,7 +211,7 @@ public class LymallGoodsSqlProvider {
                 .WHERE("goods_name like '%"+keyword+"%'")
                 .OR().WHERE("goods_keywords like '%"+keyword+"%'");
                 if(categoryId!=0){
-                     sql.AND().WHERE(" and goods_deleted="+0);
+                     sql.AND().WHERE("category_id="+categoryId+" and goods_deleted=0");
                 }
                 sql.ORDER_BY(orderCloumn+" "+orderType);
 

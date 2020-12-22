@@ -44,9 +44,8 @@ public class LymallSearchController {
     private LymallGoodsService goodsService;
 
     /**
-     *
-     * @param userInfo 用户登陆状态
-     * @param currentPage 当前页
+     * 用户点击搜索框时显示的数据 默认关键字 热门关键字 历史关键字
+     * @param userInfo 通过前端返回的userId判断用户登陆的状态 来进行查询ll     * @param currentPage 当前页
      * @param limit 信息条数
      * @return Object 返回
      */
@@ -72,17 +71,18 @@ public class LymallSearchController {
 
     /**
      * 搜索商品信息 并排序
-     * @param keyword
-     * @param orderCloumn
-     * @param orderType
-     * @param categoryId
+     * @param keyword 关键字
+     * @param orderCloumn // 根据什么排序
+     * @param orderType //排序类型 升序或降序
+     * @param categoryId //商品分类id
      * @return Object
      */
     @RequestMapping("search/result")
     public Object searchProducts(String keyword, String orderCloumn, String orderType,Integer categoryId){
         //声明map集合 封装返回值
         Map<String,Object> result=new HashMap<>();
-        //查询商品信息并按类别 并按商品添加时间排序
+
+        //通过用户输入的关键字与选中的商品类别进行模糊查询商品信息 并对商品进行排序
         result.put("goodsList",goodsService.searchProducts(keyword,orderCloumn,orderType,categoryId));
 
         return result;

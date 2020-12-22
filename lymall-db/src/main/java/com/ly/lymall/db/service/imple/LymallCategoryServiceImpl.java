@@ -47,7 +47,6 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
         //分页配置
         PageHelper.startPage(currentPage,limit);
 
-
         //声明一个返回对象保存 要返回的 分类名称与商品信息
         List<LymallGoodsCategoryDTO> list=null;
 
@@ -57,7 +56,6 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
         //遍历分类方法返回的参数
         for(int i=0;i<=categorieNames.size();i++){
             for (LymallCategory category : categorieNames) {
-
                 //保存 分类名称 String类型  与 分类的商品信息List<LymallGoodsCategoryDTO>  将这两个参数保存到同一个容器中
 
             }

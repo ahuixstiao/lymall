@@ -21,8 +21,8 @@ import java.time.LocalDateTime;
 
 /**
  * @Author: ahui
- * @Date: 2020-11-18/ 14:23
  * @Description: 登录校验 请求controller类
+ * @Date: 2020-11-18 - 14:23
  */
 @RestController
 @RequestMapping("/wx")
