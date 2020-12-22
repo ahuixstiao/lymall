@@ -27,6 +27,6 @@ public interface LymallCategoryService {
      * @param limit
      * @return String
      */
-    List<LymallGoodsCategoryDTO> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage, Integer limit);
+    Map<String,Object> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage, Integer limit);
 
 }

@@ -111,7 +111,7 @@ public class LymallIndexController {
         //专题精选商品信息
         map.put("topics",ResponseUtil.okListPage(topicService.selectByfindAll(currentPage,limit)));
         //更多好物
-        map.put("floorGoods",ResponseUtil.okListPage(categoryService.selectfindByGoodsCategory(categoryPid,currentPage,limit)));
+        map.put("floorGoods",categoryService.selectfindByGoodsCategory(categoryPid,currentPage,limit));
         //返回
         return ResponseUtil.ok(map);
     }
