@@ -47,7 +47,8 @@ public class LymallSearchController {
 
     /**
      * 用户点击搜索框时显示的数据 默认关键字 热门关键字 历史关键字
-     * @param userInfo 通过前端返回的userId判断用户登陆的状态 来进行查询ll     * @param currentPage 当前页
+     * @param userInfo 通过前端返回的userId判断用户登陆的状态 来进行查询ll
+     * @param currentPage 当前页
      * @param limit 信息条数
      * @return Object 返回
      */
