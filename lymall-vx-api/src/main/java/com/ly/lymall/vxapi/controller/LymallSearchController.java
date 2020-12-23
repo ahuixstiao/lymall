@@ -101,9 +101,10 @@ public class LymallSearchController {
 
         //取出商品信息的分类id进行查询 利用set集合 不可重复特性将重复id去重
         Set setList=new HashSet();
-        goodsList.stream().forEach((cateId)->setList.add(cateId.getCategoryId()));
+        //使用Lambada表达式将商品信息转成数据流并forEach循环取出CategoryId保存到set集合中
+        goodsList.stream().forEach((goods)->setList.add(goods.getCategoryId()));
         //"[1011004, 1008009, 1017000, 1008002, 1008016, 1036000]"
-        
+
         return result;
     }
 
