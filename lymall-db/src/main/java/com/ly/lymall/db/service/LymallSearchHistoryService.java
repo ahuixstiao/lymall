@@ -19,4 +19,13 @@ public interface LymallSearchHistoryService {
      * @return List<LymallSearchHistory>
      */
     List<LymallSearchHistory> selectByHistory(Integer userId,Integer currentPage,Integer limit);
+
+    /**
+     * 删除历史关键字
+     * 若用户登录则按 userId与历史关键字进行删除
+     * 若用户未登录则按 历史关键字删除
+     * @param userId
+     * @return int
+     */
+    int deleteByHistoryKeyword(Integer userId);
 }
