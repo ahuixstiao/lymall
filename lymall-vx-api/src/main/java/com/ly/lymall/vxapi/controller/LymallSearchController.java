@@ -108,16 +108,16 @@ public class LymallSearchController {
         return map;
     }
 
-    @RequestMapping("")
+    /**
+     * 删除历史关键字
+     * @param userId
+     * @param keyword
+     * @return Object
+     */
+    @RequestMapping("search/clearhistory")
     public Object searchHistory(Integer userId,String keyword){
 
-        Map<String,Object> map=new HashMap<>();
-
-        //删除历史关键字记录
-        map.put("deleteSearchHistory",searchHistoryService.deleteByHistoryKeyword(userId));
-
-        return map;
-
+        return ResponseUtil.ok(searchHistoryService.deleteByHistoryKeyword(userId));
     }
 
 }
