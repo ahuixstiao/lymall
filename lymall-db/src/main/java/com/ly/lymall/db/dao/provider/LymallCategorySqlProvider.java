@@ -139,4 +139,18 @@ public class LymallCategorySqlProvider {
         return sql.toString();
     }
 
+    /**
+     * 根据categoryId查询分类
+     * @param categoryId
+     * @return
+     */
+    public String selectByFindAllCategoryId(Integer categoryId){
+        SQL sql=new SQL();
+        sql.SELECT("*")
+                .FROM("lymall_category")
+                .WHERE("category_id="+categoryId);
+
+        return sql.toString();
+    }
+
 }

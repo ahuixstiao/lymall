@@ -55,10 +55,22 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
         for (LymallCategory category : categorieNames) {
             //保存 分类名称 与 分类的商品信息  将name与goodsList参数保存到同一个容器中
             map.put("name",category.getCategoryName());
-            map.put("goodsList", categoryMapper.selectfindByGoodsCategory(category.getCategoryName()));
+            map.put("goodsList", categoryMapper.selectFindByGoodsCategory(category.getCategoryName()));
         }
 
         //返回
         return map;
+    }
+
+    /**
+     * 根据categoryId查询分类
+     *
+     * @param categoryId
+     * @return List<LymallCategory>
+     */
+    @Override
+    public List<LymallCategory> selectFindByCategoryId(Integer categoryId) {
+
+        return categoryMapper.selectFindByCategoryId(categoryId);
     }
 }

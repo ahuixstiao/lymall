@@ -62,7 +62,7 @@ public interface LymallCategoryMapper {
     LymallCategory selectByPrimaryKey(Integer categoryId);
 
     /**
-     * 根据pid查询商品类别
+     * 根据categoryPid查询商品类别
      * ResultMap注解作用 使用将数据库字段与实体类对应的Results返回结果集 防止字段名与属性名不对应无法接收参数
      * 开启了Mybatis的驼峰命名支持后可不使用
      * @param categoryPid
@@ -78,8 +78,15 @@ public interface LymallCategoryMapper {
      * @return String
      */
     @SelectProvider(type=LymallCategorySqlProvider.class,method ="selectByCategoryFindGoods")
-    List<LymallGoodsCategoryDTO> selectfindByGoodsCategory(String categoryName);
+    List<LymallGoodsCategoryDTO> selectFindByGoodsCategory(String categoryName);
 
+    /**
+     * 根据categoryId查询分类
+     * @param categoryId
+     * @return List<LymallCategory>
+     */
+    @SelectProvider(type = LymallCategorySqlProvider.class,method ="selectByFindAllCategoryId")
+    List<LymallCategory> selectFindByCategoryId(Integer categoryId);
 
     @UpdateProvider(type=LymallCategorySqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(LymallCategory record);

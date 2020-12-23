@@ -1,9 +1,13 @@
 package com.ly.lymall.vxapi.controller;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.ly.lymall.core.utils.ResponseUtil;
 import com.ly.lymall.db.dao.mapper.LymallSearchHistoryMapper;
+import com.ly.lymall.db.domian.LymallCategory;
+import com.ly.lymall.db.domian.LymallGoods;
 import com.ly.lymall.db.domian.LymallKeyword;
 import com.ly.lymall.db.domian.LymallUser;
+import com.ly.lymall.db.service.LymallCategoryService;
 import com.ly.lymall.db.service.LymallGoodsService;
 import com.ly.lymall.db.service.LymallKeywordService;
 import com.ly.lymall.db.service.LymallSearchHistoryService;
@@ -14,9 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Author: Ahui
@@ -44,6 +46,12 @@ public class LymallSearchController {
      */
     @Resource
     private LymallGoodsService goodsService;
+
+    /**
+     * 分类信息 业务层接口
+     */
+    @Resource
+    private LymallCategoryService categoryService;
 
     /**
      * 用户点击搜索框时显示的数据 默认关键字 热门关键字 历史关键字
@@ -85,9 +93,17 @@ public class LymallSearchController {
         //声明map集合 封装返回值
         Map<String,Object> result=new HashMap<>();
 
-        //通过用户输入的关键字与选中的商品类别进行模糊查询商品信息 并对商品进行排序
-        result.put("goodsList",goodsService.searchProducts(keyword,orderCloumn,orderType,categoryId));
+        //通过关键字与选中的商品类别进行模糊查询商品信息 并对商品进行排序
+        List<LymallGoods> goodsList=goodsService.searchProducts(keyword,orderCloumn,orderType,categoryId);
 
+        //封装商品信息
+        result.put("goodsList",goodsList);
+
+        //取出商品信息的分类id进行查询 利用set集合 不可重复特性将重复id去重
+        Set setList=new HashSet();
+        goodsList.stream().forEach((cateId)->setList.add(cateId.getCategoryId()));
+        //"[1011004, 1008009, 1017000, 1008002, 1008016, 1036000]"
+        
         return result;
     }
 

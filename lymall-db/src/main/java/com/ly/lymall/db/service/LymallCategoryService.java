@@ -29,4 +29,11 @@ public interface LymallCategoryService {
      */
     Map<String,Object> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage, Integer limit);
 
+    /**
+     * 根据categoryId查询分类
+     * @param categoryId
+     * @return List<LymallCategory>
+     */
+    List<LymallCategory> selectFindByCategoryId(Integer categoryId);
+
 }

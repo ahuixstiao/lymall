@@ -44,6 +44,7 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
      * @param keyword
      * @param orderCloumn
      * @param orderType
+     * @param categoryId
      * @return List<LymallGoods>
      */
     @Override
