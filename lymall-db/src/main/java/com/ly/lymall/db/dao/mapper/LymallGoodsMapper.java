@@ -95,14 +95,12 @@ public interface LymallGoodsMapper {
     LymallGoods selectByPrimaryKey(Integer goodsId);
 
     /**
-     * 根据字段来查询商品
+     * 根据热门或者新品商品的字段名来查询商品信息
      * @param productTypes 要查询的商品字段
      * @return List<LymallGoods>
      */
     @SelectProvider(value=LymallGoodsSqlProvider.class,method="selectfindAllGoods")
     List<LymallGoods> selectfindAllGoods(String productTypes);
-
-
 
     /**
      * 根据商品名称或关键字搜索商品并排序
@@ -113,7 +111,15 @@ public interface LymallGoodsMapper {
      * @return List<LymallGoods>
      */
     @SelectProvider(value=LymallGoodsSqlProvider.class,method="searchProductsBasedOnKeywords")
-    List<LymallGoods> searchProducts(String keyword, String orderCloumn,String orderType,Integer categoryId);
+    List<LymallGoods> selectBySearchProducts(String keyword, String orderCloumn,String orderType,Integer categoryId);
+
+    /**
+     * 根据关键字搜索商品名称
+     * @param keyword
+     * @return List<LymallGoods>
+     */
+    @SelectProvider(value=LymallGoodsSqlProvider.class,method="slectByGiveHintsBasedOnKeywords")
+    List<LymallGoods> selectByKeywordSearchGoodsName(String keyword);
 
     /**
      * 获取商品总条数

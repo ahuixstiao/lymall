@@ -217,4 +217,19 @@ public class LymallGoodsSqlProvider {
 
         return sql.toString();
     }
+
+    /**
+     * 根据用户输入的关键字进行提示
+     * @param keyword
+     * @return String
+     */
+    public String slectByGiveHintsBasedOnKeywords(String keyword){
+        SQL sql=new SQL();
+        sql.SELECT("goods_name")
+                .FROM("lymall_goods")
+                .WHERE("goods_name like '%"+keyword+"%'");
+
+        return sql.toString();
+    }
+
 }

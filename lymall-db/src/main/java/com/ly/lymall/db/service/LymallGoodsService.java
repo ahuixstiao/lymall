@@ -31,6 +31,13 @@ public interface LymallGoodsService {
     List<LymallGoods> searchProducts(String keyword, String orderCloumn,String orderType,Integer categoryId);
 
     /**
+     * 根据关键字搜索商品名称
+     * @param keyword
+     * @return List<LymallGoods>
+     */
+    List<LymallGoods> keywordSearchGoodsName(String keyword);
+
+    /**
      * 查询商品总条数
      * @return int
      */

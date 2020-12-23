@@ -81,4 +81,16 @@ public class LymallSearchHistorySqlProvider {
 
         return sql.toString();
     }
+
+    /**
+     * 根据userId来进行 删除历史关键字
+     *
+     * @param userId
+     * @return String
+     */
+    public String deleteByUseridAndHistoryKeywordId(Integer userId){
+        SQL sql=new SQL();
+        sql.DELETE_FROM("lymall_search_history").WHERE("user_id="+userId);
+        return sql.toString();
+    }
 }

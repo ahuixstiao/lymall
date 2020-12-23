@@ -47,16 +47,16 @@ public class LymallSearchController {
 
     /**
      * 用户点击搜索框时显示的数据 默认关键字 热门关键字 历史关键字
-     * @param userInfo 通过前端返回的userId判断用户登陆的状态 来进行查询ll
+     * @param userId 通过前端返回的userId判断用户登陆的状态 来进行查询ll
      * @param currentPage 当前页
      * @param limit 信息条数
      * @return Object 返回
      */
     @RequestMapping("search/index")
-    public Object selectFindAllKeyWords(LymallUser userInfo, Integer currentPage, Integer limit){
+    public Object selectFindAllKeyWords(Integer userId, Integer currentPage, Integer limit){
         //保存默认关键字返回值
         List<LymallKeyword> lymallKeywordList=keywordService.selectAllHotOrDefaultKeywords("keyword_is_default",1,currentPage,limit);
-        //将默认关键字 保存到实体类中
+        //将默认关键字返回值 从list集合中抽出保存到实体类中
         LymallKeyword lymallKeyword=lymallKeywordList.get(0);
 
         //声明map接口 用来封装返回值
@@ -67,13 +67,13 @@ public class LymallSearchController {
         //热门关键字
         result.put("hotKeyword",ResponseUtil.okListPage(keywordService.selectAllHotOrDefaultKeywords("keyword_is_hot",1,currentPage,limit)));
         //历史关键字
-        result.put("historyKeyword",ResponseUtil.okListPage(searchHistoryService.selectByHistory(userInfo.getUserId(),currentPage,limit)));
+        result.put("historyKeyword",ResponseUtil.okListPage(searchHistoryService.selectByHistory(userId,currentPage,limit)));
 
         return result;
     }
 
     /**
-     * 搜索商品信息并进行排序 且向历史关键字表插入用户搜索的关键字
+     * 搜索商品信息 并在用户选择排序方式时进行相应的排序 且向历史关键字表插入用户搜索的关键字
      * @param keyword 关键字
      * @param orderCloumn // 根据什么排序
      * @param orderType //排序类型 升序或降序
@@ -89,6 +89,23 @@ public class LymallSearchController {
         result.put("goodsList",goodsService.searchProducts(keyword,orderCloumn,orderType,categoryId));
 
         return result;
+    }
+
+    /**
+     * 根据用户输入的关键字来进行查询相关的商品名称并提示
+     * @param keyword 用户输入的关键字
+     * @return Object
+     */
+    @RequestMapping("search/helper")
+    public Object searchHelperKeyword(String keyword){
+
+        //声明一个集合来封装返回参数
+        Map<String,Object> map=new HashMap<>();
+
+        //根据输入的关键字 返回关键字帮助
+        map.put("helpKeyword",goodsService.keywordSearchGoodsName(keyword));
+
+        return map;
     }
 
 }

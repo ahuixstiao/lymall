@@ -15,6 +15,17 @@ public interface LymallSearchHistoryMapper {
     })
     int deleteByPrimaryKey(Integer searchHistoryId);
 
+    /**
+     * 删除历史关键字
+     * 1.若用户登录则按 userId与历史关键字进行删除
+     * 2.若用户未登录则按 历史关键字删除
+     * @param userId
+     * @param historyKeyword
+     * @return int
+     */
+    @DeleteProvider(value=LymallSearchHistorySqlProvider.class,method="deleteByUseridAndHistoryKeywordId")
+    int deleteByHistoryKeyword(Integer userId,String historyKeyword);
+
     @Insert({
         "insert into lymall_search_history (user_id, search_keyword, ",
         "search_from, search_history_add_time, ",

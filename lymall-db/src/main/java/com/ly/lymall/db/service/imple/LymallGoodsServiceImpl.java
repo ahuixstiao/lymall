@@ -49,7 +49,19 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
     @Override
     public List<LymallGoods> searchProducts(String keyword, String orderCloumn, String orderType,Integer categoryId) {
 
-        return goodsMapper.searchProducts(keyword, orderCloumn, orderType,categoryId);
+        return goodsMapper.selectBySearchProducts(keyword, orderCloumn, orderType,categoryId);
+    }
+
+    /**
+     * 根据关键字搜索商品名称
+     *
+     * @param keyword
+     * @return List<LymallGoods>
+     */
+    @Override
+    public List<LymallGoods> keywordSearchGoodsName(String keyword) {
+
+        return goodsMapper.selectByKeywordSearchGoodsName(keyword);
     }
 
     /**

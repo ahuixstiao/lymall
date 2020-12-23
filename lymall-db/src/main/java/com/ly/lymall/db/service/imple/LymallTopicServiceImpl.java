@@ -10,10 +10,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Created with IntelliJ IDEA.
- *
  * @Author: ahui
- * @Date: 2020/12/19/12:57
+ * @Date: 2020/12/19 - 12:57
  * @Description: 专题精选 业务层实现类
  */
 @Service

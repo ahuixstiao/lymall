@@ -52,13 +52,12 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
         Map<String,Object> map=new HashMap<>();
 
         //遍历分类方法返回的参数
-        for(int i=0;i<=categorieNames.size();i++){
-            for (LymallCategory category : categorieNames) {
-                //保存 分类名称 String类型  与 分类的商品信息List<LymallGoodsCategoryDTO>  将这两个参数保存到同一个容器中
-                /*map.put("name",category.getCategoryName());
-                map.put("goodsList", categoryMapper.selectfindByGoodsCategory(category.getCategoryName()));*/
-            }
+        for (LymallCategory category : categorieNames) {
+            //保存 分类名称 与 分类的商品信息  将name与goodsList参数保存到同一个容器中
+            map.put("name",category.getCategoryName());
+            map.put("goodsList", categoryMapper.selectfindByGoodsCategory(category.getCategoryName()));
         }
+
         //返回
         return map;
     }
