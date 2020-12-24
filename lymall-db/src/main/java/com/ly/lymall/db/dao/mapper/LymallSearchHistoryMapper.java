@@ -16,9 +16,7 @@ public interface LymallSearchHistoryMapper {
     int deleteByPrimaryKey(Integer searchHistoryId);
 
     /**
-     * 删除历史关键字
-     * 1.若用户登录则按 userId与历史关键字进行删除
-     * 2.若用户未登录则按 历史关键字删除
+     * 根据userId删除历史关键字
      * @param userId
      * @return int
      */

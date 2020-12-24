@@ -91,7 +91,7 @@ public class LymallSearchController {
     @RequestMapping("search/result")
     public Object searchProducts(String keyword, String orderCloumn, String orderType,Integer categoryId){
         //声明map集合 封装返回值
-        Map<String,Object> result=new HashMap<>();
+        Map<String,Object> result=new HashMap();
 
         //通过关键字与选中的商品类别进行模糊查询商品信息 并对商品进行排序
         List<LymallGoods> goodsList=goodsService.searchProducts(keyword,orderCloumn,orderType,categoryId);
@@ -99,11 +99,23 @@ public class LymallSearchController {
         //封装商品信息
         result.put("goodsList",goodsList);
 
-        //取出商品信息的分类id进行查询 利用set集合 不可重复特性将重复id去重
-        Set setList=new HashSet();
+        //取出商品信息的分类id进行查询 利用set集合不可重复特性 将重复分类id去重
+        Set<Integer> setList=new HashSet();
         //使用Lambada表达式将商品信息转成数据流并forEach循环取出CategoryId保存到set集合中
         goodsList.stream().forEach((goods)->setList.add(goods.getCategoryId()));
-        //"[1011004, 1008009, 1017000, 1008002, 1008016, 1036000]"
+
+        //声明categoryList来保存Mapper层返回值
+        List<LymallCategory> categoryList=null;
+
+        //使用List集合 取出set集合的参数 [1011004, 1008009, 1017000, 1008002, 1008016, 1036000]
+        List<Integer> getSetList= new ArrayList<>(setList);
+        for(int i=0;i<=getSetList.size();i++){
+            categoryList=categoryService.selectFindByCategoryId(getSetList.get(i));
+        }
+
+        //封装分类类型信息
+        result.put("filterCategory",categoryList);
+
 
         return result;
     }
@@ -126,7 +138,7 @@ public class LymallSearchController {
     }
 
     /**
-     * 删除历史关键字
+     * 根据userId删除历史关键字
      * @param userId
      * @param keyword
      * @return Object

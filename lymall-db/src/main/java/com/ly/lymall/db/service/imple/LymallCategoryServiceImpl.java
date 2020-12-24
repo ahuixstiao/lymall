@@ -35,7 +35,7 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
     }
 
     /**
-     * 根据传入的分类名称 查询分类下的商品信息 并将分类名称与商品数据返回
+     * 根据传入的分类Pid 查询分类下的商品信息 并将分类名称与商品数据返回
      * @param currentPage
      * @param categoryPid
      * @param limit
@@ -43,23 +43,44 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
      */
     @Override
     public Map<String,Object> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage, Integer limit) {
-        //执行查询父分类的方法
-        List<LymallCategory> categorieNames = this.selectfindByCategory(categoryPid);
-        //分页配置
-        PageHelper.startPage(currentPage,limit);
+        /**
+         * 声明一个局部内部类
+         */
+        class GoodsCategoryResult{
+            public String name;
+            public List<LymallGoodsCategoryDTO> goodsList;
 
-        //保存每个分类的返回参数
-        Map<String,Object> map=new HashMap<>();
+            //声明一个有参构造函数用来传入参数
+            public GoodsCategoryResult(String name, List<LymallGoodsCategoryDTO> goodsList) {
+                this.name = name;
+                this.goodsList = goodsList;
+            }
+        }
 
-        //遍历分类方法返回的参数
-        for (LymallCategory category : categorieNames) {
-            //保存 分类名称 与 分类的商品信息  将name与goodsList参数保存到同一个容器中
-            map.put("name",category.getCategoryName());
-            map.put("goodsList", categoryMapper.selectFindByGoodsCategory(category.getCategoryName()));
+        //根据前端传递过来的CategoryPid进行查询出 分类信息集合
+        List<LymallCategory> categorieNamesList = this.selectfindByCategory(categoryPid);
+
+        //声明一个集合保存Mpper返回参数
+        List<LymallGoodsCategoryDTO> goodsCategoryDTOList=null;
+
+        //遍历取出categorieNamesList的 categoryName 用来查询各个父分类下的商品信息
+        for (LymallCategory categorieName : categorieNamesList) {
+            //goodsCategoryDTOList=categoryMapper.selectFindByGoodsCategory(categorieName.getCategoryName());
+        }
+
+        //定义最终传递的List name 与 LymallGoodsCategoryDTO
+        List<GoodsCategoryResult> goodsCategoryResultList=new ArrayList<>();
+
+        //定位该for循环 用于在循环内continue时 重新循环时定位退出到哪个循环开始
+        outer:
+        for (int i=0;i<=categorieNamesList.size();i++){
+            //遍历取出
+            //LymallGoodsCategoryDTO goodsCategoryDTO=goodsCategoryDTOList.get(i);
+
         }
 
         //返回
-        return map;
+        return null;
     }
 
     /**
