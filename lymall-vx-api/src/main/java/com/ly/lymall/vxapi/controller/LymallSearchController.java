@@ -104,17 +104,10 @@ public class LymallSearchController {
         //使用Lambada表达式将商品信息转成数据流并forEach循环取出CategoryId保存到set集合中
         goodsList.stream().forEach((goods)->setList.add(goods.getCategoryId()));
 
-        //声明categoryList来保存Mapper层返回值
-        List<LymallCategory> categoryList=null;
-
         //使用List集合 取出set集合的参数 [1011004, 1008009, 1017000, 1008002, 1008016, 1036000]
-        List<Integer> getSetList= new ArrayList<>(setList);
-        for(int i=0;i<=getSetList.size();i++){
-            categoryList=categoryService.selectFindByCategoryId(getSetList.get(i));
-        }
 
         //封装分类类型信息
-        result.put("filterCategory",categoryList);
+        result.put("filterCategory",null);
 
 
         return result;
@@ -140,13 +133,22 @@ public class LymallSearchController {
     /**
      * 根据userId删除历史关键字
      * @param userId
-     * @param keyword
      * @return Object
      */
     @RequestMapping("search/clearhistory")
-    public Object searchHistory(Integer userId,String keyword){
+    public Object searchHistory(Integer userId){
 
         return ResponseUtil.ok(searchHistoryService.deleteByHistoryKeyword(userId));
     }
 
+    /**
+     * 根据goodsId查询商品信息
+     * @param goodsId
+     * @return Object
+     */
+    @RequestMapping("select/goods")
+    public Object selectByGoodsIdFindGoodsInfo(Integer goodsId){
+
+        return ResponseUtil.ok(goodsService.selectByGoodIdfindGoods(goodsId));
+    }
 }

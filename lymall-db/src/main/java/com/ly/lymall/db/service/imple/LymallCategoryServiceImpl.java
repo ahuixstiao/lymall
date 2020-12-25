@@ -65,7 +65,7 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
 
         //遍历取出categorieNamesList的 categoryName 用来查询各个父分类下的商品信息
         for (LymallCategory categorieName : categorieNamesList) {
-            //goodsCategoryDTOList=categoryMapper.selectFindByGoodsCategory(categorieName.getCategoryName());
+            goodsCategoryDTOList=categoryMapper.selectFindByGoodsCategory(categorieName.getCategoryName());
         }
 
         //定义最终传递的List name 与 LymallGoodsCategoryDTO
@@ -78,7 +78,6 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
             //LymallGoodsCategoryDTO goodsCategoryDTO=goodsCategoryDTOList.get(i);
 
         }
-
         //返回
         return null;
     }

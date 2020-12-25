@@ -38,6 +38,13 @@ public interface LymallGoodsService {
     List<LymallGoods> keywordSearchGoodsName(String keyword);
 
     /**
+     * 根据goodsId查询商品信息
+     * @param goodsId
+     * @return LymallGoods
+     */
+    LymallGoods selectByGoodIdfindGoods(Integer goodsId);
+
+    /**
      * 查询商品总条数
      * @return int
      */

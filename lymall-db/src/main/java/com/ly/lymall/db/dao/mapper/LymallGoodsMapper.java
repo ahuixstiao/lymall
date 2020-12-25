@@ -60,38 +60,12 @@ public interface LymallGoodsMapper {
     //------------------------------------------------------------------------------------------------------------------------------------------------
     //查询
 
-    @Select({
-        "select",
-        "goods_id, goods_sn, goods_name, category_id, brand_id, goods_gallery, goods_keywords, ",
-        "goods_brief, goods_is_on_sale, goods_sort_order, goods_pic_url, goods_share_url, ",
-        "goods_is_new, goods_is_hot, goods_unit, goods_counter_price, goods_retail_price, ",
-        "goods_add_time, goods_update_time, goods_deleted, goods_detail",
-        "from lymall_goods",
-        "where goods_id = #{goodsId,jdbcType=INTEGER}"
-    })
-    @Results(id="goodsResult",value={
-        @Result(column="goods_id", property="goodsId", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="goods_sn", property="goodsSn", jdbcType=JdbcType.VARCHAR),
-        @Result(column="goods_name", property="goodsName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="category_id", property="categoryId", jdbcType=JdbcType.INTEGER),
-        @Result(column="brand_id", property="brandId", jdbcType=JdbcType.INTEGER),
-        @Result(column="goods_gallery", property="goodsGallery", jdbcType=JdbcType.VARCHAR),
-        @Result(column="goods_keywords", property="goodsKeywords", jdbcType=JdbcType.VARCHAR),
-        @Result(column="goods_brief", property="goodsBrief", jdbcType=JdbcType.VARCHAR),
-        @Result(column="goods_is_on_sale", property="goodsIsOnSale", jdbcType=JdbcType.BIT),
-        @Result(column="goods_sort_order", property="goodsSortOrder", jdbcType=JdbcType.SMALLINT),
-        @Result(column="goods_pic_url", property="goodsPicUrl", jdbcType=JdbcType.VARCHAR),
-        @Result(column="goods_share_url", property="goodsShareUrl", jdbcType=JdbcType.VARCHAR),
-        @Result(column="goods_is_new", property="goodsIsNew", jdbcType=JdbcType.BIT),
-        @Result(column="goods_is_hot", property="goodsIsHot", jdbcType=JdbcType.BIT),
-        @Result(column="goods_unit", property="goodsUnit", jdbcType=JdbcType.VARCHAR),
-        @Result(column="goods_counter_price", property="goodsCounterPrice", jdbcType=JdbcType.DECIMAL),
-        @Result(column="goods_retail_price", property="goodsRetailPrice", jdbcType=JdbcType.DECIMAL),
-        @Result(column="goods_add_time", property="goodsAddTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="goods_update_time", property="goodsUpdateTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="goods_deleted", property="goodsDeleted", jdbcType=JdbcType.BIT),
-        @Result(column="goods_detail", property="goodsDetail", jdbcType=JdbcType.LONGVARCHAR)
-    })
+    /**
+     * 根据goodsId查询商品信息
+     * @param goodsId
+     * @return
+     */
+    @Select("select * from lymall_goods where goods_id=#{goodsId}")
     LymallGoods selectByPrimaryKey(Integer goodsId);
 
     /**
