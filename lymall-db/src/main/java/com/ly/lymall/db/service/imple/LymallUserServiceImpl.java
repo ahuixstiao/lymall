@@ -73,6 +73,8 @@ public class LymallUserServiceImpl implements LymallUserService {
      */
     @Override
     public int registerUserInfo(LymallUser user, String key,InputStream inputStream) {
+        //创建bucket空间
+        aliYunOssUtil.ossClientDoesItExist("lymall-ahui");
         //将Controller拼接好的key（文件名.后缀）与文件流传入该方法执行
         String url=aliYunOssUtil.ossPutObjectRequest(key,inputStream);
         //将阿里云的图片路径赋值到实体类中

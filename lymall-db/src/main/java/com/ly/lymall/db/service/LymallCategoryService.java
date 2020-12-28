@@ -5,6 +5,7 @@ import com.ly.lymall.db.dto.LymallGoodsCategoryDTO;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @Author: ahui
@@ -30,10 +31,10 @@ public interface LymallCategoryService {
     Map<String,Object> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage, Integer limit);
 
     /**
-     * 根据categoryId查询分类
-     * @param categoryId
+     * 根据Set集合中的categoryId查询分类
+     * @param setListCategoryId
      * @return List<LymallCategory>
      */
-    List<LymallCategory> selectFindByCategoryId(Integer categoryId);
+    List<LymallCategory> selectFindByCategoryId(Set setListCategoryId);
 
 }

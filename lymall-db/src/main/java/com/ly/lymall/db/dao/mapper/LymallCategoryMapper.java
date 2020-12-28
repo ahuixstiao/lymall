@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
 import java.util.List;
+import java.util.Set;
 
 @Mapper
 public interface LymallCategoryMapper {
@@ -82,11 +83,11 @@ public interface LymallCategoryMapper {
 
     /**
      * 根据categoryId查询分类
-     * @param categoryId
+     * @param setListCategoryId
      * @return List<LymallCategory>
      */
     @SelectProvider(type = LymallCategorySqlProvider.class,method ="selectByFindAllCategoryId")
-    List<LymallCategory> selectFindByCategoryId(Integer categoryId);
+    List<LymallCategory> selectFindByCategoryId(Set setListCategoryId);
 
     @UpdateProvider(type=LymallCategorySqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(LymallCategory record);

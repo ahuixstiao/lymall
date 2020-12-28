@@ -99,16 +99,16 @@ public class LymallSearchController {
         //封装商品信息
         result.put("goodsList",goodsList);
 
-        //取出商品信息的分类id进行查询 利用set集合不可重复特性 将重复分类id去重
+        //取出商品信息的分类id进行查询 利用set集合不可重复特性 将重复分类id去重 得到 [1011004, 1008009, 1017000, 1008002, 1008016, 1036000]
         Set<Integer> setList=new HashSet();
         //使用Lambada表达式将商品信息转成数据流并forEach循环取出CategoryId保存到set集合中
         goodsList.stream().forEach((goods)->setList.add(goods.getCategoryId()));
 
-        //使用List集合 取出set集合的参数 [1011004, 1008009, 1017000, 1008002, 1008016, 1036000]
+        //判断set集合的size是否为0，若不为零则将set集合传入到实现类执行查询操作 若seiz为0则new出该集合作为空对象
+        List<LymallCategory> categoryByIDList = setList.size()>0? categoryService.selectFindByCategoryId(setList) : new ArrayList<>();
 
         //封装分类类型信息
-        result.put("filterCategory",null);
-
+        result.put("filterCategory",categoryByIDList);
 
         return result;
     }

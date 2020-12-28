@@ -36,7 +36,7 @@ public class AliYunOssUtil {
      * 阿里云OSS（对象存储服务）的入口点接口
      */
     @Resource
-    OSS ossClient;
+    private OSS ossClient;
 
     /**
      * 根据传入的newBucketName来创建一个Bucket，会优先判断该BucketName是否存在，若不存在则创建一个新的Bucket
@@ -77,8 +77,8 @@ public class AliYunOssUtil {
         //判断Bucket存储空间是否存在
         boolean exists=ossClient.doesBucketExist(bucketName);
 
-        //存在则return返回打断语句的执行
-        if(exists!=true){
+        //不存在则return返回打断语句的执行
+        if(!exists){
             return null;
         }
 

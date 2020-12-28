@@ -1,7 +1,7 @@
 #阿里云OSS配置信息
 aliyun:
   ossconfig:
-    endpoint: http://oss-cn-hangzhou.aliyuncs.com
-    accessKeyId: LTAI4GHUQh3RbCWJdsGZmUzK
-    accessKeySecret: SxriSg70JCyde8Ql7bHogqGqVSluRO
+    endpoint: http://oss-cn-beijing.aliyuncs.com
+    accessKeyId: LTAI4GGvQRAyyWfCTjcLvBsd
+    accessKeySecret: TyOLKN0XCFySfzNx713h1SRpkQXwFo
     bucketName: lymall-ahui

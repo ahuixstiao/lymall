@@ -3,6 +3,8 @@ package com.ly.lymall.db.dao.provider;
 import com.ly.lymall.db.domian.LymallCategory;
 import org.apache.ibatis.jdbc.SQL;
 
+import java.util.Set;
+
 public class LymallCategorySqlProvider {
     public String insertSelective(LymallCategory record) {
         SQL sql = new SQL();
@@ -140,15 +142,16 @@ public class LymallCategorySqlProvider {
     }
 
     /**
-     * 根据categoryId查询分类
-     * @param categoryId
+     * 根据Set集合中的categoryId查询分类
+     * @param setListCategoryId
      * @return
      */
-    public String selectByFindAllCategoryId(Integer categoryId){
+    public String selectByFindAllCategoryId(Set setListCategoryId){
         SQL sql=new SQL();
         sql.SELECT("*")
                 .FROM("lymall_category")
-                .WHERE("category_id="+categoryId);
+                //通过获取set集合的字符串参数[1011004, 1008009, 1017000, 1008002, 1008016, 1036000]并替换中括号为圆括号进行 in 的查询操作
+                .WHERE("category_id in"+setListCategoryId.toString().replace("[","(").replace("]",")"));
 
         return sql.toString();
     }
