@@ -91,7 +91,7 @@ public class LymallSearchController {
     @RequestMapping("search/result")
     public Object searchProducts(String keyword, String orderCloumn, String orderType,Integer categoryId){
         //声明map集合 封装返回值
-        Map<String,Object> result=new HashMap();
+        Map<String,Object> result=new HashMap<>();
 
         //通过关键字与选中的商品类别进行模糊查询商品信息 并对商品进行排序
         List<LymallGoods> goodsList=goodsService.searchProducts(keyword,orderCloumn,orderType,categoryId);
@@ -99,7 +99,7 @@ public class LymallSearchController {
         //封装商品信息
         result.put("goodsList",goodsList);
 
-        //取出商品信息的分类id进行查询 利用set集合不可重复特性 将重复分类id去重 得到 [1011004, 1008009, 1017000, 1008002, 1008016, 1036000]
+        //取出商品信息的分类id进行查询 利用set集合不可重复特性将重复categoryId去重
         Set<Integer> setList=new HashSet();
         //使用Lambada表达式将商品信息转成数据流并forEach循环取出CategoryId保存到set集合中
         goodsList.stream().forEach((goods)->setList.add(goods.getCategoryId()));
@@ -131,12 +131,24 @@ public class LymallSearchController {
     }
 
     /**
+     * 根据userId插入搜索历史关键字
+     * @param keyword
+     * @param userId
+     * @return
+     */
+    @RequestMapping("search/createhistory")
+    public Object createSearchHistory(String keyword,Integer userId){
+
+        return ResponseUtil.ok(searchHistoryService.createByHistoryKeyword(keyword,userId));
+    }
+
+    /**
      * 根据userId删除历史关键字
      * @param userId
      * @return Object
      */
     @RequestMapping("search/clearhistory")
-    public Object searchHistory(Integer userId){
+    public Object clearSearchHistory(Integer userId){
 
         return ResponseUtil.ok(searchHistoryService.deleteByHistoryKeyword(userId));
     }

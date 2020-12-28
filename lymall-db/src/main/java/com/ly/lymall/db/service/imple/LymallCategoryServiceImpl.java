@@ -47,8 +47,6 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
         //根据前端传递过来的CategoryPid进行查询出 分类信息集合
         List<LymallCategory> categorieNamesList = this.selectfindByCategory(categoryPid);
 
-
-
         //返回
         return null;
     }

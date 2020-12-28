@@ -34,6 +34,15 @@ public interface LymallSearchHistoryMapper {
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="searchHistoryId", before=false, resultType=Integer.class)
     int insert(LymallSearchHistory record);
 
+    /**
+     * 根据userId插入搜索历史关键字
+     * @param keyword
+     * @param userId
+     * @return int
+     */
+    @InsertProvider(type=LymallSearchHistorySqlProvider.class,method="insertByUserIdCreateHistoryKeyword")
+    int createHistoryKeyword(String keyword,Integer userId);
+
     @InsertProvider(type= LymallSearchHistorySqlProvider.class, method="insertSelective")
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="searchHistoryId", before=false, resultType=Integer.class)
     int insertSelective(LymallSearchHistory record);

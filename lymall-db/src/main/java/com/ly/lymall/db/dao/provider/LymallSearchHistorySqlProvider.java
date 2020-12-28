@@ -83,6 +83,19 @@ public class LymallSearchHistorySqlProvider {
     }
 
     /**
+     * 根据userId插入历史搜索关键字
+     * @param keyword
+     * @param userId
+     * @return String
+     */
+    public String insertByUserIdCreateHistoryKeyword(String keyword, Integer userId){
+        SQL sql=new SQL();
+        sql.INSERT_INTO("ymall_search_history (search_keyword,user_id)")
+                .VALUES(keyword,String.valueOf(userId));
+        return sql.toString();
+    }
+
+    /**
      * 根据userId来进行 删除历史关键字
      * @param userId
      * @return String
