@@ -35,11 +35,11 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
     }
 
     /**
-     * 根据前端传入的分类Pid 查询分类下的商品信息 并将分类名称与商品数据返回
+     * 更多好物 根据前端传入的分类Pid 查询分类下的商品信息 并将分类名称与商品数据返回
      * @param currentPage
      * @param categoryPid
      * @param limit
-     * @return String
+     * @return
      */
     @Override
     public Map<String,Object> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage, Integer limit) {
@@ -57,8 +57,8 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
      * @return List<LymallCategory>
      */
     @Override
-    public List<LymallCategory> selectFindByCategoryId(Set setListCategoryId) {
+    public List<LymallCategory> selectByCategoryIdFindCategoryInfo(Set setListCategoryId) {
 
-        return categoryMapper.selectFindByCategoryId(setListCategoryId);
+        return categoryMapper.selectBySetListCategoryIdFindCategoryInfo(setListCategoryId);
     }
 }

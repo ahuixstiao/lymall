@@ -91,7 +91,7 @@ public class LymallSearchHistorySqlProvider {
     public String insertByUserIdCreateHistoryKeyword(String keyword, Integer userId){
         SQL sql=new SQL();
         sql.INSERT_INTO("ymall_search_history (search_keyword,user_id)")
-                .VALUES(keyword,String.valueOf(userId));
+                .VALUES(keyword,userId.toString());
         return sql.toString();
     }
 
@@ -102,7 +102,9 @@ public class LymallSearchHistorySqlProvider {
      */
     public String deleteByUseridAndHistoryKeywordId(Integer userId){
         SQL sql=new SQL();
+
         sql.DELETE_FROM("lymall_search_history").WHERE("user_id="+userId);
+
         return sql.toString();
     }
 }

@@ -78,7 +78,7 @@ public interface LymallCategoryMapper {
      * @param categoryName
      * @return String
      */
-    @SelectProvider(type=LymallCategorySqlProvider.class,method ="selectByCategoryFindGoods")
+    @SelectProvider(type=LymallCategorySqlProvider.class,method ="selectByCategoryNameFindGoodsInfo")
     List<LymallGoodsCategoryDTO> selectFindByGoodsCategory(String categoryName);
 
     /**
@@ -86,8 +86,9 @@ public interface LymallCategoryMapper {
      * @param setListCategoryId
      * @return List<LymallCategory>
      */
-    @SelectProvider(type = LymallCategorySqlProvider.class,method ="selectByFindAllCategoryId")
-    List<LymallCategory> selectFindByCategoryId(Set setListCategoryId);
+    @SelectProvider(type = LymallCategorySqlProvider.class,method ="selectByCategoryIdFindCategoryInfo")
+    List<LymallCategory> selectBySetListCategoryIdFindCategoryInfo(Set setListCategoryId);
+
 
     @UpdateProvider(type=LymallCategorySqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(LymallCategory record);

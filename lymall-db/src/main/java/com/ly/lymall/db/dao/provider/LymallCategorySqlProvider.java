@@ -111,7 +111,7 @@ public class LymallCategorySqlProvider {
     }
 
     /**
-     * 根据categoryId查询分类信息
+     * 根据单个categoryId查询分类信息
      * @param categoryId
      * @return String
      */
@@ -130,7 +130,7 @@ public class LymallCategorySqlProvider {
      * @param categoryName
      * @return String
      */
-    public String selectByCategoryFindGoods(String categoryName){
+    public String selectByCategoryNameFindGoodsInfo(String categoryName){
         SQL sql=new SQL();
 
         sql.SELECT("A.goods_id,A.goods_name,A.goods_retail_price,A.goods_pic_url,B.category_name,B.category_id,B.category_pid")
@@ -144,9 +144,9 @@ public class LymallCategorySqlProvider {
     /**
      * 根据Set集合中的categoryId查询分类
      * @param setListCategoryId
-     * @return
+     * @return String 返回sql语句
      */
-    public String selectByFindAllCategoryId(Set setListCategoryId){
+    public String selectByCategoryIdFindCategoryInfo(Set setListCategoryId){
         SQL sql=new SQL();
         sql.SELECT("*")
                 .FROM("lymall_category")

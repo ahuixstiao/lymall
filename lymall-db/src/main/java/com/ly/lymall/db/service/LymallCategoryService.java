@@ -35,6 +35,6 @@ public interface LymallCategoryService {
      * @param setListCategoryId
      * @return List<LymallCategory>
      */
-    List<LymallCategory> selectFindByCategoryId(Set setListCategoryId);
+    List<LymallCategory> selectByCategoryIdFindCategoryInfo(Set setListCategoryId);
 
 }
