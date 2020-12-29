@@ -34,4 +34,16 @@ public class LymallBrandServiceImpl implements LymallBrandService {
 
         return brandMapper.selectFindAll();
     }
+
+    /**
+     * 根据品牌id查询品牌信息
+     *
+     * @param brandId
+     * @return LymallBrand
+     */
+    @Override
+    public LymallBrand selectByBrandIdFindInfo(Integer brandId) {
+
+        return brandMapper.selectByBrandIdFindInfo(brandId);
+    }
 }

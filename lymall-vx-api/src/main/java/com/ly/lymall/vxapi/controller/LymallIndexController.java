@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * @Author: ahui
  * @Date: 2020-12-11/ 14:42
- * @Description: 首页 请求controller类
+ * @Description: 首页 表现层Controller类
  */
 
 @RestController

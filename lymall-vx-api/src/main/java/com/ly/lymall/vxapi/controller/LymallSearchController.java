@@ -22,7 +22,7 @@ import java.util.*;
 
 /**
  * @Author: Ahui
- * @Description: 搜索页面控制器
+ * @Description: 搜索页面 表现层Controller类
  * @DateTime: 2020/12/21 - 12:45 下午
  **/
 @RestController

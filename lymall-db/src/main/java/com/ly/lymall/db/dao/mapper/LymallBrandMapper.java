@@ -59,6 +59,14 @@ public interface LymallBrandMapper {
     @Select("select * from lymall_brand where brand_deleted=${0}")
     List<LymallBrand> selectFindAll();
 
+    /**
+     * 根据brandId查询
+     * @param brandId
+     * @return LymallBrand
+     */
+    @Select("select * from lymall_brand where brand_id=#{brandId} and brand_deleted=${0}")
+    LymallBrand selectByBrandIdFindInfo(Integer brandId);
+
     @UpdateProvider(type=LymallBrandSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(LymallBrand record);
 

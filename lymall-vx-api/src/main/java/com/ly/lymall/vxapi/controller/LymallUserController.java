@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 
 /**
  * @Author: ahui
- * @Description: 登录校验 请求controller类
+ * @Description: 登录校验 表现层Controller类
  * @Date: 2020-11-18 - 14:23
  */
 @RestController

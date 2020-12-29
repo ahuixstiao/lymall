@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * @Author: ahui
  * @Date: 2020-12-04/ 14:51
- * @Description: 常见问题 请求controller类
+ * @Description: 常见问题 表现层Controller类
  */
 @RestController
 @RequestMapping("/wx")

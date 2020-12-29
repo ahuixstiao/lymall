@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @Author: ahui
  * @Date: 2020-12-07/ 14:38
- * @Description: 收货地址 请求controller类
+ * @Description: 收货地址 表现层Controller类
  */
 @RestController
 @RequestMapping("/wx")

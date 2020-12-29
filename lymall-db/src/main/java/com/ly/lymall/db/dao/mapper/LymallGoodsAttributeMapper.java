@@ -5,6 +5,8 @@ import com.ly.lymall.db.domian.LymallGoodsAttribute;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
+import java.util.List;
+
 @Mapper
 public interface LymallGoodsAttributeMapper {
     @Delete({
@@ -45,6 +47,15 @@ public interface LymallGoodsAttributeMapper {
         @Result(column="goods_attribute_deleted", property="goodsAttributeDeleted", jdbcType=JdbcType.BIT)
     })
     LymallGoodsAttribute selectByPrimaryKey(Integer goodsAttributeId);
+
+    /**
+     * 根据商品的goodsId查询 商品参数
+     * @param goodsId
+     * @return LymallGoodsAttribute
+     */
+    @Select("select * from lymall_goods_attribute where goods_id=#{goodsId}")
+    List<LymallGoodsAttribute> selectByGoodsIdFindGoodsAttriBute(Integer goodsId);
+
 
     @UpdateProvider(type=LymallGoodsAttributeSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(LymallGoodsAttribute record);
