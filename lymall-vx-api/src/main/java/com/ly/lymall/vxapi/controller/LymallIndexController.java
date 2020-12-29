@@ -105,9 +105,9 @@ public class LymallIndexController {
         //品牌制造商直供商品
         map.put("brands",ResponseUtil.okListPage(brandService.selectFindAll(currentPage,limit)));
         //新品发布
-        map.put("newGoods",ResponseUtil.okListPage(goodsService.selectfindAllGoods("goods_is_new",currentPage,limit)));
+        map.put("newGoods",ResponseUtil.okListPage(goodsService.selectByHotOrNewGoodsFindInfo("goods_is_new",currentPage,limit)));
         //人气推荐
-        map.put("hotGoods",ResponseUtil.okListPage(goodsService.selectfindAllGoods("goods_is_hot",currentPage,limit)));
+        map.put("hotGoods",ResponseUtil.okListPage(goodsService.selectByHotOrNewGoodsFindInfo("goods_is_hot",currentPage,limit)));
         //专题精选商品信息
         map.put("topics",ResponseUtil.okListPage(topicService.selectByfindAll(currentPage,limit)));
         //更多好物

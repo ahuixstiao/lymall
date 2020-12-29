@@ -181,11 +181,11 @@ public class LymallGoodsSqlProvider {
     }
 
     /**
-     * 根据热门或者新品商品的字段名来查询商品信息
+     * 查询热门或新品商品信息
      * @param productTypes
      * @return String
      */
-    public String selectfindAllGoods(String productTypes){
+    public String selectByHotOrNewGoodsFieldFindGoodsInfo(String productTypes){
         SQL sql=new SQL();
 
         sql.SELECT("*")
@@ -208,8 +208,8 @@ public class LymallGoodsSqlProvider {
         SQL sql=new SQL();
         sql.SELECT("*")
                 .FROM("lymall_goods")
-                .WHERE("goods_name like '%"+keyword+"%'")
-                .OR().WHERE("goods_keywords like '%"+keyword+"%'");
+                .WHERE("goods_name like '%"+keyword+"%' or goods_keywords like '%"+keyword+"%'");
+                //若发送了categoryId则进行 按分类来进行查询排序
                 if(categoryId!=0){
                      sql.AND().WHERE("category_id="+categoryId+" and goods_deleted=0");
                 }

@@ -96,25 +96,24 @@ public class LymallSearchController {
         //通过关键字与选中的商品类别进行模糊查询商品信息 并对商品进行排序
         List<LymallGoods> goodsList=goodsService.searchProducts(keyword,orderCloumn,orderType,categoryId);
 
-        //封装商品信息
-        result.put("goodsList",goodsList);
-
         //取出商品信息的分类id进行查询 利用set集合不可重复特性将重复categoryId去重
         Set<Integer> setList=new HashSet();
         //使用Lambada表达式将商品信息转成数据流并forEach循环取出CategoryId保存到set集合中
         goodsList.stream().forEach((goods)->setList.add(goods.getCategoryId()));
 
-        //判断set集合的size是否为0，若不为零则将set集合传入到实现类执行查询操作 若seiz为0则new出该集合作为空对象
-        List<LymallCategory> categoryByIDList = setList.size()>0? categoryService.selectByCategoryIdFindCategoryInfo(setList) : new ArrayList<>();
+        //判断set集合的size是否为0，若不为零则将set集合传入到实现类执行查询操作 若seiz为0则new出该集合作为空集合对象
+        List<LymallCategory> categoryByIdList = setList.size()>0? categoryService.selectByCategoryIdFindCategoryInfo(setList) : new ArrayList<>();
 
+        //封装商品信息
+        result.put("goodsList",goodsList);
         //封装分类类型信息
-        result.put("filterCategory",categoryByIDList);
+        result.put("filterCategory",categoryByIdList);
 
         return result;
     }
 
     /**
-     * 根据用户输入的关键字来进行查询相关的商品名称并提示
+     * 根据用户输入的关键字来进行查询相关的商品名称
      * @param keyword 用户输入的关键字
      * @return Object
      */
@@ -134,7 +133,7 @@ public class LymallSearchController {
      * 根据userId插入搜索历史关键字
      * @param keyword
      * @param userId
-     * @return
+     * @return Object
      */
     @RequestMapping("search/createhistory")
     public Object createSearchHistory(String keyword,Integer userId){
@@ -151,16 +150,5 @@ public class LymallSearchController {
     public Object clearSearchHistory(Integer userId){
 
         return ResponseUtil.ok(searchHistoryService.deleteByHistoryKeyword(userId));
-    }
-
-    /**
-     * 根据goodsId查询商品信息
-     * @param goodsId
-     * @return Object
-     */
-    @RequestMapping("select/goods")
-    public Object selectByGoodsIdFindGoodsInfo(Integer goodsId){
-
-        return ResponseUtil.ok(goodsService.selectByGoodIdfindGoods(goodsId));
     }
 }

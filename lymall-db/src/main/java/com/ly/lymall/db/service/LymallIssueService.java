@@ -14,9 +14,9 @@ public interface LymallIssueService {
     /**
      * 查询常见问题
      * @param currentPage
-     * @param limitData
+     * @param limit
      * @return List<LymallIssue>
      */
-    List<LymallIssue> getIssueByPage(Integer currentPage,Integer limitData);
+    List<LymallIssue> getIssueByPage(Integer currentPage,Integer limit);
 
 }

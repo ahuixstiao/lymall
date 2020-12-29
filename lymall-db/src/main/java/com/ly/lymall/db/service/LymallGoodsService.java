@@ -12,13 +12,13 @@ import java.util.List;
 public interface LymallGoodsService {
 
     /**
-     * 根据字段来查询商品
+     * 查询热门或新品商品信息
      * @param productTypes 要查询的商品字段
      * @param currentPage 当前页
      * @param limit 页面条数
      * @return List<LymallGoods>
      */
-    List<LymallGoods> selectfindAllGoods(String productTypes,Integer currentPage,Integer limit);
+    List<LymallGoods> selectByHotOrNewGoodsFindInfo(String productTypes,Integer currentPage,Integer limit);
 
     /**
      * 根据商品名称或关键字搜索商品并排序

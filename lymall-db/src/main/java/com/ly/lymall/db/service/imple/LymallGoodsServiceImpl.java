@@ -17,25 +17,25 @@ import java.util.List;
  * @Date: 2020-11-19/ 8:56
  * @Description: 实现类
  */
-@Service("lymallGoodsServiceImpl")
+@Service
 public class LymallGoodsServiceImpl implements LymallGoodsService {
 
     @Resource(name="lymallGoodsMapper")
     LymallGoodsMapper goodsMapper;
 
     /**
-     * 根据字段来查询商品
+     * 查询热门或新品商品信息
      * @param productTypes 要查询的商品字段
      * @param currentPage 页数
      * @param limit 显示的条数
      * @return List<LymallGoods>
      */
     @Override
-    public List<LymallGoods> selectfindAllGoods(String productTypes,Integer currentPage,Integer limit){
+    public List<LymallGoods> selectByHotOrNewGoodsFindInfo(String productTypes,Integer currentPage,Integer limit){
 
         PageHelper.startPage(currentPage,limit);
 
-        return goodsMapper.selectfindAllGoods(productTypes);
+        return goodsMapper.selectByHotOrNewGoodsFindInfo(productTypes);
     }
 
     /**

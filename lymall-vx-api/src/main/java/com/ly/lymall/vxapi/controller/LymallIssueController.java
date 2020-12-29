@@ -24,13 +24,13 @@ public class LymallIssueController {
     /**
      * 查询全部常见问题并分页
      * @param currentPage
-     * @param limitData
+     * @param limit
      * @return Object
      */
-    @RequestMapping("/issue/list")
-    public Object getIssueByPage(Integer currentPage,Integer limitData){
+    @RequestMapping("issue/list")
+    public Object getIssueByPage(Integer currentPage,Integer limit){
 
-       List<LymallIssue> issueList=issueService.getIssueByPage(currentPage, limitData);
+       List<LymallIssue> issueList=issueService.getIssueByPage(currentPage, limit);
 
        if(issueList!=null){
            return ResponseUtil.okListPage(issueList);

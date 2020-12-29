@@ -25,13 +25,13 @@ public class LymallIssueServiceImpl implements LymallIssueService {
      * 查询常见问题
      *
      * @param currentPage
-     * @param limitData
+     * @param limit
      * @return List<LymallIssue>
      */
     @Override
-    public List<LymallIssue> getIssueByPage(Integer currentPage, Integer limitData) {
+    public List<LymallIssue> getIssueByPage(Integer currentPage, Integer limit) {
 
-        PageHelper.startPage(currentPage,limitData);
+        PageHelper.startPage(currentPage,limit);
 
         return issueMapper.selectAllIssue();
     }
