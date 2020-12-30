@@ -90,8 +90,9 @@ public class LymallSearchHistorySqlProvider {
      */
     public String insertByUserIdCreateHistoryKeyword(String keyword, Integer userId){
         SQL sql=new SQL();
-        sql.INSERT_INTO("ymall_search_history (search_keyword,user_id)")
-                .VALUES(keyword,userId.toString());
+        sql.INSERT_INTO("lymall_search_history")
+                .VALUES("search_keyword","'"+keyword+"'")
+                .VALUES("user_id",userId.toString());
         return sql.toString();
     }
 
