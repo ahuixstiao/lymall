@@ -5,6 +5,8 @@ import com.ly.lymall.db.domian.LymallGoodsSpecification;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
+import java.util.List;
+
 @Mapper
 public interface LymallGoodsSpecificationMapper {
     @Delete({
@@ -49,6 +51,14 @@ public interface LymallGoodsSpecificationMapper {
         @Result(column="goods_specification_deleted", property="goodsSpecificationDeleted", jdbcType=JdbcType.BIT)
     })
     LymallGoodsSpecification selectByPrimaryKey(Integer goodsSpecificationId);
+
+    /**
+     * 根据goodsId查询出该商品的规格信息
+     * @param goodsId
+     * @return List<LymallGoodsSpecification>
+     */
+    @SelectProvider(type=LymallGoodsSpecificationSqlProvider.class,method="selectByGoodsIdFindSpecificationInfo")
+    List<LymallGoodsSpecification> selectByGoodsIdFindSpecification(Integer goodsId);
 
     @UpdateProvider(type=LymallGoodsSpecificationSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(LymallGoodsSpecification record);

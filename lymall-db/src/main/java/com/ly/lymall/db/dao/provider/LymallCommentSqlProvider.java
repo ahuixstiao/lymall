@@ -107,4 +107,20 @@ public class LymallCommentSqlProvider {
         
         return sql.toString();
     }
+
+    /**
+     * 根据userId、goodsId查询出对应的商品评论或专题评论与用户信息
+     * @param userId
+     * @param goodsId
+     * @param commentType 评价类型 0商品评价 1专题评价
+     * @return String
+     */
+    public String selectByGoodsIdFindCommentInfo(Integer userId,Integer goodsId, Integer commentType){
+        SQL sql=new SQL();
+        sql.SELECT("com.comment_id,com.comment_value_id,com.comment_type,com.comment_content,com.comment_admin_content,com.comment_pic_urls,com.comment_star,com.comment_add_time,com.comment_update_time,user.user_id,user.user_nickname,user.user_avatar")
+                .FROM("lymall_comment com,lymall_user user")
+                .WHERE("user.user_id=com.user_id and user.user_id="+userId+" and com.comment_value_id="+goodsId+" and com.comment_type="+commentType+" and com.comment_deleted=0");
+
+        return sql.toString();
+    }
 }

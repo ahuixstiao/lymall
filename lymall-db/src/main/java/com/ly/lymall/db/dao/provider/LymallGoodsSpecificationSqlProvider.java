@@ -75,4 +75,18 @@ public class LymallGoodsSpecificationSqlProvider {
         
         return sql.toString();
     }
+
+    /**
+     * 根据goodsId查询出该商品的规格信息
+     * @param goodsId
+     * @return String
+     */
+    public String selectByGoodsIdFindSpecificationInfo(Integer goodsId){
+        SQL sql=new SQL();
+        sql.SELECT("*")
+                .FROM("lymall_goods_specification")
+                .WHERE("goods_id="+goodsId);
+
+        return sql.toString();
+    }
 }

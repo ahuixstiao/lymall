@@ -2,8 +2,11 @@ package com.ly.lymall.db.dao.mapper;
 
 import com.ly.lymall.db.dao.provider.LymallCommentSqlProvider;
 import com.ly.lymall.db.domian.LymallComment;
+import com.ly.lymall.db.dto.LymallUserCommentDTO;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+
+import java.util.List;
 
 @Mapper
 public interface LymallCommentMapper {
@@ -57,6 +60,16 @@ public interface LymallCommentMapper {
         @Result(column="comment_deleted", property="commentDeleted", jdbcType=JdbcType.BIT)
     })
     LymallComment selectByPrimaryKey(Integer commentId);
+
+    /**
+     * 根据userId、goodsId查询出对应的商品评论或专题评论
+     * @param userId
+     * @param goodsId
+     * @param commentType 评价类型 0商品评价 1专题评价
+     * @return List<LymallComment>
+     */
+    @SelectProvider(type=LymallCommentSqlProvider.class,method="selectByGoodsIdFindCommentInfo")
+    List<LymallUserCommentDTO> selectByGoodsIdFindComment(Integer userId, Integer goodsId, Integer commentType);
 
     @UpdateProvider(type=LymallCommentSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(LymallComment record);

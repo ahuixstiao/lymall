@@ -1,10 +1,12 @@
 package com.ly.lymall.db.service.imple;
 
 import com.github.pagehelper.PageHelper;
+import com.ly.lymall.core.utils.ResponseUtil;
 import com.ly.lymall.db.dao.mapper.LymallSearchHistoryMapper;
 import com.ly.lymall.db.domian.LymallSearchHistory;
 import com.ly.lymall.db.service.LymallSearchHistoryService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -39,14 +41,25 @@ public class LymallSearchHistoryServiceImpl implements LymallSearchHistoryServic
 
     /**
      * 根据userId插入新的历史搜索关键字
-     * @param keyword
-     * @param userId
-     * @return int
+     * @param keyword 该参数 属于String类型 用于传入用户搜索的历史关键字
+     * @param userId 该参数 属于int类型 用于传入用户的Id
+     * @return Object
      */
     @Override
+    @Transactional(value = "insertSearchHistory",rollbackFor = Exception.class)
     public int createByHistoryKeyword(String keyword, Integer userId) {
 
-        return searchHistoryMapper.createHistoryKeyword(keyword, userId);
+        //查询数据库中是否已有历史关键字
+        List<LymallSearchHistory> searchHistoryList=searchHistoryMapper.selectByUserIdFindHistory(userId);
+        //遍历返回的集合
+        for (LymallSearchHistory lymallSearchHistory : searchHistoryList) {
+            //判断是否新的历史关键字数据库中是否存在
+            if(lymallSearchHistory.getSearchKeyword().equals(keyword)){
+                return 0;
+            }
+        }
+        //不存在则执行添加操作
+        return searchHistoryMapper.createHistoryKeyword(keyword,userId);
     }
 
     /**

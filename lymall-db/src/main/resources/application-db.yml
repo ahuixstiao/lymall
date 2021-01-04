@@ -32,7 +32,6 @@ pagehelper:
   #支持方法参数
   support-methods-arguments: true
 #-----------------------------------------------------------------------------------------------
-
 #mybatis配置
 mybatis:
   configuration:

@@ -1,20 +1,12 @@
 package com.ly.lymall.vxapi.controller;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.ly.lymall.core.utils.ResponseUtil;
-import com.ly.lymall.db.dao.mapper.LymallSearchHistoryMapper;
-import com.ly.lymall.db.domian.LymallCategory;
-import com.ly.lymall.db.domian.LymallGoods;
-import com.ly.lymall.db.domian.LymallKeyword;
-import com.ly.lymall.db.domian.LymallUser;
+import com.ly.lymall.db.domian.*;
 import com.ly.lymall.db.service.LymallCategoryService;
 import com.ly.lymall.db.service.LymallGoodsService;
 import com.ly.lymall.db.service.LymallKeywordService;
 import com.ly.lymall.db.service.LymallSearchHistoryService;
-import jdk.nashorn.internal.objects.NativeNumber;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -108,7 +100,7 @@ public class LymallSearchController {
         result.put("goodsList",goodsList);
         //封装分类类型信息
         result.put("filterCategory",categoryByIdList);
-
+        //返回
         return result;
     }
 
@@ -121,12 +113,12 @@ public class LymallSearchController {
     public Object searchHelperKeyword(String keyword){
 
         //声明一个集合来封装返回参数
-        Map<String,Object> map=new HashMap<>();
+        Map<String,Object> result=new HashMap<>();
 
         //根据输入的关键字 返回关键字帮助
-        map.put("helpKeyword",goodsService.keywordSearchGoodsName(keyword));
+        result.put("helpKeyword",goodsService.keywordSearchGoodsName(keyword));
 
-        return map;
+        return result;
     }
 
     /**
@@ -135,10 +127,11 @@ public class LymallSearchController {
      * @param userId
      * @return Object
      */
+
     @RequestMapping("search/createhistory")
     public Object createSearchHistory(String keyword,Integer userId){
 
-        return ResponseUtil.ok(searchHistoryService.createByHistoryKeyword(keyword,userId));
+        return searchHistoryService.createByHistoryKeyword(keyword,userId)==1?ResponseUtil.ok():0;
     }
 
     /**
@@ -148,7 +141,7 @@ public class LymallSearchController {
      */
     @RequestMapping("search/clearhistory")
     public Object clearSearchHistory(Integer userId){
-
+        
         return ResponseUtil.ok(searchHistoryService.deleteByHistoryKeyword(userId));
     }
 }

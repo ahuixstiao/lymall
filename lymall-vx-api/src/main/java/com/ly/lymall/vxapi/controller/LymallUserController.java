@@ -159,7 +159,7 @@ public class LymallUserController {
      */
     @RequestMapping("/auth/reset")
     public Object retrievePassword(@RequestBody LymallUser user){
-        //判断用户名与手机号是否对应
+        //保存业务层实现类的返回值 该方法查询用户账号与手机号是否对应
         LymallUser checkUser=userService.checkUserNameOrUserMobile(user.getUserUsername(),user.getUserMobile());
         if(checkUser==null){
             return ResponseUtil.fail(1,"用户名或手机号不正确");
