@@ -40,13 +40,14 @@ public class LymallSearchHistoryServiceImpl implements LymallSearchHistoryServic
     }
 
     /**
-     * 根据userId插入新的历史搜索关键字
+     * 根据用户的Id插入历史搜索关键字，若该id下已存在输入的关键字则不执行插入
+     *
      * @param keyword 该参数 属于String类型 用于传入用户搜索的历史关键字
      * @param userId 该参数 属于int类型 用于传入用户的Id
-     * @return Object
+     * @return 返回结果为int类型 表示受影响的条数
      */
     @Override
-    @Transactional(value = "insertSearchHistory",rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class)
     public int createByHistoryKeyword(String keyword, Integer userId) {
 
         //查询数据库中是否已有历史关键字

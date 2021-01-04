@@ -81,7 +81,6 @@ public class LymallIndexController {
      */
     @RequestMapping("/home/index")
     public Object indexPageInforMationQuery(Integer categoryPid, Integer currentPage,Integer limit){
-        //http://localhost:8080/wx/home/index?categoryPid=0&currentPage=1&limit=2
         //商品总数
         int goodsCount=goodsService.selectByAllCount();
 

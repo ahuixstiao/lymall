@@ -22,8 +22,8 @@ public interface LymallSearchHistoryService {
 
     /**
      * 根据userId插入新的历史搜索关键字
-     * @param keyword
-     * @param userId
+     * @param keyword 该参数 属于String类型 用于传入用户搜索的历史关键字
+     * @param userId 该参数 属于int类型 用于传入用户的Id
      * @return int
      */
     int createByHistoryKeyword(String keyword,Integer userId);

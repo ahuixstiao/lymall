@@ -45,6 +45,13 @@ public interface LymallGoodsService {
     LymallGoods selectByGoodIdfindGoods(Integer goodsId);
 
     /**
+     * 根据brandId查询全部商品信息
+     * @param brandId
+     * @return 返回一个集合
+     */
+    List<LymallGoods> selectByBrandIdFindAllGoodsInfo(Integer brandId);
+
+    /**
      * 查询商品总条数
      * @return int
      */

@@ -25,4 +25,5 @@ public interface LymallBrandService {
      * @return LymallBrand
      */
     LymallBrand selectByBrandIdFindInfo(Integer brandId);
+
 }
