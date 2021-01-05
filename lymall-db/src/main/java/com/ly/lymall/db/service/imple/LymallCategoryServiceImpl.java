@@ -1,6 +1,7 @@
 package com.ly.lymall.db.service.imple;
 
 import com.github.pagehelper.PageHelper;
+import com.ly.lymall.core.utils.ResponseUtil;
 import com.ly.lymall.db.dao.mapper.LymallCategoryMapper;
 import com.ly.lymall.db.domian.LymallCategory;
 import com.ly.lymall.db.service.LymallCategoryService;
@@ -27,9 +28,9 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
      * @return List<LymallCategory>
      */
     @Override
-    public List<LymallCategory> selectByCategoryPidFindCategoryInfo(Integer categoryPid) {
+    public List<LymallCategory> selectByCategoryPidFindInfo(Integer categoryPid) {
 
-        return categoryMapper.selectByCategoryPidFindCategoryInfo(categoryPid);
+        return categoryMapper.selectByCategoryPidFindInfo(categoryPid);
     }
 
     /**
@@ -42,7 +43,7 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
     @Override
     public List<Map<String, Object>> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage, Integer limit) {
         //通过pid查询父分类信息
-        List<LymallCategory> list = this.selectByCategoryPidFindCategoryInfo(categoryPid);
+        List<LymallCategory> list = this.selectByCategoryPidFindInfo(categoryPid);
 
         //最终返回的结果集合
         List<Map<String, Object>> result = new ArrayList<>();
@@ -56,14 +57,13 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
             //对商品信息分页
             PageHelper.startPage(currentPage,limit);
             /**
-             * 查询并封装 分类的商品信息
+             * 查询并分页 分类的商品信息
              * method:传入父分类的categoryId来查询 出父分类的子分类下的商品信息
              */
-            map.put("goodsList", categoryMapper.selectByCategoryPidFindChildCategoryInfo(category.getCategoryId()));
+            map.put("goodsList", ResponseUtil.okListPage(categoryMapper.selectByCategoryPidFindChildCategoryInfo(category.getCategoryId())));
             //封装每一个临时map
             result.add(map);
         });
-
         //返回
         return result;
     }
@@ -75,9 +75,9 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
      * @return List<LymallCategory>
      */
     @Override
-    public List<LymallCategory> selectByCategoryIdFindCategoryInfo(Set setListCategoryId) {
+    public List<LymallCategory> selectBySetListFindCategoryInfo(Set setListCategoryId) {
 
-        return categoryMapper.selectBySetListCategoryIdFindCategoryInfo(setListCategoryId);
+        return categoryMapper.selectBySetListFindCategoryInfo(setListCategoryId);
     }
 
 }

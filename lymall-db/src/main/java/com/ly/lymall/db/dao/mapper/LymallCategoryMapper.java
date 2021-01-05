@@ -71,7 +71,7 @@ public interface LymallCategoryMapper {
      */
     @SelectProvider(type =LymallCategorySqlProvider.class,method ="selectByPidFindCategory")
     @ResultMap("categoryResults")
-    List<LymallCategory> selectByCategoryPidFindCategoryInfo(Integer categoryPid);
+    List<LymallCategory> selectByCategoryPidFindInfo(Integer categoryPid);
 
     /**
      * 根据传入的categoryPid查询出子分类ID 通过子分类ID查询出商品信息
@@ -91,7 +91,7 @@ public interface LymallCategoryMapper {
      * @return List<LymallCategory>
      */
     @SelectProvider(type = LymallCategorySqlProvider.class,method ="selectByCategoryIdFindCategoryInfo")
-    List<LymallCategory> selectBySetListCategoryIdFindCategoryInfo(Set setListCategoryId);
+    List<LymallCategory> selectBySetListFindCategoryInfo(Set setListCategoryId);
 
     @UpdateProvider(type=LymallCategorySqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(LymallCategory record);

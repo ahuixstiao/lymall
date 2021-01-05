@@ -94,7 +94,7 @@ public class LymallSearchController {
         goodsList.stream().forEach((goods)->setList.add(goods.getCategoryId()));
 
         //判断set集合的size是否为0，若不为零则将set集合传入到实现类执行查询操作 若seiz为0则new出该集合作为空集合对象
-        List<LymallCategory> categoryByIdList = setList.size()>0? categoryService.selectByCategoryIdFindCategoryInfo(setList) : new ArrayList<>();
+        List<LymallCategory> categoryByIdList = setList.size()>0? categoryService.selectBySetListFindCategoryInfo(setList) : new ArrayList<>();
 
         //封装商品信息
         result.put("goodsList",goodsList);

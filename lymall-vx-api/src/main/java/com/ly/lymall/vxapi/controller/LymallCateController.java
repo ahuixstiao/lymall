@@ -33,26 +33,40 @@ public class LymallCateController {
     @Resource
     private LymallCategoryService categoryService;
 
+    /**
+     * 分类页面点击时所需要加载的数据 父分类
+     * @return Object
+     */
     @RequestMapping("catalog/index")
-    public Object getCategoryIndexPage(Integer categoryId){
+    public Object getCategoryIndexPage(){
+
         //最终返回封装集合
         Map<String,Object> result=new HashMap<>();
 
-        //商品父分类返回集合
-        List<LymallCategory> categoryInfoList = categoryService.selectByCategoryPidFindCategoryInfo(0);
+        //商品父分类的返回集合
+        List<LymallCategory> categoryInfoList = categoryService.selectByCategoryPidFindInfo(0);
 
         //封装 商品总数
         result.put("goodsCount", goodsService.selectByAllCount());
-        //分装 商品父分类
+        //封装 所有商品父分类
         result.put("categoryList",categoryInfoList);
-        //获取返回的第一个父分类对象
+        //封装 当前商品父分类的第一个
         result.put("currentCategory",categoryInfoList.get(0));
-        //获取父分类下的子分类
-
-
-        result.put("",null);
+        //根据父分类Pid获取它的的所有子分类
+        result.put("currentSubCategoryList",categoryService.selectByCategoryPidFindInfo(categoryInfoList.get(0).getCategoryId()));
         //返回
         return ResponseUtil.ok(result);
+    }
+
+    /**
+     * 根据pid查询出它的子分类
+     * @param categoryPid
+     * @return Object
+     */
+    @RequestMapping("catalog/currentCategory")
+    public Object getCurrentCategory(Integer categoryPid){
+
+        return ResponseUtil.ok(categoryService.selectByCategoryPidFindInfo(categoryPid));
     }
 
 

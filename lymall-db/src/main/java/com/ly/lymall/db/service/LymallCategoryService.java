@@ -15,10 +15,10 @@ public interface LymallCategoryService {
 
     /**
      * 根据categoryPid查询商品类别
-     * @param categoryPid
+     * @param categoryPid 分类的Pid
      * @return List<LymallCategory>
      */
-    List<LymallCategory> selectByCategoryPidFindCategoryInfo(Integer categoryPid);
+    List<LymallCategory> selectByCategoryPidFindInfo(Integer categoryPid);
 
     /**
      * 根据传入的categoryPid查询分类下的商品信息
@@ -34,6 +34,6 @@ public interface LymallCategoryService {
      * @param setListCategoryId
      * @return List<LymallCategory>
      */
-    List<LymallCategory> selectByCategoryIdFindCategoryInfo(Set setListCategoryId);
+    List<LymallCategory> selectBySetListFindCategoryInfo(Set setListCategoryId);
 
 }
