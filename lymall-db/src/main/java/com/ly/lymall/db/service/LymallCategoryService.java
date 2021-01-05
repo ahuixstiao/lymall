@@ -1,7 +1,6 @@
 package com.ly.lymall.db.service;
 
 import com.ly.lymall.db.domian.LymallCategory;
-import com.ly.lymall.db.dto.LymallGoodsCategoryDTO;
 
 import java.util.List;
 import java.util.Map;
@@ -15,20 +14,20 @@ import java.util.Set;
 public interface LymallCategoryService {
 
     /**
-     * 根据pid查询商品类别
+     * 根据categoryPid查询商品类别
      * @param categoryPid
      * @return List<LymallCategory>
      */
-    List<LymallCategory> selectfindByCategory(Integer categoryPid);
+    List<LymallCategory> selectByCategoryPidFindCategoryInfo(Integer categoryPid);
 
     /**
-     * 根据传入的分类名称查询商品信息
-     * @param currentPage
-     * @param categoryPid
-     * @param limit
-     * @return String
+     * 根据传入的categoryPid查询分类下的商品信息
+     * @param categoryPid 分类的Pid
+     * @param currentPage 当前页
+     * @param limit 每一个页面信息条数
+     * @return List<Map<String,Object>> 返回的是 泛形为的Map<String,Object>的List集合
      */
-    Map<String,Object> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage, Integer limit);
+    List<Map<String,Object>> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage, Integer limit);
 
     /**
      * 根据Set集合中的categoryId查询分类

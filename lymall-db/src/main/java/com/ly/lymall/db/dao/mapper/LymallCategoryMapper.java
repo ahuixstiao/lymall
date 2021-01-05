@@ -71,24 +71,27 @@ public interface LymallCategoryMapper {
      */
     @SelectProvider(type =LymallCategorySqlProvider.class,method ="selectByPidFindCategory")
     @ResultMap("categoryResults")
-    List<LymallCategory> selectfindByCategory(Integer categoryPid);
+    List<LymallCategory> selectByCategoryPidFindCategoryInfo(Integer categoryPid);
 
     /**
-     * 根据传入的分类名称查询商品信息
-     * @param categoryName
-     * @return String
+     * 根据传入的categoryPid查询出子分类ID 通过子分类ID查询出商品信息
+     * @param categoryPid
+     * @return List<LymallGoodsCategoryDTO>
      */
-    @SelectProvider(type=LymallCategorySqlProvider.class,method ="selectByCategoryNameFindGoodsInfo")
-    List<LymallGoodsCategoryDTO> selectFindByGoodsCategory(String categoryName);
+    @Select("select * from lymall_goods A,lymall_category B  " +
+            "where A.category_id=B.category_id " +
+            "and A.category_id in (select category_id from lymall_category where category_pid=#{categoryPid}) " +
+            "and A.goods_deleted=0 " +
+            "and B.category_deleted=0")
+    List<LymallGoodsCategoryDTO> selectByCategoryPidFindChildCategoryInfo(Integer categoryPid);
 
     /**
-     * 根据categoryId查询分类
+     * 根据categoryId查询分类信息
      * @param setListCategoryId
      * @return List<LymallCategory>
      */
     @SelectProvider(type = LymallCategorySqlProvider.class,method ="selectByCategoryIdFindCategoryInfo")
     List<LymallCategory> selectBySetListCategoryIdFindCategoryInfo(Set setListCategoryId);
-
 
     @UpdateProvider(type=LymallCategorySqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(LymallCategory record);

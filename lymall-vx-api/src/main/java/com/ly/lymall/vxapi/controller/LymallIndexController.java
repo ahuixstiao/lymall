@@ -91,12 +91,13 @@ public class LymallIndexController {
 
         //使用Map集合封装返回
         Map<String,Object> map=new HashMap<>();
+
         //商品总数
         map.put("goodsCount",goodsCount);
         //广告信息
         map.put("banner",adService.selectfindAllAd());
         //商品类别
-        map.put("channel",categoryService.selectfindByCategory(categoryPid));
+        map.put("channel",categoryService.selectByCategoryPidFindCategoryInfo(categoryPid));
         //优惠券
         map.put("coupon",ResponseUtil.okListPage(couponService.selectFindAll(currentPage,limit)));
         //团购规则

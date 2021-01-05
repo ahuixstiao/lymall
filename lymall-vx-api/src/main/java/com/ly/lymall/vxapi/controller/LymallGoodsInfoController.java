@@ -63,7 +63,7 @@ public class LymallGoodsInfoController {
         Map<String,Object> map=new HashMap<>();
 
         //查询出商品的规格
-        List<LymallGoodsSpecification> goodsSpecificationList=goodsSpecificationService.selectByGoodsIdFindSpecification(goodsId);
+        List<LymallGoodsSpecification> goodsSpecificationListServiceImpl=goodsSpecificationService.selectByGoodsIdFindSpecification(goodsId);
 
         /**
          *  声明一个内部类 保存返回的规格参数
@@ -100,16 +100,16 @@ public class LymallGoodsInfoController {
 
         //遍历商品规格的长度
         outer:
-        for(int i=0;i<goodsSpecificationList.size();i++){
-            //声明一个商品规格对象 用来保存
-            LymallGoodsSpecification goodsSpecification=goodsSpecificationList.get(i);
-            //遍历商品规格集合
+        for(int i=0;i<goodsSpecificationListServiceImpl.size();i++){
+            //声明一个商品规格对象 用来保存返回的商品规格集合中的单条数据
+            LymallGoodsSpecification goodsSpecification=goodsSpecificationListServiceImpl.get(i);
+            //遍历最终返回集合长度
             for (int j=0;i<specificationResultList.size();i++) {
                 //将最终集合中相应下标的集合保存到内部类中
                 SpecificationResult specificationResult=specificationResultList.get(j);
                 //判断规格名称是否相同 若相同则进入保存规格参数
                 if(goodsSpecification.getGoodsSpecificationSpecification().equals(specificationResultList.get(i).name)){
-                    //将内部类的
+                    //将返回的商品规格对象 保存到内部类的集合中
                     specificationResult.goodsSpecifications.add(goodsSpecification);
                     //跳到最外层for循环重新开始循环
                     continue outer;
