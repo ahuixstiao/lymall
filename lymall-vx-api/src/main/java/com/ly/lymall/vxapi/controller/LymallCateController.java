@@ -41,7 +41,7 @@ public class LymallCateController {
     public Object getCategoryIndexPage(){
 
         //最终返回封装集合
-        Map<String,Object> result=new HashMap<>();
+        Map<String,Object> result=new HashMap<>(16);
 
         //商品父分类的返回集合
         List<LymallCategory> categoryInfoList = categoryService.selectByCategoryPidFindInfo(0);
@@ -54,6 +54,7 @@ public class LymallCateController {
         result.put("currentCategory",categoryInfoList.get(0));
         //根据父分类Pid获取它的的所有子分类
         result.put("currentSubCategoryList",categoryService.selectByCategoryPidFindInfo(categoryInfoList.get(0).getCategoryId()));
+
         //返回
         return ResponseUtil.ok(result);
     }

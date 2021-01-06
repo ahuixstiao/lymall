@@ -96,44 +96,50 @@ public class LymallGoodsInfoController {
         }
 
         //创建最终返回的集合泛形为内部类 用来保存返回值
-        List<SpecificationResult> specificationResultList=new ArrayList<>();
+        List<SpecificationResult> specificationResultList = new ArrayList<>();
 
-        //遍历商品规格的长度
-        outer:
+        //遍历业务层返回的商品规格集合的长度
+        outer: //outer 作用是continue跳出到哪一层循环的锚点，且外层使用continue outer 不可跳到内层
         for(int i=0;i<goodsSpecificationListServiceImpl.size();i++){
-            //声明一个商品规格对象 用来保存返回的商品规格集合中的单条数据
-            LymallGoodsSpecification goodsSpecification=goodsSpecificationListServiceImpl.get(i);
-            //遍历最终返回集合长度
-            for (int j=0;i<specificationResultList.size();i++) {
-                //将最终集合中相应下标的集合保存到内部类中
-                SpecificationResult specificationResult=specificationResultList.get(j);
+
+            //声明商品规格对象 来保存返回的商品规格集合中的单个对象数据
+            LymallGoodsSpecification specification = goodsSpecificationListServiceImpl.get(i);
+
+            //遍历并判断最终返回集合中是否已存在该规格名称
+            for (int j=0;j<specificationResultList.size();j++) {
+                //声明临时内部类对象 保存最终返回集合的参数
+                SpecificationResult specificationResult = specificationResultList.get(j);
+
                 //判断规格名称是否相同 若相同则进入保存规格参数
-                if(goodsSpecification.getGoodsSpecificationSpecification().equals(specificationResultList.get(i).name)){
-                    //将返回的商品规格对象 保存到内部类的集合中
-                    specificationResult.goodsSpecifications.add(goodsSpecification);
+                if(specification.getGoodsSpecificationSpecification().equals(specificationResult.name)){
+
+                    //将商品规格对象 保存到内部类集合
+                    specificationResult.goodsSpecifications.add(specification);
+
                     //跳到最外层for循环重新开始循环
                     continue outer;
                 }
             }
-            //遍历结束没有存入，则属于新的规格名称
-            List<LymallGoodsSpecification> specificationList=new ArrayList<>();
+
+            //若以上遍历不存在规格名称，则属于新的规格名称 则另外新建一个规格集合保存到最终返回集合汇总
+            List<LymallGoodsSpecification> specificationList = new ArrayList<>();
             //保存商品规格对象到集合中
-            specificationList.add(goodsSpecification);
-            //将规格名称与规格信息保存到最终返回集合中
-            specificationResultList.add(new SpecificationResult(goodsSpecification.getGoodsSpecificationSpecification(),specificationList));
+            specificationList.add(specification);
+            //将新的规格名称 与 规格信息保存到最终返回集合中
+            specificationResultList.add(new SpecificationResult(specification.getGoodsSpecificationSpecification(),specificationList));
         }
 
         //封装商品信息
-        map.put("goodsInfo",ResponseUtil.ok(goodsService.selectByGoodIdfindGoods(goodsId)));
+        map.put("goodsInfo",goodsService.selectByGoodIdfindGoods(goodsId));
         //封装商品参数信息
-        map.put("goodsAttribute",ResponseUtil.ok(goodsAttributeService.selectByGoodsIdFindGoodsAttributeInfo(goodsId)));
+        map.put("goodsAttribute",goodsAttributeService.selectByGoodsIdFindGoodsAttributeInfo(goodsId));
         //封装商品评价信息
         map.put("comment",ResponseUtil.okListPage(commentService.selectByGoodsIdFindComment(userId,goodsId,0,1,5)));
         //封装规格信息
-        map.put("specificationList",ResponseUtil.ok(specificationResultList));
+        map.put("specificationList",specificationResultList);
 
         //返回封装的参数
-        return map;
+        return ResponseUtil.ok(map);
     }
 
     /**
