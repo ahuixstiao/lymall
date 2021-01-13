@@ -23,7 +23,6 @@ public class ResponseUtil {
         Map<String,Object> result=new HashMap<>();
         result.put("errno",0);
         result.put("errmsg","成功");
-
         return result;
     }
 
@@ -64,8 +63,6 @@ public class ResponseUtil {
             listResult.put("pages",page.getPages());
             //当前页面信息总条数
             listResult.put("limit",page.getPageSize());
-            //当前页码
-            listResult.put("page",page.getPageNum());
         }
         return ok(listResult);
     }

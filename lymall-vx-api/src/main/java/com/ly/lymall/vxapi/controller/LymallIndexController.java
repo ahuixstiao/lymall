@@ -81,11 +81,6 @@ public class LymallIndexController {
         //商品总数
         int goodsCount=goodsService.selectByAllCount();
 
-        //判断商品条数是否为空
-        if(goodsCount==0){
-            return ResponseUtil.fail();
-        }
-
         //使用Map集合封装返回
         Map<String,Object> result=new HashMap<>();
 
@@ -109,6 +104,7 @@ public class LymallIndexController {
         result.put("topics",ResponseUtil.okListPage(topicService.selectByfindAll(currentPage,limit)));
         //更多好物
         result.put("floorGoods",categoryService.selectfindByGoodsCategory(categoryPid,currentPage,limit));
+
         //返回
         return ResponseUtil.ok(result);
     }

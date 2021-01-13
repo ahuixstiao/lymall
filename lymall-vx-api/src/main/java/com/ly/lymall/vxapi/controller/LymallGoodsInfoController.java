@@ -1,7 +1,6 @@
 package com.ly.lymall.vxapi.controller;
 
 import com.ly.lymall.core.utils.ResponseUtil;
-import com.ly.lymall.db.domian.LymallComment;
 import com.ly.lymall.db.domian.LymallGoodsSpecification;
 import com.ly.lymall.db.service.*;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -101,27 +100,23 @@ public class LymallGoodsInfoController {
         //遍历业务层返回的商品规格集合的长度
         outer: //outer 作用是continue跳出到哪一层循环的锚点，且外层使用continue outer 不可跳到内层
         for(int i=0;i<goodsSpecificationListServiceImpl.size();i++){
-
             //声明商品规格对象 来保存返回的商品规格集合中的单个对象数据
             LymallGoodsSpecification specification = goodsSpecificationListServiceImpl.get(i);
-
             //遍历并判断最终返回集合中是否已存在该规格名称
             for (int j=0;j<specificationResultList.size();j++) {
                 //声明临时内部类对象 保存最终返回集合的参数
                 SpecificationResult specificationResult = specificationResultList.get(j);
-
                 //判断规格名称是否相同 若相同则进入保存规格参数
                 if(specification.getGoodsSpecificationSpecification().equals(specificationResult.name)){
-
                     //将商品规格对象 保存到内部类集合
                     specificationResult.goodsSpecifications.add(specification);
-
                     //跳到最外层for循环重新开始循环
                     continue outer;
                 }
             }
 
             //若以上遍历不存在规格名称，则属于新的规格名称 则另外新建一个规格集合保存到最终返回集合汇总
+            //注：第一遍历时 不存在规格名称与数据 所以会创建新集合保存规格名称和规格参数
             List<LymallGoodsSpecification> specificationList = new ArrayList<>();
             //保存商品规格对象到集合中
             specificationList.add(specification);

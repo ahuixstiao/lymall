@@ -104,6 +104,14 @@ public interface LymallGoodsMapper {
     List<LymallGoods> selectByBrandIdFindAllGoodsInfo(Integer brandId);
 
     /**
+     * 根据CategoryId查询商品信息
+     * @param categoryId
+     * @return List<LymallGoods>
+     */
+    @Select("select * from lymall_goods where category_id=#{categoryId}")
+    List<LymallGoods> selectByCategoryIdFindAllGoodsInfo(Integer categoryId);
+
+    /**
      * 获取商品总条数
      * @return int
      */

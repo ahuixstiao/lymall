@@ -136,9 +136,9 @@ public class LymallUserController {
             InputStream inputStream=file.getInputStream();
             //保存Bucket路径与用户名称
             String filePathAndUserName="images/userAvatar/"+user.getUserUsername();
-            //获取文件全名并从.位置分割出文件名与后缀
+            //获取文件全名并从.的位置分割出文件名与后缀 采用双\\转义
             String [] fileName=file.getOriginalFilename().split("\\.");
-            //获取文件的后缀名
+            //获取文件的后缀名  length-1指的是获取最后的那一个
             String sufix=fileName[fileName.length-1];
             //拼接路径与文件名.后缀
             String key=filePathAndUserName+"."+sufix;

@@ -14,7 +14,7 @@ import java.util.Set;
 public interface LymallCategoryService {
 
     /**
-     * 根据categoryPid查询商品类别
+     * 根据categoryPid查询分类信息
      * @param categoryPid 分类的Pid
      * @return List<LymallCategory>
      */

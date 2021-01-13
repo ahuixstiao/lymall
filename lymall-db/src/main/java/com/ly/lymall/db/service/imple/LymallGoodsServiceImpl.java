@@ -90,6 +90,18 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
     }
 
     /**
+     * 根据CategoryId查询商品信息
+     *
+     * @param categoryId
+     * @return List<LymallGoods>
+     */
+    @Override
+    public List<LymallGoods> selectByCategoryIdFindAllGoodsInfo(Integer categoryId) {
+
+        return goodsMapper.selectByCategoryIdFindAllGoodsInfo(categoryId);
+    }
+
+    /**
      * 查询商品总条数
      *
      * @return int

@@ -57,14 +57,14 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
             //对商品信息分页
             PageHelper.startPage(currentPage,limit);
             /**
-             * 查询并分页 分类的商品信息
-             * method:传入父分类的categoryId来查询 出父分类的子分类下的商品信息
+             * 查询分类的商品信息并分页
+             * selectByCategoryPidFindChildCategoryInfo(): 传入父分类的categoryId进行查询 出父分类的子分类下的商品信息
              */
             map.put("goodsList", ResponseUtil.okListPage(categoryMapper.selectByCategoryPidFindChildCategoryInfo(category.getCategoryId())));
-            //封装每一个临时map
+            //保存map集合参数
             result.add(map);
         });
-        //返回
+        //返回 参数
         return result;
     }
 
@@ -79,5 +79,4 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
 
         return categoryMapper.selectBySetListFindCategoryInfo(setListCategoryId);
     }
-
 }

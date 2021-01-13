@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,13 +21,11 @@ import java.util.Map;
 @RestController
 @RequestMapping("/wx")
 public class LymallCateController {
-
     /**
      * Goods 业务层接口
      */
     @Resource
     private LymallGoodsService goodsService;
-
     /**
      * Category 业务层接口
      */
@@ -34,15 +33,13 @@ public class LymallCateController {
     private LymallCategoryService categoryService;
 
     /**
-     * 分类页面点击时所需要加载的数据 父分类
+     * 由于分类页面点击时需要加载数据 则先默认查出父分类并且查询第一个父分类的其子分类
      * @return Object
      */
     @RequestMapping("catalog/index")
     public Object getCategoryIndexPage(){
-
         //最终返回封装集合
         Map<String,Object> result=new HashMap<>(16);
-
         //商品父分类的返回集合
         List<LymallCategory> categoryInfoList = categoryService.selectByCategoryPidFindInfo(0);
 
@@ -70,5 +67,15 @@ public class LymallCateController {
         return ResponseUtil.ok(categoryService.selectByCategoryPidFindInfo(categoryPid));
     }
 
+    /**
+     * 按照分类的id查询与其关联的商品信息
+     * @param categoryId
+     * @return Object
+     */
+    @RequestMapping("catalog/currentCategoryGoodsList")
+    public Object getGoodsList(Integer categoryId){
+
+        return ResponseUtil.ok(goodsService.selectByCategoryIdFindAllGoodsInfo(categoryId));
+    }
 
 }
