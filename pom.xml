@@ -89,18 +89,18 @@
 
     </dependencies>
 
-    <build>
-        <!-- maven插件 -->
-        <plugins>
-            <!-- 使用mybaits-generator时需要将子项目中的相互依赖注释掉 -->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <fork>true</fork> <!-- fork=true,用于明确表示编译版本配置的可用 -->
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+<!--    <build>-->
+<!--        &lt;!&ndash; maven插件 &ndash;&gt;-->
+<!--        <plugins>-->
+<!--            &lt;!&ndash; 使用mybaits-generator时需要将该插件注释 &ndash;&gt;-->
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <configuration>-->
+<!--                    <fork>true</fork> &lt;!&ndash; fork=true,用于明确表示编译版本配置的可用 &ndash;&gt;-->
+<!--                </configuration>-->
+<!--            </plugin>-->
+<!--        </plugins>-->
+<!--    </build>-->
 
 </project>

@@ -1,6 +1,5 @@
 package com.ly.lymall.vxapi.controller;
 
-import com.ly.lymall.core.aliyunoss.AliYunOssUtil;
 import com.ly.lymall.core.utils.ResponseUtil;
 import com.ly.lymall.db.domian.LymallUser;
 import com.ly.lymall.db.service.LymallUserService;
@@ -15,6 +14,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
@@ -131,13 +131,13 @@ public class LymallUserController {
             //转为Spring文件解析器的request
             MultipartHttpServletRequest multipartHttpServletRequest=(MultipartHttpServletRequest)request;
             //获取文件
-            MultipartFile file=multipartHttpServletRequest.getFile("pohoURL");
+            MultipartFile multipartFile=multipartHttpServletRequest.getFile("pohoURL");
             //将文件转成输入流
-            InputStream inputStream=file.getInputStream();
+            InputStream inputStream=multipartFile.getInputStream();
             //保存Bucket路径与用户名称
             String filePathAndUserName="images/userAvatar/"+user.getUserUsername();
             //获取文件全名并从.的位置分割出文件名与后缀 采用双\\转义
-            String [] fileName=file.getOriginalFilename().split("\\.");
+            String [] fileName=multipartFile.getOriginalFilename().split("\\.");
             //获取文件的后缀名  length-1指的是获取最后的那一个
             String sufix=fileName[fileName.length-1];
             //拼接路径与文件名.后缀

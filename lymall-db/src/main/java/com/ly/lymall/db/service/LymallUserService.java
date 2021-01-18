@@ -2,6 +2,9 @@ package com.ly.lymall.db.service;
 
 import com.ly.lymall.db.domian.LymallUser;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 
@@ -40,7 +43,7 @@ public interface LymallUserService {
      * @param user
      * @return
      */
-    int registerUserInfo(LymallUser user,String key, InputStream inputStream);
+    int registerUserInfo(LymallUser user,String key,InputStream inputStream) throws IOException, InterruptedException;
 
     /**
      * 修改密码

@@ -1,7 +1,13 @@
-#阿里云OSS配置信息
-aliyun:
-  ossconfig:
-    endpoint: http://oss-cn-beijing.aliyuncs.com
-    accessKeyId: LTAI4GGvQRAyyWfCTjcLvBsd
-    accessKeySecret: TyOLKN0XCFySfzNx713h1SRpkQXwFo
-    bucketName: lymall-ahui
+#腾讯云OSS配置信息
+tencent:
+  config:
+    #id
+    secretId: AKIDnpPr34alG8WO0NsXLxSRBl5hEerqs9Tm
+    #key
+    secretKey: Q2QZyReKwO4iZYIneGchAON6ymKipiLj
+    #bucketName
+    bucketName: lymall-ahui-1304796949
+    #地域
+    regionName: ap-guangzhou
+    #访问基础路径
+    baseUrl: https://lymall-ahui-1304796949.cos.ap-guangzhou.myqcloud.com

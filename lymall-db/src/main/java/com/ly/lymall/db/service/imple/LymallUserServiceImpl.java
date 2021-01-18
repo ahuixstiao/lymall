@@ -1,12 +1,14 @@
 package com.ly.lymall.db.service.imple;
 
-import com.ly.lymall.core.aliyunoss.AliYunOssUtil;
+import com.ly.lymall.core.tengxunyun.TencentCloud;
 import com.ly.lymall.db.dao.mapper.LymallUserMapper;
 import com.ly.lymall.db.domian.LymallUser;
 import com.ly.lymall.db.service.LymallUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 
@@ -25,10 +27,10 @@ public class LymallUserServiceImpl implements LymallUserService {
     private LymallUserMapper userMapper;
 
     /**
-     * 将Aliyun封装类注入
+     * 将TencentYun封装类注入
      */
     @Resource
-    private AliYunOssUtil aliYunOssUtil;
+    private TencentCloud tencentCloud;
 
     /**
      * 账号验证是否存在
@@ -72,11 +74,9 @@ public class LymallUserServiceImpl implements LymallUserService {
      * @return int
      */
     @Override
-    public int registerUserInfo(LymallUser user, String key,InputStream inputStream) {
-        //创建bucket空间
-        aliYunOssUtil.ossClientDoesItExist("lymall-ahui");
+    public int registerUserInfo(LymallUser user, String key, InputStream inputStream) throws IOException, InterruptedException {
         //将Controller拼接好的key（文件名.后缀）与文件流传入该方法执行
-        String url=aliYunOssUtil.ossPutObjectRequest(key,inputStream);
+        String url= tencentCloud.putAvatar(key,inputStream);
         //将阿里云的图片路径赋值到实体类中
         user.setUserAvatar(url);
         //执行插入操作
