@@ -75,18 +75,18 @@ public class LymallSearchController {
     /**
      * 搜索商品信息 并在用户选择排序方式时进行相应的排序 且向历史关键字表插入用户搜索的关键字
      * @param keyword 关键字
-     * @param orderCloumn // 根据什么排序
+     * @param orderColumn // 根据什么排序
      * @param orderType //排序类型 升序或降序
      * @param categoryId //商品分类id
      * @return Object
      */
     @RequestMapping("search/result")
-    public Object searchProducts(String keyword, String orderCloumn, String orderType,Integer categoryId){
+    public Object searchProducts(String keyword, String orderColumn, String orderType,Integer categoryId){
         //声明map集合 封装返回值
         Map<String,Object> result=new HashMap<>();
 
         //通过关键字与选中的商品类别进行模糊查询商品信息 并对商品进行排序
-        List<LymallGoods> goodsList=goodsService.searchProducts(keyword,orderCloumn,orderType,categoryId);
+        List<LymallGoods> goodsList=goodsService.searchProducts(keyword,orderColumn,orderType,categoryId);
 
         //取出商品信息的分类id进行查询 利用set集合不可重复特性将重复categoryId去重
         Set<Integer> setList=new HashSet();

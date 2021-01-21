@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * VxApi主配置类
- * SpringBootApplication(scanBasePackages={}): 指定SpringBoot去扫描哪个包与子包下的注解
- * MapperScan: 扫描持久层下的Mapper注解
+ * SpringBootApplication(scanBasePackages): 指定SpringBoot去扫描指定包与子包下的注解
+ * MapperScan: 扫描Mapper注解
  * EnableCaching: 启用缓存
  * EnableTransactionManagement: 启用全局事务 因为启动类没有实现接口且该注解底层实现用的是动态代理，所以要设置proxyTargetClass = true
  * @Author: ahui

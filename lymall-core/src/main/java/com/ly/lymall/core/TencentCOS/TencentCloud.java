@@ -1,4 +1,4 @@
-package com.ly.lymall.core.tengxunyun;
+package com.ly.lymall.core.TencentCOS;
 
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.model.*;

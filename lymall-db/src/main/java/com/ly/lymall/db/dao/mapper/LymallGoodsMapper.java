@@ -70,22 +70,22 @@ public interface LymallGoodsMapper {
 
     /**
      * 查询热门或新品商品信息
-     * @param productTypes 要查询的商品字段
+     * @param goodsProduct
      * @return List<LymallGoods>
      */
     @SelectProvider(value=LymallGoodsSqlProvider.class,method="selectByHotOrNewGoodsFieldFindGoodsInfo")
-    List<LymallGoods> selectByHotOrNewGoodsFindInfo(String productTypes);
+    List<LymallGoods> selectByHotOrNewGoodsFindInfo(String goodsProduct);
 
     /**
      * 根据商品名称或关键字搜索商品并排序
      * @param keyword
-     * @param orderCloumn
+     * @param orderColumn
      * @param orderType
      * @param categoryId
      * @return List<LymallGoods>
      */
     @SelectProvider(value=LymallGoodsSqlProvider.class,method="searchProductsBasedOnKeywords")
-    List<LymallGoods> selectBySearchProducts(String keyword, String orderCloumn,String orderType,Integer categoryId);
+    List<LymallGoods> selectBySearchProducts(String keyword, String orderColumn,String orderType,Integer categoryId);
 
     /**
      * 根据关键字搜索商品名称

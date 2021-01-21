@@ -1,14 +1,19 @@
 package com.ly.lymall.vxapi.controller;
 
 import com.ly.lymall.core.utils.ResponseUtil;
+import com.ly.lymall.db.domian.LymallCoupon;
+import com.ly.lymall.db.domian.LymallCouponUser;
 import com.ly.lymall.db.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -64,12 +69,6 @@ public class LymallIndexController {
     private LymallTopicService topicService;
 
     /**
-     * 记录器
-     */
-    Logger logger= LoggerFactory.getLogger(getClass());
-
-
-    /**
      * 主页查询
      * @param categoryPid
      * @param currentPage
@@ -91,7 +90,7 @@ public class LymallIndexController {
         //商品类别
         result.put("channel",categoryService.selectByCategoryPidFindInfo(categoryPid));
         //优惠券
-        result.put("coupon",ResponseUtil.okListPage(couponService.selectFindAll(currentPage,limit)));
+        result.put("coupon",ResponseUtil.okListPage(couponService.selectFindAllCoupon(currentPage,limit)));
         //团购规则
         result.put("groupons",ResponseUtil.okListPage(grouponRulesService.findAllGroupbuy(currentPage,limit)));
         //品牌制造商直供商品
@@ -108,4 +107,6 @@ public class LymallIndexController {
         //返回
         return ResponseUtil.ok(result);
     }
+
+
 }

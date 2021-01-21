@@ -1,12 +1,9 @@
 package com.ly.lymall.db.service.imple;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.ly.lymall.db.dao.mapper.LymallGoodsMapper;
 import com.ly.lymall.db.domian.LymallGoods;
 import com.ly.lymall.db.service.LymallGoodsService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -25,32 +22,32 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
 
     /**
      * 查询热门或新品商品信息
-     * @param productTypes 要查询的商品字段
+     * @param goodsProduct
      * @param currentPage 页数
      * @param limit 显示的条数
      * @return List<LymallGoods>
      */
     @Override
-    public List<LymallGoods> selectByHotOrNewGoodsFindInfo(String productTypes,Integer currentPage,Integer limit){
+    public List<LymallGoods> selectByHotOrNewGoodsFindInfo(String goodsProduct,Integer currentPage,Integer limit){
 
         PageHelper.startPage(currentPage,limit);
 
-        return goodsMapper.selectByHotOrNewGoodsFindInfo(productTypes);
+        return goodsMapper.selectByHotOrNewGoodsFindInfo(goodsProduct);
     }
 
     /**
      * 根据商品名称或关键字搜索商品并排序
      *
      * @param keyword
-     * @param orderCloumn
+     * @param orderColumn
      * @param orderType
      * @param categoryId
      * @return List<LymallGoods>
      */
     @Override
-    public List<LymallGoods> searchProducts(String keyword, String orderCloumn, String orderType,Integer categoryId) {
+    public List<LymallGoods> searchProducts(String keyword, String orderColumn, String orderType, Integer categoryId) {
 
-        return goodsMapper.selectBySearchProducts(keyword, orderCloumn, orderType,categoryId);
+        return goodsMapper.selectBySearchProducts(keyword, orderColumn, orderType,categoryId);
     }
 
     /**

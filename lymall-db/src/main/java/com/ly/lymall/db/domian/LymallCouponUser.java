@@ -1,6 +1,7 @@
 package com.ly.lymall.db.domian;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class LymallCouponUser implements Serializable {
@@ -12,17 +13,17 @@ public class LymallCouponUser implements Serializable {
 
     private Short couponUserStatus;
 
-    private Date couponUserUsedTime;
+    private LocalDateTime couponUserUsedTime;
 
-    private Date couponUserStartTime;
+    private LocalDateTime couponUserStartTime;
 
-    private Date couponUserEndTime;
+    private LocalDateTime couponUserEndTime;
 
     private Integer orderId;
 
-    private Date couponUserAddTime;
+    private LocalDateTime couponUserAddTime;
 
-    private Date couponUserUpdateTime;
+    private LocalDateTime couponUserUpdateTime;
 
     private Boolean couponUserDeleted;
 
@@ -58,27 +59,27 @@ public class LymallCouponUser implements Serializable {
         this.couponUserStatus = couponUserStatus;
     }
 
-    public Date getCouponUserUsedTime() {
+    public LocalDateTime getCouponUserUsedTime() {
         return couponUserUsedTime;
     }
 
-    public void setCouponUserUsedTime(Date couponUserUsedTime) {
+    public void setCouponUserUsedTime(LocalDateTime couponUserUsedTime) {
         this.couponUserUsedTime = couponUserUsedTime;
     }
 
-    public Date getCouponUserStartTime() {
+    public LocalDateTime getCouponUserStartTime() {
         return couponUserStartTime;
     }
 
-    public void setCouponUserStartTime(Date couponUserStartTime) {
+    public void setCouponUserStartTime(LocalDateTime couponUserStartTime) {
         this.couponUserStartTime = couponUserStartTime;
     }
 
-    public Date getCouponUserEndTime() {
+    public LocalDateTime getCouponUserEndTime() {
         return couponUserEndTime;
     }
 
-    public void setCouponUserEndTime(Date couponUserEndTime) {
+    public void setCouponUserEndTime(LocalDateTime couponUserEndTime) {
         this.couponUserEndTime = couponUserEndTime;
     }
 
@@ -90,19 +91,19 @@ public class LymallCouponUser implements Serializable {
         this.orderId = orderId;
     }
 
-    public Date getCouponUserAddTime() {
+    public LocalDateTime getCouponUserAddTime() {
         return couponUserAddTime;
     }
 
-    public void setCouponUserAddTime(Date couponUserAddTime) {
+    public void setCouponUserAddTime(LocalDateTime couponUserAddTime) {
         this.couponUserAddTime = couponUserAddTime;
     }
 
-    public Date getCouponUserUpdateTime() {
+    public LocalDateTime getCouponUserUpdateTime() {
         return couponUserUpdateTime;
     }
 
-    public void setCouponUserUpdateTime(Date couponUserUpdateTime) {
+    public void setCouponUserUpdateTime(LocalDateTime couponUserUpdateTime) {
         this.couponUserUpdateTime = couponUserUpdateTime;
     }
 

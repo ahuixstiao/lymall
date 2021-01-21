@@ -1,13 +1,12 @@
 package com.ly.lymall.db.service.imple;
 
-import com.ly.lymall.core.tengxunyun.TencentCloud;
+import com.ly.lymall.core.TencentCOS.TencentCloud;
 import com.ly.lymall.db.dao.mapper.LymallUserMapper;
 import com.ly.lymall.db.domian.LymallUser;
 import com.ly.lymall.db.service.LymallUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;

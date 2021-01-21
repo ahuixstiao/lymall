@@ -146,7 +146,7 @@ public final class ExceptionCode {
      */
     public static final int COUPON_RECEIVE_FAIL = 741;
     /**
-     * 优惠券不正确
+     * 优惠券码不正确
      */
     public static final int COUPON_CODE_INVALID = 742;
     /**

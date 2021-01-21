@@ -2,6 +2,7 @@ package com.ly.lymall.db.domian;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class LymallCoupon implements Serializable {
@@ -35,13 +36,13 @@ public class LymallCoupon implements Serializable {
 
     private Short couponDays;
 
-    private Date couponStartTime;
+    private LocalDateTime couponStartTime;
 
-    private Date couponEndTime;
+    private LocalDateTime couponEndTime;
 
-    private Date couponAddTime;
+    private LocalDateTime couponAddTime;
 
-    private Date couponUpdateTime;
+    private LocalDateTime couponUpdateTime;
 
     private Boolean couponDeleted;
 
@@ -165,35 +166,35 @@ public class LymallCoupon implements Serializable {
         this.couponDays = couponDays;
     }
 
-    public Date getCouponStartTime() {
+    public LocalDateTime getCouponStartTime() {
         return couponStartTime;
     }
 
-    public void setCouponStartTime(Date couponStartTime) {
+    public void setCouponStartTime(LocalDateTime couponStartTime) {
         this.couponStartTime = couponStartTime;
     }
 
-    public Date getCouponEndTime() {
+    public LocalDateTime getCouponEndTime() {
         return couponEndTime;
     }
 
-    public void setCouponEndTime(Date couponEndTime) {
+    public void setCouponEndTime(LocalDateTime couponEndTime) {
         this.couponEndTime = couponEndTime;
     }
 
-    public Date getCouponAddTime() {
+    public LocalDateTime getCouponAddTime() {
         return couponAddTime;
     }
 
-    public void setCouponAddTime(Date couponAddTime) {
+    public void setCouponAddTime(LocalDateTime couponAddTime) {
         this.couponAddTime = couponAddTime;
     }
 
-    public Date getCouponUpdateTime() {
+    public LocalDateTime getCouponUpdateTime() {
         return couponUpdateTime;
     }
 
-    public void setCouponUpdateTime(Date couponUpdateTime) {
+    public void setCouponUpdateTime(LocalDateTime couponUpdateTime) {
         this.couponUpdateTime = couponUpdateTime;
     }
 

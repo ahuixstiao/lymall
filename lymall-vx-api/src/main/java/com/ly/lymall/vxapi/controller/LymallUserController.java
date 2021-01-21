@@ -117,7 +117,7 @@ public class LymallUserController {
      * @return Object
      */
     @RequestMapping("/auth/register")
-    public Object insertUserInfo(LymallUser user, HttpServletRequest request) throws IOException {
+    public Object insertUserInfo(LymallUser user, HttpServletRequest request) throws IOException, InterruptedException {
         //验证账户是否已注册
         LymallUser checkUserName=userService.checkUserNameOrUserMobile(user.getUserUsername(),null);
         //验证手机号是否已注册

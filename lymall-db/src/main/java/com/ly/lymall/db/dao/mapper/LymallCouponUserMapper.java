@@ -2,8 +2,11 @@ package com.ly.lymall.db.dao.mapper;
 
 import com.ly.lymall.db.dao.provider.LymallCouponUserSqlProvider;
 import com.ly.lymall.db.domian.LymallCouponUser;
+import com.ly.lymall.db.dto.LymallUserCouponDTO;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
+
+import java.util.List;
 
 @Mapper
 public interface LymallCouponUserMapper {
@@ -32,6 +35,16 @@ public interface LymallCouponUserMapper {
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="couponUserId", before=false, resultType=Integer.class)
     int insertSelective(LymallCouponUser record);
 
+    /**
+     * 根据用户id添加优惠券
+     * @param userCoupon
+     * @return int
+     */
+    @Insert("insert into " +
+            "lymall_coupon_user(user_id,coupon_id,coupon_user_start_time,coupon_user_end_time,coupon_user_add_time) " +
+            "value(#{userId},#{couponId},#{couponUserStartTime},#{couponUserEndTime},#{couponUserAddTime})")
+    int byUserIdAddCouponInfo(LymallCouponUser userCoupon);
+
     @Select({
         "select",
         "coupon_user_id, user_id, coupon_id, coupon_user_status, coupon_user_used_time, ",
@@ -54,6 +67,17 @@ public interface LymallCouponUserMapper {
         @Result(column="coupon_user_deleted", property="couponUserDeleted", jdbcType=JdbcType.BIT)
     })
     LymallCouponUser selectByPrimaryKey(Integer couponUserId);
+
+    /**
+     * 该方法传入userId与couponId与status时只查询单张优惠券使用情况
+     * 传入userId与status时则按状态来查询用户优惠券信息 比如查询该用户所有未使用的优惠券
+     * @param userId
+     * @param couponId
+     * @param status
+     * @return List<LymallUserCouponDTO> 集合
+     */
+    @SelectProvider(type=LymallCouponUserSqlProvider.class,method="selectByUserIdAndCouponIdAndCouponStatus")
+    List<LymallUserCouponDTO> selectByUserIdFindAllCouponInfo(Integer userId, Integer couponId, Short status);
 
     @UpdateProvider(type=LymallCouponUserSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(LymallCouponUser record);

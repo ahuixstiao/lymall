@@ -34,12 +34,6 @@ public class LymallGoodsInfoController {
     private LymallGoodsAttributeService goodsAttributeService;
 
     /**
-     * Brand 业务层接口
-     */
-    @Resource
-    private LymallBrandService brandService;
-
-    /**
      * Specification 业务层接口
      */
     @Resource
@@ -146,16 +140,4 @@ public class LymallGoodsInfoController {
 
         return ResponseUtil.okListPage(goodsService.selectByHotOrNewGoodsFindInfo("goods_is_hot",currentPage,limit));
     }
-
-    /**
-     * 根据商品的brandId查询品牌商信息
-     * @param brandId
-     * @return Object
-     */
-    @RequestMapping("select/BrandInfo")
-    public Object selectByBrandIdFindInfo(Integer brandId){
-
-        return ResponseUtil.ok(brandService.selectByBrandIdFindInfo(brandId));
-    }
-
 }

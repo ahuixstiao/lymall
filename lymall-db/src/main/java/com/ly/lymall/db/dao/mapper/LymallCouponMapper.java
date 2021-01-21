@@ -2,6 +2,8 @@ package com.ly.lymall.db.dao.mapper;
 
 import com.ly.lymall.db.dao.provider.LymallCouponSqlProvider;
 import com.ly.lymall.db.domian.LymallCoupon;
+import com.ly.lymall.db.domian.LymallCouponUser;
+import com.ly.lymall.db.service.LymallCouponUserService;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
@@ -86,6 +88,21 @@ public interface LymallCouponMapper {
     @ResultMap("couponResults")
     List<LymallCoupon> selectFindAll();
 
+    /**
+     * 根据couponId查询优惠券信息
+     * @param couponId
+     * @return LymallCoupon
+     */
+    @Select("select * from lymall_coupon where coupon_id=#{couponId}")
+    LymallCoupon selectByCouponIdFindCouponInfo(Integer couponId);
+
+    /**
+     * 通过优惠码查找优惠券信息
+     * @param code
+     * @return LymallCoupon
+     */
+    @Select("select * from lymall_coupon where coupon_code=#{code}")
+    LymallCoupon selectByPromoCodFindCoupon(String code);
 
     @UpdateProvider(type=LymallCouponSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(LymallCoupon record);

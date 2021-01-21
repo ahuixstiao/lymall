@@ -99,4 +99,30 @@ public class LymallCouponUserSqlProvider {
         
         return sql.toString();
     }
+
+    /**
+     * 该方法传入userId与couponId与status时只查询单张优惠券使用情况
+     * 传入userId与status时则按状态来查询用户优惠券信息 比如查询该用户所有未使用的优惠券
+     * @param userId
+     * @param couponId
+     * @param status
+     * @return String
+     */
+    public String selectByUserIdAndCouponIdAndCouponStatus(Integer userId,Integer couponId,Short status){
+        SQL sql=new SQL();
+        //当要按使用状态来查询用户的优惠券信息时
+        if(couponId==null || couponId==0){
+            sql.SELECT("A.coupon_name,A.coupon_desc,A.coupon_tag,A.coupon_discount,A.coupon_min,B.coupon_user_start_time,B.coupon_user_end_time")
+                    .FROM("lymall_coupon A,lymall_coupon_user B")
+                    .WHERE("A.coupon_id=B.coupon_id and user_id="+userId+" and coupon_user_status="+status);
+            return sql.toString();
+        }
+        //若不满足if则执行else
+        else{
+            sql.SELECT("*")
+                    .FROM("lymall_coupon_user")
+                    .WHERE("user_id="+userId+" and coupon_id="+couponId+" and coupon_user_status="+status);
+        }
+        return sql.toString();
+    }
 }
