@@ -1,4 +1,4 @@
-package com.ly.lymall.core.TencentCOS;
+package com.ly.lymall.core.tencent;
 
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.model.*;
@@ -104,10 +104,10 @@ public class TencentCloud {
         // 获取上传成功的图片ETag
         logger.info(uploadResult.getETag());
         // 将文件的URL拼接
-        String URL="https://"+bucketName+".cos."+regionName+".myqcloud.com/"+key;
+        String url="https://"+bucketName+".cos."+regionName+".myqcloud.com/"+key;
         // 关闭 cosClient，并释放 HTTP 连接的后台管理线程
         cosClient.shutdown();
         // 返回URL
-        return URL;
+        return url;
     }
 }

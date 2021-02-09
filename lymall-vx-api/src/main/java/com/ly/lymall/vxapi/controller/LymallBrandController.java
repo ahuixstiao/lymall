@@ -44,7 +44,7 @@ public class LymallBrandController {
      * @return 返回一个品牌商类对象
      */
     @RequestMapping("brand/detail")
-    public Object selectByBrandIdFIndBrandDetail(Integer brandId){
+    public Object selectByBrandIdFindBrandDetail(Integer brandId){
 
         return ResponseUtil.ok(brandService.selectByBrandIdFindInfo(brandId));
     }

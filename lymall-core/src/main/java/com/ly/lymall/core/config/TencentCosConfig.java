@@ -5,8 +5,6 @@ import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.auth.BasicCOSCredentials;
 import com.qcloud.cos.auth.COSCredentials;
 import com.qcloud.cos.region.Region;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,7 +39,7 @@ public class TencentCosConfig {
     //@Qualifier(COS_IMAGE)
     //@Primary
     @Bean
-    public COSClient getCOSClient(){
+    public COSClient getCosClient(){
 
         //获取账号密码 初始化COSCredentials
         COSCredentials cred=new BasicCOSCredentials(secretId,secretKey);

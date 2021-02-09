@@ -51,7 +51,7 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
         //使用lambda表达式 遍历返回的父分类信息集合
         list.stream().forEach((category)->{
             //创建一个临时 map集合用来保存 商品父分类名称 与 商品信息
-            Map<String, Object> map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>(16);
             //封装父分类的name
             map.put("name", category.getCategoryName());
             //对商品信息分页

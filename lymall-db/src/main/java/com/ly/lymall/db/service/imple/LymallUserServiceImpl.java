@@ -1,6 +1,6 @@
 package com.ly.lymall.db.service.imple;
 
-import com.ly.lymall.core.TencentCOS.TencentCloud;
+import com.ly.lymall.core.tencent.TencentCloud;
 import com.ly.lymall.db.dao.mapper.LymallUserMapper;
 import com.ly.lymall.db.domian.LymallUser;
 import com.ly.lymall.db.service.LymallUserService;

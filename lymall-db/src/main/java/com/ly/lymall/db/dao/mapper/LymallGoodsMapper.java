@@ -3,28 +3,15 @@ package com.ly.lymall.db.dao.mapper;
 import com.ly.lymall.db.dao.provider.LymallGoodsSqlProvider;
 import com.ly.lymall.db.domian.LymallGoods;
 import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.type.JdbcType;
-
-import java.math.BigInteger;
 import java.util.List;
 
 @Mapper
 public interface LymallGoodsMapper {
-    /**
-     * 删除
-     * @param goodsId
-     * @return int
-     */
     @Delete({
         "delete from lymall_goods",
         "where goods_id = #{goodsId,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer goodsId);
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------
-    //插入
 
     @Insert({
         "insert into lymall_goods (goods_sn, goods_name, ",
@@ -54,11 +41,6 @@ public interface LymallGoodsMapper {
     @InsertProvider(type= LymallGoodsSqlProvider.class, method="insertSelective")
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="goodsId", before=false, resultType=Integer.class)
     int insertSelective(LymallGoods record);
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------
-    //查询
 
     /**
      * 根据goodsId查询商品信息
@@ -118,10 +100,6 @@ public interface LymallGoodsMapper {
     @Select("select count(*) from lymall_goods")
     int selectByAllCount();
 
-    //------------------------------------------------------------------------------------------------------------------------------------------------
-
-    //------------------------------------------------------------------------------------------------------------------------------------------------
-    //修改
 
     @UpdateProvider(type=LymallGoodsSqlProvider.class, method="updateByPrimaryKeySelective")
     int updateByPrimaryKeySelective(LymallGoods record);
@@ -150,7 +128,7 @@ public interface LymallGoodsMapper {
           "goods_detail = #{goodsDetail,jdbcType=LONGVARCHAR}",
         "where goods_id = #{goodsId,jdbcType=INTEGER}"
     })
-    int updateByPrimaryKeyWithBLOBs(LymallGoods record);
+    int updateByPrimaryKeyWithBlobs(LymallGoods record);
 
     @Update({
         "update lymall_goods",

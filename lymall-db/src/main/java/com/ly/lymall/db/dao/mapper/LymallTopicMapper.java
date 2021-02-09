@@ -85,7 +85,7 @@ public interface LymallTopicMapper {
           "topic_content = #{topicContent,jdbcType=LONGVARCHAR}",
         "where topic_id = #{topicId,jdbcType=INTEGER}"
     })
-    int updateByPrimaryKeyWithBLOBs(LymallTopic record);
+    int updateByPrimaryKeyWithBlobs(LymallTopic record);
 
     @Update({
         "update lymall_topic",
