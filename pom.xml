@@ -16,7 +16,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>lymall</name>
     <packaging>pom</packaging><!-- pom打包 -->
-    <description>Demo project for Spring Boot</description><!-- 项目描述 -->
+    <description>微信小程序商城系统</description><!-- 项目描述 -->
 
     <!-- 声明子模块 -->
     <modules>

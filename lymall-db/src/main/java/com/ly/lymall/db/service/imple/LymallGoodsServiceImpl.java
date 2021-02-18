@@ -4,6 +4,8 @@ import com.github.pagehelper.PageHelper;
 import com.ly.lymall.db.dao.mapper.LymallGoodsMapper;
 import com.ly.lymall.db.domian.LymallGoods;
 import com.ly.lymall.db.service.LymallGoodsService;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,6 +17,7 @@ import java.util.List;
  * @Description: 实现类
  */
 @Service
+@CacheConfig(cacheNames="goods")
 public class LymallGoodsServiceImpl implements LymallGoodsService {
 
     @Resource(name="lymallGoodsMapper")
@@ -44,6 +47,7 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
      * @param categoryId
      * @return List<LymallGoods>
      */
+    @Cacheable(keyGenerator="keyGenerator",condition="#result!=null")
     @Override
     public List<LymallGoods> searchProducts(String keyword, String orderColumn, String orderType, Integer categoryId) {
 
@@ -56,6 +60,7 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
      * @param keyword
      * @return List<LymallGoods>
      */
+    @Cacheable(keyGenerator="keyGenerator",condition="#result!=null")
     @Override
     public List<LymallGoods> keywordSearchGoodsName(String keyword) {
 
