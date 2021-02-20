@@ -10,6 +10,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
+    <!--  项目生成docker镜像的前缀  -->
     <properties>
         <docker.image.prefix>lymall</docker.image.prefix>
     </properties>
@@ -45,6 +46,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>docker-springBoot-lymall</finalName><!--打包后文件名称-->
+        <finalName>docker-springBoot-lymall</finalName><!--打包后的jar包名称-->
     </build>
 </project>

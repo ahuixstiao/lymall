@@ -24,7 +24,6 @@
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.1.3</version>
         </dependency>
 
         <!-- 引入druid 启动器 -->
@@ -39,13 +38,6 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-
-        <!-- redis启动器 -->
-<!--        <dependency>-->
-<!--            <groupId>com.github.AnonymousMister</groupId>-->
-<!--            <artifactId>spring-boot-starter-data-redis</artifactId>-->
-<!--        </dependency>-->
-
 
     </dependencies>
 

@@ -4,6 +4,8 @@ import com.ly.lymall.core.tencent.TencentCloud;
 import com.ly.lymall.db.dao.mapper.LymallUserMapper;
 import com.ly.lymall.db.domian.LymallUser;
 import com.ly.lymall.db.service.LymallUserService;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -16,7 +18,8 @@ import java.time.LocalDateTime;
  * @Date: 2020-11-18 - 16:44
  * @Description: 实现类
  */
-@Service("lymallUserServiceImpl")
+@Service
+@CacheConfig(cacheNames="user")
 public class LymallUserServiceImpl implements LymallUserService {
 
     /**
@@ -38,6 +41,7 @@ public class LymallUserServiceImpl implements LymallUserService {
      * @return LymallUser
      */
     @Override
+    @Cacheable(keyGenerator="keyGenerator",condition="#result!=null")
     public LymallUser checkUserNameOrUserMobile(String userUsername,String userMobile) {
 
         return userMapper.selectByUserNameOrUserMobile(userUsername,userMobile);
@@ -49,6 +53,7 @@ public class LymallUserServiceImpl implements LymallUserService {
      * @return Object
      */
     @Override
+    @Cacheable(keyGenerator="keyGenerator",condition="#result!=null")
     public LymallUser login(LymallUser user) {
 
         return userMapper.selectByUserNameAndPassword(user);
