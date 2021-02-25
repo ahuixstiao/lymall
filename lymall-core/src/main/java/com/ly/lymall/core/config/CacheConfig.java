@@ -7,11 +7,10 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Arrays;
 
 /**
- * @Author: ahui
- * @Date: 2020-12-14/ 16:18
- * @Description: 缓存配置类
- */
-
+ * @Author: Ahui
+ * @Description: cacheKey
+ * @DateTime: 2021/2/20 - 15:24
+ **/
 @Configuration
 public class CacheConfig {
 
@@ -29,5 +28,4 @@ public class CacheConfig {
 
         return keyGeneratorLambda;
     }
-
 }

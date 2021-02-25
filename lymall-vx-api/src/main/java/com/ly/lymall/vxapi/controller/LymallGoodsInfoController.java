@@ -59,7 +59,8 @@ public class LymallGoodsInfoController {
         List<LymallGoodsSpecification> goodsSpecificationListServiceImpl=goodsSpecificationService.selectByGoodsIdFindSpecification(goodsId);
 
         /**
-         *  声明一个内部类 保存返回的规格参数
+         *  声明局部内部类 保存返回的规格参数
+         *  tips: 声明在方法中的是局部内部类 方法外是外部类中内部类
          */
         class SpecificationResult {
             String name;

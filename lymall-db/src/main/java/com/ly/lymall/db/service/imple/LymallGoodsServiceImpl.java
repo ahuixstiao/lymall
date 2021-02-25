@@ -20,7 +20,7 @@ import java.util.List;
 @CacheConfig(cacheNames="goods")
 public class LymallGoodsServiceImpl implements LymallGoodsService {
 
-    @Resource(name="lymallGoodsMapper")
+    @Resource
     LymallGoodsMapper goodsMapper;
 
     /**
@@ -47,8 +47,8 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
      * @param categoryId
      * @return List<LymallGoods>
      */
-    @Cacheable(keyGenerator="keyGenerator",condition="#result!=null")
     @Override
+    @Cacheable(keyGenerator="keyGenerator",condition="#result!=null")
     public List<LymallGoods> searchProducts(String keyword, String orderColumn, String orderType, Integer categoryId) {
 
         return goodsMapper.selectBySearchProducts(keyword, orderColumn, orderType,categoryId);
@@ -60,8 +60,8 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
      * @param keyword
      * @return List<LymallGoods>
      */
-    @Cacheable(keyGenerator="keyGenerator",condition="#result!=null")
     @Override
+    @Cacheable(keyGenerator="keyGenerator",condition="#result!=null")
     public List<LymallGoods> keywordSearchGoodsName(String keyword) {
 
         return goodsMapper.selectByKeywordSearchGoodsName(keyword);
@@ -69,11 +69,11 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
 
     /**
      * 根据goodsId查询商品信息
-     *
      * @param goodsId
      * @return LymallGoods
      */
     @Override
+    @Cacheable(keyGenerator="keyGenerator",condition="#result!=null")
     public LymallGoods selectByGoodIdfindGoods(Integer goodsId) {
 
         return goodsMapper.selectByPrimaryKey(goodsId);

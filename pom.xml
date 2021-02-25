@@ -80,7 +80,7 @@
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
 
-        <!-- 测试 -->
+        <!-- 测试场景启动器 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -94,19 +94,5 @@
         </dependency>
 
     </dependencies>
-
-<!--    <build>-->
-<!--        &lt;!&ndash; maven插件 &ndash;&gt;-->
-<!--        <plugins>-->
-<!--            &lt;!&ndash; 使用mybaits-generator时需要将该插件注释 &ndash;&gt;-->
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--                <configuration>-->
-<!--                    <fork>true</fork> &lt;!&ndash; fork=true,用于明确表示编译版本配置的可用 &ndash;&gt;-->
-<!--                </configuration>-->
-<!--            </plugin>-->
-<!--        </plugins>-->
-<!--    </build>-->
 
 </project>

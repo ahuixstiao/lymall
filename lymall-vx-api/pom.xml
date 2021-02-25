@@ -27,25 +27,16 @@
     </dependencies>
 
     <build>
-        <plugins>
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>1.0.0</version>
-                <configuration>
-                    <!--suppress UnresolvedMavenProperty -->
-                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-                    <dockerDirectory>src/main/docker</dockerDirectory>
-                    <resources>
-                        <resource>
-                            <targetPath>/</targetPath>
-                            <directory>${project.build.directory}</directory>
-                            <include>${project.build.finalName}.jar</include>
-                        </resource>
-                    </resources>
-                </configuration>
-            </plugin>
-        </plugins>
-        <finalName>docker-springBoot-lymall</finalName><!--打包后的jar包名称-->
+    <!-- maven插件 -->
+    <plugins>
+        <!-- 使用mybaits-generator时需要将该插件注释 -->
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <fork>true</fork> <!-- fork=true,用于明确表示编译版本配置的可用 -->
+            </configuration>
+        </plugin>
+    </plugins>
     </build>
 </project>

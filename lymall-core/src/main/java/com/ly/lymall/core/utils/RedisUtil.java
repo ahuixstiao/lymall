@@ -21,7 +21,6 @@ public final class RedisUtil {
     @Autowired
     private RedisTemplate<String,Object> redisTemplate;
 
-
     /**
      * 指定缓存失效时间
      * @param key  键
