@@ -52,14 +52,16 @@ public class LymallUserServiceImpl implements LymallUserService {
 
     /**
      * 登录校验
-     *
+     * 验证用户名与密码是否正确
+     * 当所有操作都是读操作时设置成只读事务，当事务被标识为只读事务时，
+     * Spring可以对某些可以针对只读事务进行优化的资源就可以执行相应的优化措施，
+     * 需要手动将readOnly设置成true。但是方法若是执行增删改会抛出异常
      * @param user
      * @return Object
      */
     @Override
-    @Cacheable(keyGenerator = "keyGenerator", condition = "#result!=null")
+    @Transactional(readOnly=true,rollbackFor=Exception.class)
     public LymallUser login(LymallUser user) {
-
         return userMapper.selectByUserNameAndPassword(user);
     }
 
@@ -81,7 +83,7 @@ public class LymallUserServiceImpl implements LymallUserService {
      * 该方法功能为：用户注册
      * 将用户信息插入保存到数据库进行持久化
      * 将用户头像上传至腾讯云
-     * 抛出任何异常都进行回滚
+     * 抛出IO异常与进行回滚
      *
      * @param user 传入LymallUser实体类
      * @return int

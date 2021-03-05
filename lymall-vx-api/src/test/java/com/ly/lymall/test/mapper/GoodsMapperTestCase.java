@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.time.LocalDateTime;
+
 
 /**
  * @Author: Ahui
@@ -21,7 +25,11 @@ public class GoodsMapperTestCase {
     private LymallGoodsMapper mapper;
 
     @Test
-    void contextLoads(){
-        System.out.println(""+mapper.selectByAllCount());
+    void contextLoads() throws UnknownHostException {
+        //获取计算机名称
+        String windowsName = InetAddress.getLocalHost().getHostName();
+        //获取IP地址
+        String ip = InetAddress.getLocalHost().getHostAddress();
+        System.out.println("当前时间："+ LocalDateTime.now() +" 计算机名称："+windowsName+" IP地址："+ip);
     }
 }
