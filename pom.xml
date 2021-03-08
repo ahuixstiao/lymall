@@ -28,8 +28,10 @@
     <!-- 规范项目版本 -->
     <profiles>
         <profile>
+            <!-- 开发环境的配置 -->
             <id>jdk-1.8</id>
             <activation>
+                <!-- 设置当前为默认值 -->
                 <activeByDefault>true</activeByDefault>
                 <jdk>1.8</jdk>
             </activation>

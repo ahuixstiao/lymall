@@ -42,7 +42,7 @@ public interface LymallGoodsService {
      * @param goodsId
      * @return LymallGoods
      */
-    LymallGoods selectByGoodIdfindGoods(Integer goodsId);
+    LymallGoods selectByGoodsIdfindGoods(Integer goodsId);
 
     /**
      * 根据brandId查询全部商品信息

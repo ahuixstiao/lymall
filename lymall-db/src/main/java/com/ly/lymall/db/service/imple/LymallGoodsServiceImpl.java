@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.ly.lymall.db.dao.mapper.LymallGoodsMapper;
 import com.ly.lymall.db.domian.LymallGoods;
 import com.ly.lymall.db.service.LymallGoodsService;
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +16,6 @@ import java.util.List;
  * @Description: 实现类
  */
 @Service
-@CacheConfig(cacheNames="goods")
 public class LymallGoodsServiceImpl implements LymallGoodsService {
 
     @Resource
@@ -48,7 +46,7 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
      * @return List<LymallGoods>
      */
     @Override
-    @Cacheable(keyGenerator="keyGenerator",condition="#result!=null")
+    @Cacheable(cacheNames="byGoodsNameAndGoodsProducts",keyGenerator="keyGenerator")
     public List<LymallGoods> searchProducts(String keyword, String orderColumn, String orderType, Integer categoryId) {
 
         return goodsMapper.selectBySearchProducts(keyword, orderColumn, orderType,categoryId);
@@ -61,7 +59,7 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
      * @return List<LymallGoods>
      */
     @Override
-    @Cacheable(keyGenerator="keyGenerator",condition="#result!=null")
+    @Cacheable(cacheNames="keywordGoodsName",keyGenerator="keyGenerator")
     public List<LymallGoods> keywordSearchGoodsName(String keyword) {
 
         return goodsMapper.selectByKeywordSearchGoodsName(keyword);
@@ -73,8 +71,8 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
      * @return LymallGoods
      */
     @Override
-    @Cacheable(keyGenerator="keyGenerator",condition="#result!=null")
-    public LymallGoods selectByGoodIdfindGoods(Integer goodsId) {
+    @Cacheable(cacheNames="selectByGoodsID",keyGenerator="keyGenerator")
+    public LymallGoods selectByGoodsIdfindGoods(Integer goodsId) {
 
         return goodsMapper.selectByPrimaryKey(goodsId);
     }

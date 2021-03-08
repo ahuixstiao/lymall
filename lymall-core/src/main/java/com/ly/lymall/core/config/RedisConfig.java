@@ -68,6 +68,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         // hashValue采用jackson的序列化方式
         template.setHashValueSerializer(serializer);
 
+        // 设置序列化方式, 前面只是声明, 该方法才实际注入序列化方式
         template.afterPropertiesSet();
 
         return template;

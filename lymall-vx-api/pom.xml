@@ -10,8 +10,8 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <!--  项目生成docker镜像的前缀  -->
     <properties>
+        <!-- 在docker运行时要用的，只是一个前缀而已，就像包名一样,可自己任意定义此名称 -->
         <docker.image.prefix>lymall</docker.image.prefix>
     </properties>
 
@@ -37,6 +37,28 @@
                 <fork>true</fork> <!-- fork=true,用于明确表示编译版本配置的可用 -->
             </configuration>
         </plugin>
+
+        <!-- docker 插件 begin -->
+<!--        <plugin>-->
+<!--            <groupId>com.spotify</groupId>-->
+<!--            <artifactId>docker-maven-plugin</artifactId>-->
+<!--            <version>1.0.0</version>-->
+
+<!--            <configuration>-->
+<!--                <imageName>${docker.image.prefix}/${project.artifactId}</imageName>-->
+<!--                <dockerDirectory>src/main/docker</dockerDirectory>-->
+<!--                <resources>-->
+<!--                    <resource>-->
+<!--                        <targetPath>/</targetPath>-->
+<!--                        <directory>${project.build.directory}</directory>-->
+<!--                        <include>${project.build.finalName}.jar</include>-->
+<!--                    </resource>-->
+<!--                </resources>-->
+<!--            </configuration>-->
+<!--        </plugin>-->
+        <!-- docker 插件 end -->
     </plugins>
+        <!--打包后文件名称-->
+<!--    <finalName>docker-lymall</finalName>-->
     </build>
 </project>

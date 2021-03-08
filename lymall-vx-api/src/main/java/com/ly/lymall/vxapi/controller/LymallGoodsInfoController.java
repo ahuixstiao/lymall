@@ -120,7 +120,7 @@ public class LymallGoodsInfoController {
         }
 
         //封装商品信息
-        map.put("goodsInfo",goodsService.selectByGoodIdfindGoods(goodsId));
+        map.put("goodsInfo",goodsService.selectByGoodsIdfindGoods(goodsId));
         //封装商品参数信息
         map.put("goodsAttribute",goodsAttributeService.selectByGoodsIdFindGoodsAttributeInfo(goodsId));
         //封装商品评价信息
