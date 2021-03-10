@@ -11,3 +11,12 @@ tencent:
     regionName: ap-guangzhou
     #访问基础路径
     baseUrl: https://lymall-ahui-1304796949.cos.ap-guangzhou.myqcloud.com
+    #Bucket文件路径
+    bucketPath: "images/userAvatar/"
+
+#安全管理默认账号密码
+#spring:
+#  security:
+#    user:
+#      name: root
+#      password: root

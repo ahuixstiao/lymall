@@ -25,9 +25,9 @@
 
         <!--数据库连接信息-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://47.115.3.27:3306/lymall?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC"
+                        connectionURL="jdbc:mysql://39.101.150.201:3306/lymall?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC"
                         userId="root"
-                        password="123456"/>
+                        password="root"/>
 
         <!--配置实体类  targetPackage生成位置 targetProject生成的类所在的硬盘位置  -->
         <javaModelGenerator targetPackage="com.ly.lymall.db.domian" targetProject="src/main/java"/>

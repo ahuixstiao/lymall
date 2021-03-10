@@ -3,6 +3,7 @@ package com.ly.lymall.db.service.imple;
 import com.ly.lymall.db.dao.mapper.LymallGoodsSpecificationMapper;
 import com.ly.lymall.db.domian.LymallGoodsSpecification;
 import com.ly.lymall.db.service.LymallGoodsSpecificationService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

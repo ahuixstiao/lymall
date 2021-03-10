@@ -25,6 +25,6 @@ public class VxApiApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(VxApiApplication.class, args);
-        System.out.println("成功启动");
+        System.out.println("------------------------------------------------------------------------------------------------启动成功------------------------------------------------------------------------------------------------");
     }
 }

@@ -24,13 +24,14 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
     /**
      * 查询热门或新品商品信息
      * @param goodsProduct
-     * @param currentPage 页数
+     * @param currentPage 当前页
      * @param limit 显示的条数
      * @return List<LymallGoods>
      */
     @Override
     public List<LymallGoods> selectByHotOrNewGoodsFindInfo(String goodsProduct,Integer currentPage,Integer limit){
 
+        //设置每页展示的信息条数
         PageHelper.startPage(currentPage,limit);
 
         return goodsMapper.selectByHotOrNewGoodsFindInfo(goodsProduct);
@@ -46,7 +47,6 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
      * @return List<LymallGoods>
      */
     @Override
-    @Cacheable(cacheNames="byGoodsNameAndGoodsProducts",keyGenerator="keyGenerator")
     public List<LymallGoods> searchProducts(String keyword, String orderColumn, String orderType, Integer categoryId) {
 
         return goodsMapper.selectBySearchProducts(keyword, orderColumn, orderType,categoryId);
@@ -59,7 +59,6 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
      * @return List<LymallGoods>
      */
     @Override
-    @Cacheable(cacheNames="keywordGoodsName",keyGenerator="keyGenerator")
     public List<LymallGoods> keywordSearchGoodsName(String keyword) {
 
         return goodsMapper.selectByKeywordSearchGoodsName(keyword);
@@ -71,8 +70,9 @@ public class LymallGoodsServiceImpl implements LymallGoodsService {
      * @return LymallGoods
      */
     @Override
-    @Cacheable(cacheNames="selectByGoodsID",keyGenerator="keyGenerator")
     public LymallGoods selectByGoodsIdfindGoods(Integer goodsId) {
+
+
 
         return goodsMapper.selectByPrimaryKey(goodsId);
     }

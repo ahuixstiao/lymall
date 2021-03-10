@@ -84,10 +84,9 @@ public interface LymallUserMapper {
     LymallUser selectByPrimaryKey(Integer userId);
 
     /**
-     * 查询账号或手机号
+     * 根据传递进来的实体参数查询相应的用户数据 目前支持 id username password
      *
-     * @param userUsername
-     * @param userMobile
+     * @param lymallUser
      * @return LymallUser
      */
     @Select({
@@ -96,10 +95,10 @@ public interface LymallUserMapper {
             "user_last_login_ip, user_level, user_nickname, user_mobile, user_avatar, user_weixin_openid, ",
             "user_session_key, user_status, user_add_time, user_update_time, user_deleted",
             "from lymall_user",
-            "where user_username=#{userUsername} or user_mobile=#{userMobile}"
+            "where user_id=#{userId} or user_username=#{userUsername} or user_mobile=#{userMobile}"
     })
     @ResultMap("userResult")
-    LymallUser selectByUserNameOrUserMobile(String userUsername, String userMobile);
+    LymallUser selectUserInfo(LymallUser lymallUser);
 
     /**
      * 登录验证 账号密码是否正确

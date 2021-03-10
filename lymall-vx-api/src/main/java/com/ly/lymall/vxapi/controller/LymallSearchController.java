@@ -8,6 +8,7 @@ import com.ly.lymall.db.service.LymallKeywordService;
 import com.ly.lymall.db.service.LymallSearchHistoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -55,7 +56,7 @@ public class LymallSearchController {
      * @param limit 信息条数
      * @return Object 返回
      */
-    @RequestMapping("search/index")
+    @GetMapping("search/index")
     public Object selectFindAllKeyWords(Integer userId, Integer currentPage, Integer limit){
         //保存默认关键字返回值
         List<LymallKeyword> lymallKeywordList=keywordService.selectAllHotOrDefaultKeywords("keyword_is_default",1,currentPage,limit);

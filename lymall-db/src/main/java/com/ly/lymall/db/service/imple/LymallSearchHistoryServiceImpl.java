@@ -6,6 +6,7 @@ import com.ly.lymall.db.dao.mapper.LymallSearchHistoryMapper;
 import com.ly.lymall.db.domian.LymallSearchHistory;
 import com.ly.lymall.db.service.LymallSearchHistoryService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -47,8 +48,8 @@ public class LymallSearchHistoryServiceImpl implements LymallSearchHistoryServic
      * @return 返回结果为int类型 表示受影响的条数
      */
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public int createByHistoryKeyword(String keyword, Integer userId) {
+    @Transactional(rollbackFor = Exception.class, isolation = Isolation.READ_COMMITTED)
+    public int createByHistoryKeyword(String keyword, Integer userId){
 
         //查询数据库中是否已有历史关键字
         List<LymallSearchHistory> searchHistoryList=searchHistoryMapper.selectByUserIdFindHistory(userId);
@@ -71,6 +72,7 @@ public class LymallSearchHistoryServiceImpl implements LymallSearchHistoryServic
      * @return int
      */
     @Override
+    @Transactional(rollbackFor = Exception.class, isolation = Isolation.READ_COMMITTED)
     public int deleteByHistoryKeyword(Integer userId) {
 
         return searchHistoryMapper.deleteByHistoryKeyword(userId);

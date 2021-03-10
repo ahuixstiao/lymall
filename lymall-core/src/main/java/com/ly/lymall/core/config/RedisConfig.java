@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
+import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
@@ -30,6 +31,28 @@ import java.util.Set;
  **/
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
+
+
+    /**
+     * 通过重写该接口的方法，生成动态的keyGenerator
+     * @return 返回一个KeyGenerator对象
+     */
+    @Bean("keyGenerator")
+    public static KeyGenerator getKeyGenerator(){
+        /**
+         * @param target 调用该方法的对象
+         * @param method Cache注解的方法
+         * @param params 参数列表
+         * @return KeyGenerator
+         */
+        //lambda表达式
+        //KeyGenerator keyGeneratorLambda=(target,method,params)->method.getName()+"("+ Arrays.asList(params)+")";
+
+        KeyGenerator keyGeneratorLambda=((target, method, params) -> method.getName());
+
+        return keyGeneratorLambda;
+    }
+
 
     /**
      * 重新配置RedisTemplate类的存储数据类型 减少不必要的代码
@@ -114,7 +137,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         // 对每个缓存空间应用不同的配置
         Map<String, RedisCacheConfiguration> configMap = new HashMap<>();
         configMap.put("my-redis-cache1", config);
-        configMap.put("my-redis-cache2", config.entryTtl(Duration.ofSeconds(360)));
+        configMap.put("my-redis-cache2", config.entryTtl(Duration.ofMinutes(10)));
         // 使用自定义的缓存配置初始化一个cacheManager
         RedisCacheManager cacheManager = RedisCacheManager.builder(redisConnectionFactory)
                 // 注意这两句的调用顺序，一定要先调用该方法设置初始化的缓存名，再初始化相关的配置
@@ -123,5 +146,4 @@ public class RedisConfig extends CachingConfigurerSupport {
                 .build();
         return cacheManager;
     }
-
 }
