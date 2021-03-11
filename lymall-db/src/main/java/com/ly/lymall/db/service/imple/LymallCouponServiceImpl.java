@@ -23,21 +23,23 @@ public class LymallCouponServiceImpl implements LymallCouponService {
 
     /**
      * 查询全部 优惠券信息 并分页
+     *
      * @param currentPage
      * @param count
      * @return List<LymallCoupon>
      */
     @Override
-    public List<LymallCoupon> selectFindAllCoupon(Integer currentPage,Integer count){
+    public List<LymallCoupon> selectFindAllCoupon(Integer currentPage, Integer count) {
 
         //分页
-        PageHelper.startPage(currentPage,count);
+        PageHelper.startPage(currentPage, count);
 
         return couponMapper.selectFindAll();
     }
 
     /**
      * 根据couponId查询优惠券信息
+     *
      * @param couponId
      * @return LymallCoupon
      */

@@ -43,7 +43,7 @@ public class LymallUserServiceImpl implements LymallUserService {
      * redis
      */
     @Resource
-    private RedisTemplate<String,Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     /**
      * bucket的文件路径
@@ -78,11 +78,11 @@ public class LymallUserServiceImpl implements LymallUserService {
     @Transactional(readOnly = true, rollbackFor = Exception.class, isolation = Isolation.REPEATABLE_READ)
     public LymallUser loginAuthentication(String userUsername, String userPassword) {
         //密码加密
-        String md5Password=MD5.md5(userPassword);
+        String md5Password = MD5.md5(userPassword);
         //保存结果
-        LymallUser info = userMapper.loginAuthentication(userUsername,md5Password);
+        LymallUser info = userMapper.loginAuthentication(userUsername, md5Password);
         //保存缓存
-        redisTemplate.opsForValue().set("login",info);
+        redisTemplate.opsForValue().set("login", info);
         //传递到mapper查询
         return info;
     }
@@ -114,19 +114,19 @@ public class LymallUserServiceImpl implements LymallUserService {
     @Transactional(rollbackFor = {IOException.class, InterruptedException.class}, isolation = Isolation.READ_COMMITTED)
     public synchronized int registerUserInfo(LymallUser user, HttpServletRequest request) throws IOException, InterruptedException {
         //转为Spring文件解析器的request
-        MultipartHttpServletRequest multipartHttpServletRequest=(MultipartHttpServletRequest)request;
+        MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
         //获取文件
-        MultipartFile multipartFile=multipartHttpServletRequest.getFile("pohoURL");
+        MultipartFile multipartFile = multipartHttpServletRequest.getFile("pohoURL");
         //将文件转成输入流
-        InputStream inputStream=multipartFile.getInputStream();
+        InputStream inputStream = multipartFile.getInputStream();
         //拼接Bucket文件路径与用户名称 目的是将文件名改为用户名的方式进行区分保存
-        String splicingBucketFilePathAndUsername=bucketPath+user.getUserUsername();
+        String splicingBucketFilePathAndUsername = bucketPath + user.getUserUsername();
         //获取原文件全名并从.的位置分割文件名与后缀 采用双\\转义
-        String [] fileName=multipartFile.getOriginalFilename().split("\\.");
+        String[] fileName = multipartFile.getOriginalFilename().split("\\.");
         //获取文件的后缀名  length-1指 获取最后一个
-        String sufix=fileName[fileName.length-1];
+        String sufix = fileName[fileName.length - 1];
         //拼接完整的文件名路径与文件名.后缀
-        String key=splicingBucketFilePathAndUsername+"."+sufix;
+        String key = splicingBucketFilePathAndUsername + "." + sufix;
 
         //将Controller拼接好的key（文件名.后缀）与文件流传入该方法执行
         String url = tencentCloud.putAvatar(key, inputStream);
@@ -135,7 +135,7 @@ public class LymallUserServiceImpl implements LymallUserService {
         //将用户密码加密
         user.setUserPassword(MD5.md5(user.getUserPassword()));
         //将账号信息插入缓存中
-        redisTemplate.opsForValue().set(user.getUserId().toString(),user);
+        redisTemplate.opsForValue().set(user.getUserId().toString(), user);
         //传入user实体类 执行持久层插入操作
         return userMapper.insert(user);
     }

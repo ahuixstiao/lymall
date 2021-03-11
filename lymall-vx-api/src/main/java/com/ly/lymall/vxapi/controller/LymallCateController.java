@@ -34,23 +34,24 @@ public class LymallCateController {
 
     /**
      * 由于分类页面点击时需要加载数据 则先默认查出父分类并且查询第一个父分类的其子分类
+     *
      * @return Object
      */
     @RequestMapping(path = "catalog/index")
-    public Object getCategoryIndexPage(){
+    public Object getCategoryIndexPage() {
         //最终返回封装集合
-        Map<String,Object> result=new HashMap<>(16);
+        Map<String, Object> result = new HashMap<>(16);
         //商品父分类的返回集合
         List<LymallCategory> categoryInfoList = categoryService.selectByCategoryPidFindInfo(0);
 
         //封装 商品总数
         result.put("goodsCount", goodsService.selectByAllCount());
         //封装 所有商品父分类
-        result.put("categoryList",categoryInfoList);
+        result.put("categoryList", categoryInfoList);
         //封装 当前商品父分类的第一个
-        result.put("currentCategory",categoryInfoList.get(0));
+        result.put("currentCategory", categoryInfoList.get(0));
         //根据父分类Pid获取它的的所有子分类
-        result.put("currentSubCategoryList",categoryService.selectByCategoryPidFindInfo(categoryInfoList.get(0).getCategoryId()));
+        result.put("currentSubCategoryList", categoryService.selectByCategoryPidFindInfo(categoryInfoList.get(0).getCategoryId()));
 
         //返回
         return ResponseUtil.ok(result);
@@ -58,22 +59,24 @@ public class LymallCateController {
 
     /**
      * 根据pid查询出它的子分类
+     *
      * @param categoryPid
      * @return Object
      */
     @RequestMapping(path = "catalog/currentCategory")
-    public Object getCurrentCategory(Integer categoryPid){
+    public Object getCurrentCategory(Integer categoryPid) {
 
         return ResponseUtil.ok(categoryService.selectByCategoryPidFindInfo(categoryPid));
     }
 
     /**
      * 按照分类的id查询与其关联的商品信息
+     *
      * @param categoryId
      * @return Object
      */
     @RequestMapping(path = "catalog/currentCategoryGoodsList")
-    public Object getGoodsList(Integer categoryId){
+    public Object getGoodsList(Integer categoryId) {
 
         return ResponseUtil.ok(goodsService.selectByCategoryIdFindAllGoodsInfo(categoryId));
     }

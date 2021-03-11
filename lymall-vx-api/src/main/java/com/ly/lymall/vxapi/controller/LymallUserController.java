@@ -6,18 +6,13 @@ import com.ly.lymall.db.service.LymallUserService;
 import com.ly.lymall.vxapi.utils.ExceptionCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -31,15 +26,15 @@ import java.util.UUID;
 public class LymallUserController {
 
     /**
-     * Service接口依赖注入
+     *  user业务的Service接口
      */
     @Resource
     private LymallUserService userService;
 
     /**
-     * 定义一个全局变量 来保存用户SessionID
+     * 定义一个全局类变量 来保存用户SessionID
      */
-    private String sessionId;
+    private static String sessionId;
 
     /**
      * 记录器

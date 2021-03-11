@@ -30,32 +30,35 @@ public class LymallBrandController {
 
     /**
      * 查询全部品牌商信息
+     *
      * @return 返回的是一个List分页集合
      */
     @RequestMapping(path = "brand/list")
-    public Object selectFindAllBrandInfo(){
+    public Object selectFindAllBrandInfo() {
 
-        return ResponseUtil.okListPage(brandService.selectFindAll(1,999999));
+        return ResponseUtil.okListPage(brandService.selectFindAll(1, 999999));
     }
 
     /**
      * 根据品牌商id 查询品牌商的详情信息
+     *
      * @param brandId
      * @return 返回一个品牌商类对象
      */
     @RequestMapping(path = "brand/detail")
-    public Object selectByBrandIdFindBrandDetail(Integer brandId){
+    public Object selectByBrandIdFindBrandDetail(Integer brandId) {
 
         return ResponseUtil.ok(brandService.selectByBrandIdFindInfo(brandId));
     }
 
     /**
      * 根据品牌id查询属于该品牌的商品信息
+     *
      * @param brandId
      * @return 返回一个集合
      */
     @RequestMapping(path = "brand/goodslist")
-    public Object selectByBrandIdFindAllGoodsInfo(Integer brandId){
+    public Object selectByBrandIdFindAllGoodsInfo(Integer brandId) {
 
         return ResponseUtil.ok(goodsService.selectByBrandIdFindAllGoodsInfo(brandId));
     }

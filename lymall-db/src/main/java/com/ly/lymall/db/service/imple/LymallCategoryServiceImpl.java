@@ -35,10 +35,11 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
 
     /**
      * 根据传入的categoryPid查询分类下的商品信息
+     *
      * @param categoryPid 分类的Pid
      * @param currentPage 当前页
-     * @param limit 每一个页面信息条数
-     * @return List<Map<String,Object>> 返回的是 泛形为的Map<String,Object>的List集合
+     * @param limit       每一个页面信息条数
+     * @return List<Map < String, Object>> 返回的是 泛形为的Map<String,Object>的List集合
      */
     @Override
     public List<Map<String, Object>> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage, Integer limit) {
@@ -49,13 +50,13 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
         List<Map<String, Object>> result = new ArrayList<>();
 
         //使用lambda表达式 遍历返回的父分类信息集合
-        list.stream().forEach((category)->{
+        list.stream().forEach((category) -> {
             //创建一个临时 map集合用来保存 商品父分类名称 与 商品信息
             Map<String, Object> map = new HashMap<>(16);
             //封装父分类的name
             map.put("name", category.getCategoryName());
             //对商品信息分页
-            PageHelper.startPage(currentPage,limit);
+            PageHelper.startPage(currentPage, limit);
             /**
              * 查询分类的商品信息并分页
              * selectByCategoryPidFindChildCategoryInfo(): 传入父分类的categoryId进行查询 出父分类的子分类下的商品信息

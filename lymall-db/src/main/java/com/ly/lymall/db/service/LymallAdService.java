@@ -14,6 +14,7 @@ public interface LymallAdService {
 
     /**
      * 查询全部广告
+     *
      * @return List<LymallAd>
      */
     List<LymallAd> selectfindAllAd();

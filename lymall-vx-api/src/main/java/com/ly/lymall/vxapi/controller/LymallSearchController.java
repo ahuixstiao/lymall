@@ -51,101 +51,106 @@ public class LymallSearchController {
 
     /**
      * 用户点击搜索框时显示的数据 默认关键字 热门关键字 历史关键字
-     * @param userId 通过前端返回的userId判断用户登陆的状态 来进行查询ll
+     *
+     * @param userId      通过前端返回的userId判断用户登陆的状态 来进行查询ll
      * @param currentPage 当前页
-     * @param limit 信息条数
+     * @param limit       信息条数
      * @return Object 返回
      */
     @GetMapping(path = "search/index")
-    public Object selectFindAllKeyWords(Integer userId, Integer currentPage, Integer limit){
+    public Object selectFindAllKeyWords(Integer userId, Integer currentPage, Integer limit) {
         //保存默认关键字返回值
-        List<LymallKeyword> lymallKeywordList=keywordService.selectAllHotOrDefaultKeywords("keyword_is_default",1,currentPage,limit);
+        List<LymallKeyword> lymallKeywordList = keywordService.selectAllHotOrDefaultKeywords("keyword_is_default", 1, currentPage, limit);
         //将默认关键字返回值 从list集合中抽出保存到实体类中
-        LymallKeyword lymallKeyword=lymallKeywordList.get(0);
+        LymallKeyword lymallKeyword = lymallKeywordList.get(0);
 
         //声明map接口 用来封装返回值
-        Map<String,Object> result=new HashMap<>();
+        Map<String, Object> result = new HashMap<>();
 
         //默认关键字
-        result.put("defaultKeyword",lymallKeyword);
+        result.put("defaultKeyword", lymallKeyword);
         //热门关键字
-        result.put("hotKeyword",ResponseUtil.okListPage(keywordService.selectAllHotOrDefaultKeywords("keyword_is_hot",1,currentPage,limit)));
+        result.put("hotKeyword", ResponseUtil.okListPage(keywordService.selectAllHotOrDefaultKeywords("keyword_is_hot", 1, currentPage, limit)));
         //历史关键字
-        result.put("historyKeyword",ResponseUtil.okListPage(searchHistoryService.selectByHistory(userId,currentPage,limit)));
+        result.put("historyKeyword", ResponseUtil.okListPage(searchHistoryService.selectByHistory(userId, currentPage, limit)));
 
         return result;
     }
 
     /**
      * 搜索商品信息 并在用户选择排序方式时进行相应的排序 且向历史关键字表插入用户搜索的关键字
-     * @param keyword 关键字
+     *
+     * @param keyword     关键字
      * @param orderColumn // 根据什么排序
-     * @param orderType //排序类型 升序或降序
-     * @param categoryId //商品分类id
+     * @param orderType   //排序类型 升序或降序
+     * @param categoryId  //商品分类id
      * @return Object
      */
     @RequestMapping(path = "search/result")
-    public Object searchProducts(String keyword, String orderColumn, String orderType,Integer categoryId){
+    public Object searchProducts(String keyword, String orderColumn, String orderType, Integer categoryId) {
         //声明map集合 封装返回值
-        Map<String,Object> result=new HashMap<>();
+        Map<String, Object> result = new HashMap<>();
 
         //通过关键字与选中的商品类别进行模糊查询商品信息 并对商品进行排序
-        List<LymallGoods> goodsList=goodsService.searchProducts(keyword,orderColumn,orderType,categoryId);
+        List<LymallGoods> goodsList = goodsService.searchProducts(keyword, orderColumn, orderType, categoryId);
 
         //取出商品信息的分类id进行查询 利用set集合不可重复特性将重复categoryId去重
-        Set<Integer> setList=new HashSet();
+        Set<Integer> setList = new HashSet();
         //使用Lambada表达式将商品信息转成数据流并forEach循环取出CategoryId保存到set集合中
-        goodsList.stream().forEach((goods)->setList.add(goods.getCategoryId()));
+        goodsList.stream().forEach((goods) -> setList.add(goods.getCategoryId()));
 
         //判断set集合的size是否为0，若不为零则将set集合传入到实现类执行查询操作 若seiz为0则new出该集合作为空集合对象
-        List<LymallCategory> categoryByIdList = setList.size()>0? categoryService.selectBySetListFindCategoryInfo(setList) : new ArrayList<>();
+        List<LymallCategory> categoryByIdList = setList.size() > 0 ? categoryService.selectBySetListFindCategoryInfo(setList) : new ArrayList<>();
 
         //封装商品信息
-        result.put("goodsList",goodsList);
+        result.put("goodsList", goodsList);
         //封装分类类型信息
-        result.put("filterCategory",categoryByIdList);
+        result.put("filterCategory", categoryByIdList);
         //返回
         return result;
     }
 
     /**
      * 根据用户输入的关键字来进行查询相关的商品名称
+     *
      * @param keyword 用户输入的关键字
      * @return Object
      */
     @RequestMapping(path = "search/helper")
-    public Object searchHelperKeyword(String keyword){
+    public Object searchHelperKeyword(String keyword) {
 
         //声明一个集合来封装返回参数
-        Map<String,Object> result=new HashMap<>();
+        Map<String, Object> result = new HashMap<>();
 
         //根据输入的关键字 返回关键字帮助
-        result.put("helpKeyword",goodsService.keywordSearchGoodsName(keyword));
+        result.put("helpKeyword", goodsService.keywordSearchGoodsName(keyword));
 
         return result;
     }
 
     /**
      * 根据userId插入搜索历史关键字
+     *
      * @param keyword
      * @param userId
      * @return Object
      */
 
     @RequestMapping(path = "search/createhistory")
-    public Object createSearchHistory(String keyword,Integer userId){
+    public Object createSearchHistory(String keyword, Integer userId) {
 
-        return searchHistoryService.createByHistoryKeyword(keyword,userId)==1?ResponseUtil.ok():0;
+        return searchHistoryService.createByHistoryKeyword(keyword, userId) == 1 ? ResponseUtil.ok() : 0;
     }
 
     /**
      * 根据userId删除历史关键字
+     *
      * @param userId
      * @return Object
      */
     @RequestMapping(path = "search/clearhistory")
-    public Object clearSearchHistory(Integer userId){
-        
+    public Object clearSearchHistory(Integer userId) {
+
         return ResponseUtil.ok(searchHistoryService.deleteByHistoryKeyword(userId));
     }
 }

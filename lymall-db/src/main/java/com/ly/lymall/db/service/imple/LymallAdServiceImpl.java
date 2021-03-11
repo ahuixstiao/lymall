@@ -21,20 +21,21 @@ public class LymallAdServiceImpl implements LymallAdService {
     private LymallAdMapper adMapper;
 
     @Resource
-    private RedisTemplate<String,Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
 
     /**
      * 查询全部广告信息
+     *
      * @return List<LymallAd>
      */
     @Override
     public List<LymallAd> selectfindAllAd() {
 
         //保存查询结果
-        List<LymallAd> adList=adMapper.selectByAllAd();
+        List<LymallAd> adList = adMapper.selectByAllAd();
 
         //保存到缓存中
-        redisTemplate.opsForList().leftPush("selectfindAllAd",adList);
+        redisTemplate.opsForList().leftPush("selectfindAllAd", adList);
 
         return adList;
     }

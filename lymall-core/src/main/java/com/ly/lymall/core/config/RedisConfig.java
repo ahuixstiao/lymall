@@ -35,10 +35,11 @@ public class RedisConfig extends CachingConfigurerSupport {
 
     /**
      * 通过重写该接口的方法，生成动态的keyGenerator
+     *
      * @return 返回一个KeyGenerator对象
      */
     @Bean("keyGenerator")
-    public static KeyGenerator getKeyGenerator(){
+    public static KeyGenerator getKeyGenerator() {
         /**
          * @param target 调用该方法的对象
          * @param method Cache注解的方法
@@ -48,7 +49,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         //lambda表达式
         //KeyGenerator keyGeneratorLambda=(target,method,params)->method.getName()+"("+ Arrays.asList(params)+")";
 
-        KeyGenerator keyGeneratorLambda=((target, method, params) -> method.getName());
+        KeyGenerator keyGeneratorLambda = ((target, method, params) -> method.getName());
 
         return keyGeneratorLambda;
     }
@@ -56,31 +57,32 @@ public class RedisConfig extends CachingConfigurerSupport {
 
     /**
      * 重新配置RedisTemplate类的存储数据类型 减少不必要的代码
+     *
      * @param factory
      * @return 返回一个配置好的RedisTemplate对象
      * @throws UnknownHostException
      */
     @Bean
     @SuppressWarnings("all")
-    public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory factory)throws UnknownHostException {
+    public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) throws UnknownHostException {
         // 由于默认RedisTemplate类泛形约束使用的是Object,Object
         // 导致需要多次使用类型转换语句造成不必要的冗余所以重新配置该类
         // 该类是用于简化Redis数据访问代码的Helper类
-        RedisTemplate<String, Object> template=new RedisTemplate<>();
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
         // 配置连接工厂
         template.setConnectionFactory(factory);
 
         // 该转换器可用于绑定到类型化的bean或未类型化的HashMap实例
-        Jackson2JsonRedisSerializer serializer=new Jackson2JsonRedisSerializer(Object.class);
+        Jackson2JsonRedisSerializer serializer = new Jackson2JsonRedisSerializer(Object.class);
 
         // Json序列化配置
-        ObjectMapper objectMapper=new ObjectMapper();
+        ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         serializer.setObjectMapper(objectMapper);
 
         //String序列化
-        StringRedisSerializer stringRedisSerializer=new StringRedisSerializer();
+        StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
 
         // key采用String的序列化方式
         template.setKeySerializer(stringRedisSerializer);
@@ -101,6 +103,7 @@ public class RedisConfig extends CachingConfigurerSupport {
      * RedisTemplate的以字符串为中心的扩展。
      * 由于大多数针对Redis的操作都是基于String的，因此此类提供了一个专用类，
      * 该类可最大程度地减少其通用template配置，尤其是在序列化程序方面
+     *
      * @param factory
      * @return StringRedisTemplate
      */
@@ -113,6 +116,7 @@ public class RedisConfig extends CachingConfigurerSupport {
 
     /**
      * 管理缓存
+     *
      * @param redisConnectionFactory
      * @return CacheManager
      */

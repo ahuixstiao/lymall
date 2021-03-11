@@ -23,12 +23,13 @@ public class LymallGrouponRulesServiceImpl implements LymallGrouponRulesService 
 
     /**
      * 查询全部团购商品
+     *
      * @return List<LymallGrouponRules>
      */
     @Override
     public List<LymallGrouponRulesDTO> findAllGroupbuy(Integer currentPage, Integer limit) {
         //设置页数与每一页显示的信息条数
-        PageHelper.startPage(currentPage,limit);
+        PageHelper.startPage(currentPage, limit);
 
         return grouponRulesMapper.findAllGroupbuy();
     }

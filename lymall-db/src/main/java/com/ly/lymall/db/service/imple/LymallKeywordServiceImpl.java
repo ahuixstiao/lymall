@@ -17,7 +17,7 @@ import java.util.List;
  * @Description: 关键字 业务层实现类
  */
 @Service
-@CacheConfig(cacheNames="keyword")
+@CacheConfig(cacheNames = "keyword")
 public class LymallKeywordServiceImpl implements LymallKeywordService {
 
     @Resource
@@ -25,17 +25,18 @@ public class LymallKeywordServiceImpl implements LymallKeywordService {
 
     /**
      * 查询默认关键字与热门关键字
+     *
      * @param type
      * @return List<LymallKeyword>
      */
     @Override
-    @Cacheable(keyGenerator="keyGenerator",condition="#result!=null")
-    public List<LymallKeyword> selectAllHotOrDefaultKeywords(String keywordName,Integer type,Integer currentPage,Integer limit) {
+    @Cacheable(keyGenerator = "keyGenerator", condition = "#result!=null")
+    public List<LymallKeyword> selectAllHotOrDefaultKeywords(String keywordName, Integer type, Integer currentPage, Integer limit) {
 
         //分页
-        PageHelper.startPage(currentPage,limit);
+        PageHelper.startPage(currentPage, limit);
 
         //返回
-        return keywordMapper.selectAllHotOrDefault(keywordName,type);
+        return keywordMapper.selectAllHotOrDefault(keywordName, type);
     }
 }

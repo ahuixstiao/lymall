@@ -33,19 +33,20 @@ public class TencentCosConfig {
      * 该Bean用于创建COSlient
      * Primary 该注解作用：若存在多个相同返回类型的Bean时被@Primary注解的Bean将作为首选者，否则将抛出异常
      * Qualifier 该注解作用： 搭配@Autowired使用，当多个相同类型的Bean被注入时用该注解在Bean上给出别名
+     *
      * @return 返回一个COSClient对象
      */
 
     //@Qualifier(COS_IMAGE)
     //@Primary
     @Bean
-    public COSClient getCosClient(){
+    public COSClient getCosClient() {
 
         //获取账号密码 初始化COSCredentials
-        COSCredentials cred=new BasicCOSCredentials(secretId,secretKey);
+        COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
         //获取地域 客户端配置
         ClientConfig clientConfig = new ClientConfig(new Region(regionName));
 
-        return new COSClient(cred,clientConfig);
+        return new COSClient(cred, clientConfig);
     }
 }

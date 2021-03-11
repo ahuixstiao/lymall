@@ -19,8 +19,10 @@
         <!-- 自动生成时是否生成注释 -->
         <commentGenerator>
             <property name="suppressDate" value="true"/><!-- suppressDate：是否不添加时间注释   true:不添加  false:添加 -->
-            <property name="addRemarkComments" value="false"/><!-- addRemarkComments:是否添加数据库内的注释    false:不添加  true:添加 -->
-            <property name="suppressAllComments" value="true"/><!-- suppressAllComments：是否不生成注释    true:不添加  false:添加 -->
+            <property name="addRemarkComments"
+                      value="false"/><!-- addRemarkComments:是否添加数据库内的注释    false:不添加  true:添加 -->
+            <property name="suppressAllComments"
+                      value="true"/><!-- suppressAllComments：是否不生成注释    true:不添加  false:添加 -->
             <property name="javaFileEncoding" value="UTF-8"/>
         </commentGenerator>
 
@@ -61,172 +63,206 @@
         <!-- table标签中，tableName代表表名 domainObjectName可以指定生成的实体名，不指定的话默认使用表名 -->
         <!-- 只要保证表存在，使用%通配符则可生成符合规则的所有表对应的model、mapper等文件，比lymall_%，生成lymall_ad lymall_address... -->
         <!-- lymall_ad 表 -->
-        <table tableName="lymall_ad"  domainObjectName="LymallAd" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_ad" domainObjectName="LymallAd" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="ad_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_address 表 -->
-        <table tableName="lymall_address"  domainObjectName="LymallAddress" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_address" domainObjectName="LymallAddress" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="address_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_admin 表 -->
-        <table tableName="lymall_admin"  domainObjectName="LymallAdmin" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_admin" domainObjectName="LymallAdmin" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="admin_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_aftersale 表 -->
-        <table tableName="lymall_aftersale"  domainObjectName="LymallAftersale" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_aftersale" domainObjectName="LymallAftersale" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="aftersale_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_brand 表 -->
-        <table tableName="lymall_brand"  domainObjectName="LymallBrand" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_brand" domainObjectName="LymallBrand" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="brand_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_cart 表 -->
-        <table tableName="lymall_cart"  domainObjectName="LymallCart" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_cart" domainObjectName="LymallCart" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="cart_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_category 表 -->
-        <table tableName="lymall_category"  domainObjectName="LymallCategory" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_category" domainObjectName="LymallCategory" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="category_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_collect 表 -->
-        <table tableName="lymall_collect"  domainObjectName="LymallCollect" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_collect" domainObjectName="LymallCollect" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="collect_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_comment 表 -->
-        <table tableName="lymall_comment"  domainObjectName="LymallComment" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_comment" domainObjectName="LymallComment" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="comment_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_coupon 表 -->
-        <table tableName="lymall_coupon"  domainObjectName="LymallCoupon" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_coupon" domainObjectName="LymallCoupon" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="coupon_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_coupon_user 表 -->
-        <table tableName="lymall_coupon_user"  domainObjectName="LymallCouponUser" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_coupon_user" domainObjectName="LymallCouponUser" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="coupon_user_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_feedback 表 -->
-        <table tableName="lymall_feedback"  domainObjectName="LymallFeedback" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_feedback" domainObjectName="LymallFeedback" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="feedback_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_footprint 表 -->
-        <table tableName="lymall_footprint"  domainObjectName="LymallFootprint" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_footprint" domainObjectName="LymallFootprint" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="footprint_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_goods 表 -->
-        <table tableName="lymall_goods"  domainObjectName="LymallGoods" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_goods" domainObjectName="LymallGoods" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="goods_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_goods_attribute 表 -->
-        <table tableName="lymall_goods_attribute"  domainObjectName="LymallGoodsAttribute" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_goods_attribute" domainObjectName="LymallGoodsAttribute" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="goods_attribute_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_goods_product 表 -->
-        <table tableName="lymall_goods_product"  domainObjectName="LymallGoodsProduct" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_goods_product" domainObjectName="LymallGoodsProduct" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="goods_product_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_goods_specification 表 -->
-        <table tableName="lymall_goods_specification"  domainObjectName="LymallGoodsSpecification" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_goods_specification" domainObjectName="LymallGoodsSpecification"
+               enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="goods_specification_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_groupon 表 -->
-        <table tableName="lymall_groupon"  domainObjectName="LymallGroupon" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_groupon" domainObjectName="LymallGroupon" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="groupon_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_groupon_rules 表 -->
-        <table tableName="lymall_groupon_rules"  domainObjectName="LymallGrouponRules" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_groupon_rules" domainObjectName="LymallGrouponRules" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="groupon_rules_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_issue 表 -->
-        <table tableName="lymall_issue"  domainObjectName="LymallIssue" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_issue" domainObjectName="LymallIssue" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="issue_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_keyword 表 -->
-        <table tableName="lymall_keyword"  domainObjectName="LymallKeyword" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_keyword" domainObjectName="LymallKeyword" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="keyword_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_log 表 -->
-        <table tableName="lymall_log"  domainObjectName="LymallLog" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_log" domainObjectName="LymallLog" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="log_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_notice 表 -->
-        <table tableName="lymall_notice"  domainObjectName="LymallNotice" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_notice" domainObjectName="LymallNotice" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="notice_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_notice_admin 表 -->
-        <table tableName="lymall_notice_admin"  domainObjectName="LymallNoticeAdmin" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_notice_admin" domainObjectName="LymallNoticeAdmin" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="notice_admin_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_order 表 -->
-        <table tableName="lymall_order"  domainObjectName="LymallOrder" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_order" domainObjectName="LymallOrder" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="order_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_order_goods 表 -->
-        <table tableName="lymall_order_goods"  domainObjectName="LymallOrderGoods" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_order_goods" domainObjectName="LymallOrderGoods" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="order_goods_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_permission 表 -->
-        <table tableName="lymall_permission"  domainObjectName="LymallPermission" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_permission" domainObjectName="LymallPermission" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="permission_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_region 表 -->
-        <table tableName="lymall_region"  domainObjectName="LymallRegion" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_region" domainObjectName="LymallRegion" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="region_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_role 表 -->
-        <table tableName="lymall_role"  domainObjectName="LymallRole" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_role" domainObjectName="LymallRole" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="role_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_search_history 表 -->
-        <table tableName="lymall_search_history"  domainObjectName="LymallSearchHistory" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_search_history" domainObjectName="LymallSearchHistory" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="search_history_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_storage 表 -->
-        <table tableName="lymall_storage"  domainObjectName="LymallStorage" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_storage" domainObjectName="LymallStorage" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="storage_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_system 表 -->
-        <table tableName="lymall_system"  domainObjectName="LymallSystem" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_system" domainObjectName="LymallSystem" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="system_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_topic 表 -->
-        <table tableName="lymall_topic"  domainObjectName="LymallTopic" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_topic" domainObjectName="LymallTopic" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="topic_id" sqlStatement="MySql" identity="true"/>
         </table>
         <!-- lymall_user 表 -->
-        <table tableName="lymall_user"  domainObjectName="LymallUser" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="lymall_user" domainObjectName="LymallUser" enableCountByExample="false"
+               enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <generatedKey column="user_id" sqlStatement="MySql" identity="true"/>
         </table>

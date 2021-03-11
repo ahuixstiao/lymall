@@ -47,16 +47,17 @@ public class LymallGoodsInfoController {
 
     /**
      * 根据goodsId 查询商品信息 与 商品参数信息
+     *
      * @param goodsId
      * @return Object
      */
     @RequestMapping(path = "select/goods")
-    public Object selectByGoodsIdFindGoodsInfo(Integer goodsId,Integer userId){
+    public Object selectByGoodsIdFindGoodsInfo(Integer goodsId, Integer userId) {
         //此Map用于封装返回值
-        Map<String,Object> map=new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
 
         //查询出商品的规格
-        List<LymallGoodsSpecification> goodsSpecificationListServiceImpl=goodsSpecificationService.selectByGoodsIdFindSpecification(goodsId);
+        List<LymallGoodsSpecification> goodsSpecificationListServiceImpl = goodsSpecificationService.selectByGoodsIdFindSpecification(goodsId);
 
         /**
          *  声明局部内部类 保存返回的规格参数
@@ -93,16 +94,17 @@ public class LymallGoodsInfoController {
         List<SpecificationResult> specificationResultList = new ArrayList<>();
 
         //遍历业务层返回的商品规格集合的长度
-        outer: //outer 作用是continue跳出到哪一层循环的锚点，且外层使用continue outer 不可跳到内层
-        for(int i=0;i<goodsSpecificationListServiceImpl.size();i++){
+        outer:
+        //outer 作用是continue跳出到哪一层循环的锚点，且外层使用continue outer 不可跳到内层
+        for (int i = 0; i < goodsSpecificationListServiceImpl.size(); i++) {
             //声明商品规格对象 来保存返回的商品规格集合中的单个对象数据
             LymallGoodsSpecification specification = goodsSpecificationListServiceImpl.get(i);
             //遍历并判断最终返回集合中是否已存在该规格名称
-            for (int j=0;j<specificationResultList.size();j++) {
+            for (int j = 0; j < specificationResultList.size(); j++) {
                 //声明临时内部类对象 保存最终返回集合的参数
                 SpecificationResult specificationResult = specificationResultList.get(j);
                 //判断规格名称是否相同 若相同则进入保存规格参数
-                if(specification.getGoodsSpecificationSpecification().equals(specificationResult.name)){
+                if (specification.getGoodsSpecificationSpecification().equals(specificationResult.name)) {
                     //将商品规格对象 保存到内部类集合
                     specificationResult.goodsSpecifications.add(specification);
                     //跳到最外层for循环重新开始循环
@@ -116,17 +118,17 @@ public class LymallGoodsInfoController {
             //保存商品规格对象到集合中
             specificationList.add(specification);
             //将新的规格名称 与 规格信息保存到最终返回集合中
-            specificationResultList.add(new SpecificationResult(specification.getGoodsSpecificationSpecification(),specificationList));
+            specificationResultList.add(new SpecificationResult(specification.getGoodsSpecificationSpecification(), specificationList));
         }
 
         //封装商品信息
-        map.put("goodsInfo",goodsService.selectByGoodsIdfindGoods(goodsId));
+        map.put("goodsInfo", goodsService.selectByGoodsIdfindGoods(goodsId));
         //封装商品参数信息
-        map.put("goodsAttribute",goodsAttributeService.selectByGoodsIdFindGoodsAttributeInfo(goodsId));
+        map.put("goodsAttribute", goodsAttributeService.selectByGoodsIdFindGoodsAttributeInfo(goodsId));
         //封装商品评价信息
-        map.put("comment",ResponseUtil.okListPage(commentService.selectByGoodsIdFindComment(userId,goodsId,0,1,5)));
+        map.put("comment", ResponseUtil.okListPage(commentService.selectByGoodsIdFindComment(userId, goodsId, 0, 1, 5)));
         //封装规格信息
-        map.put("specificationList",specificationResultList);
+        map.put("specificationList", specificationResultList);
 
         //返回封装的参数
         return ResponseUtil.ok(map);
@@ -134,11 +136,12 @@ public class LymallGoodsInfoController {
 
     /**
      * 查询热门商品信息
+     *
      * @return Object
      */
     @RequestMapping(path = "select/hotgoodsinfo")
-    public Object selectByPopularProduct(Integer currentPage, Integer limit){
+    public Object selectByPopularProduct(Integer currentPage, Integer limit) {
 
-        return ResponseUtil.okListPage(goodsService.selectByHotOrNewGoodsFindInfo("goods_is_hot",currentPage,limit));
+        return ResponseUtil.okListPage(goodsService.selectByHotOrNewGoodsFindInfo("goods_is_hot", currentPage, limit));
     }
 }

@@ -14,12 +14,14 @@ public interface LymallAddressService {
 
     /**
      * 根据用户的id来查询收货地址
+     *
      * @return List<LymallAddress>
      */
     List<LymallAddress> selectFindAllAddRess(Integer userId);
 
     /**
      * 添加一条收货地址信息
+     *
      * @param address
      * @return int
      */
@@ -27,6 +29,7 @@ public interface LymallAddressService {
 
     /**
      * 根据addressId删除一条收货地址
+     *
      * @param addressId
      * @return int
      */

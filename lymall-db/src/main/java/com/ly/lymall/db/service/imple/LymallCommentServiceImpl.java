@@ -26,16 +26,17 @@ public class LymallCommentServiceImpl implements LymallCommentService {
 
     /**
      * 根据userId、goodsId查询出对应的商品评论或专题评论
+     *
      * @param userId
      * @param goodsId
      * @param commentType 评价类型 0商品评价 1专题评价
      * @return List<LymallComment>
      */
     @Override
-    public List<LymallUserCommentDTO> selectByGoodsIdFindComment(Integer userId, Integer goodsId, Integer commentType,Integer currentPage,Integer limit) {
+    public List<LymallUserCommentDTO> selectByGoodsIdFindComment(Integer userId, Integer goodsId, Integer commentType, Integer currentPage, Integer limit) {
 
-        PageHelper.startPage(currentPage,limit);
+        PageHelper.startPage(currentPage, limit);
 
-        return commentMapper.selectByGoodsIdFindComment(userId,goodsId, commentType);
+        return commentMapper.selectByGoodsIdFindComment(userId, goodsId, commentType);
     }
 }

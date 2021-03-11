@@ -31,7 +31,7 @@ public class LymallIssueServiceImpl implements LymallIssueService {
     @Override
     public List<LymallIssue> getIssueByPage(Integer currentPage, Integer limit) {
 
-        PageHelper.startPage(currentPage,limit);
+        PageHelper.startPage(currentPage, limit);
 
         return issueMapper.selectAllIssue();
     }

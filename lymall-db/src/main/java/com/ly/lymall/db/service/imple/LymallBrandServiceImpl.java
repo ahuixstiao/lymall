@@ -28,9 +28,9 @@ public class LymallBrandServiceImpl implements LymallBrandService {
      * @return List<LymallBrand>
      */
     @Override
-    public List<LymallBrand> selectFindAll(Integer currentPage,Integer limit) {
+    public List<LymallBrand> selectFindAll(Integer currentPage, Integer limit) {
 
-        PageHelper.startPage(currentPage,limit);
+        PageHelper.startPage(currentPage, limit);
 
         return brandMapper.selectFindAll();
     }

@@ -18,37 +18,39 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(path = "/wx")
-public class LymallAddressController  {
+public class LymallAddressController {
 
     @Resource
     private LymallAddressService addressService;
 
     /**
      * 根据用户的id来查询收货地址
+     *
      * @return List<LymallAddress>
      */
     @RequestMapping(path = "address/list")
     public Object selectByShippingAddress(Integer userId) {
 
         //执行查询
-        List<LymallAddress> list=addressService.selectFindAllAddRess(userId);
+        List<LymallAddress> list = addressService.selectFindAllAddRess(userId);
         //判断返回的集合是否为空
-        if(list!=null&&!list.isEmpty()){
+        if (list != null && !list.isEmpty()) {
             return ResponseUtil.ok(list);
         }
-        return ResponseUtil.fail(ExceptionCode.NO_DELIVERY_ADDRESS_YET,"尚无收货地址~ 添加一个收货地址让你心爱的快递到家吧！");
+        return ResponseUtil.fail(ExceptionCode.NO_DELIVERY_ADDRESS_YET, "尚无收货地址~ 添加一个收货地址让你心爱的快递到家吧！");
     }
 
     /**
      * 根据用户填入的信息来添加一条收货地址信息
+     *
      * @param address
      * @return Object
      */
     @RequestMapping(path = "address/save")
-    public Object insertByAddress(LymallAddress address){
+    public Object insertByAddress(LymallAddress address) {
 
-        int insertAddress=addressService.insertByAddress(address);
-        if(insertAddress!=0){
+        int insertAddress = addressService.insertByAddress(address);
+        if (insertAddress != 0) {
             return ResponseUtil.ok();
         }
         return ResponseUtil.fail();
@@ -56,18 +58,19 @@ public class LymallAddressController  {
 
     /**
      * 根据addressId删除一条收货地址信息
+     *
      * @param addressId
      * @return Object
      */
     @RequestMapping(path = "address/delete")
-    public Object deleteByshippingAddress(Integer addressId){
+    public Object deleteByshippingAddress(Integer addressId) {
 
         //执行业务层删除方法
-        int deleteAddress=addressService.deleteByAddRess(addressId);
+        int deleteAddress = addressService.deleteByAddRess(addressId);
 
-        if(deleteAddress!=0){
+        if (deleteAddress != 0) {
             return ResponseUtil.ok();
         }
-        return ResponseUtil.fail(ExceptionCode.ADDRESS_DELETION_FAILED,"收货地址删除失败");
+        return ResponseUtil.fail(ExceptionCode.ADDRESS_DELETION_FAILED, "收货地址删除失败");
     }
 }

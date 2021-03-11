@@ -15,6 +15,7 @@ public interface LymallCategoryService {
 
     /**
      * 根据categoryPid查询分类信息
+     *
      * @param categoryPid 分类的Pid
      * @return List<LymallCategory>
      */
@@ -22,15 +23,17 @@ public interface LymallCategoryService {
 
     /**
      * 根据传入的categoryPid查询分类下的商品信息
+     *
      * @param categoryPid 分类的Pid
      * @param currentPage 当前页
-     * @param limit 每一个页面信息条数
-     * @return List<Map<String,Object>> 返回的是 泛形为的Map<String,Object>的List集合
+     * @param limit       每一个页面信息条数
+     * @return List<Map < String, Object>> 返回的是 泛形为的Map<String,Object>的List集合
      */
-    List<Map<String,Object>> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage, Integer limit);
+    List<Map<String, Object>> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage, Integer limit);
 
     /**
      * 根据Set集合中的categoryId查询分类
+     *
      * @param setListCategoryId
      * @return List<LymallCategory>
      */

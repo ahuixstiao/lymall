@@ -25,16 +25,17 @@ public class LymallSearchHistoryServiceImpl implements LymallSearchHistoryServic
 
     /**
      * 根据用户id来查询历史关键字 并分页
+     *
      * @param userId
      * @param currentPage
      * @param limit
      * @return List<LymallSearchHistory>
      */
     @Override
-    public List<LymallSearchHistory> selectByHistory(Integer userId,Integer currentPage,Integer limit) {
+    public List<LymallSearchHistory> selectByHistory(Integer userId, Integer currentPage, Integer limit) {
 
         //分页
-        PageHelper.startPage(currentPage,limit);
+        PageHelper.startPage(currentPage, limit);
 
         //返回
         return searchHistoryMapper.selectByUserIdFindHistory(userId);
@@ -44,30 +45,31 @@ public class LymallSearchHistoryServiceImpl implements LymallSearchHistoryServic
      * 根据用户的Id插入历史搜索关键字，若该id下已存在输入的关键字则不执行插入
      *
      * @param keyword 该参数 属于String类型 用于传入用户搜索的历史关键字
-     * @param userId 该参数 属于int类型 用于传入用户的Id
+     * @param userId  该参数 属于int类型 用于传入用户的Id
      * @return 返回结果为int类型 表示受影响的条数
      */
     @Override
     @Transactional(rollbackFor = Exception.class, isolation = Isolation.READ_COMMITTED)
-    public int createByHistoryKeyword(String keyword, Integer userId){
+    public int createByHistoryKeyword(String keyword, Integer userId) {
 
         //查询数据库中是否已有历史关键字
-        List<LymallSearchHistory> searchHistoryList=searchHistoryMapper.selectByUserIdFindHistory(userId);
+        List<LymallSearchHistory> searchHistoryList = searchHistoryMapper.selectByUserIdFindHistory(userId);
         //遍历返回的集合
         for (LymallSearchHistory lymallSearchHistory : searchHistoryList) {
             //判断是否新的历史关键字数据库中是否存在
-            if(lymallSearchHistory.getSearchKeyword().equals(keyword)){
+            if (lymallSearchHistory.getSearchKeyword().equals(keyword)) {
                 return 0;
             }
         }
         //不存在则执行添加操作
-        return searchHistoryMapper.createHistoryKeyword(keyword,userId);
+        return searchHistoryMapper.createHistoryKeyword(keyword, userId);
     }
 
     /**
      * 删除历史关键字
      * 若用户登录则按 userId与历史关键字进行删除
      * 若用户未登录则按 历史关键字删
+     *
      * @param userId
      * @return int
      */

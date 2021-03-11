@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * MD5加密类
+ *
  * @Author: ahui
  * @Date: 2020/12/05/17:53
  * @Description: MD5加密类
@@ -15,15 +16,14 @@ public class MD5 {
     /**
      * 首先初始化一个字符数组，用来存放每个16进制字符
      */
-    private static final char[] HEXDIGITS = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd',
-            'e', 'f' };
+    private static final char[] HEXDIGITS = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd',
+            'e', 'f'};
 
     /**
      * 获得一个字符串的MD5值
      *
      * @param input 输入的字符串
      * @return 输入字符串的MD5值
-     *
      */
     public static String md5(String input) {
         if (input == null) {

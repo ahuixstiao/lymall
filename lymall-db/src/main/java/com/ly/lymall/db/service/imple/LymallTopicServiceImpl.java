@@ -22,12 +22,13 @@ public class LymallTopicServiceImpl implements LymallTopicService {
 
     /**
      * 查询专题精选商品信息
+     *
      * @return List<LymallTopic>
      */
     @Override
-    public List<LymallTopic> selectByfindAll(Integer currentPage,Integer limit) {
+    public List<LymallTopic> selectByfindAll(Integer currentPage, Integer limit) {
 
-        PageHelper.startPage(currentPage,limit);
+        PageHelper.startPage(currentPage, limit);
 
         return topicMapper.selectByfindAll();
     }

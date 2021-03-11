@@ -27,17 +27,18 @@ public class LymallCouponUserServiceImpl implements LymallCouponUserService {
     /**
      * 该方法传入userId与couponId与status时只查询单张优惠券使用情况
      * 传入userId与status时则按状态来查询用户优惠券信息 比如查询该用户所有未使用的优惠券
+     *
      * @param userId
      * @param couponId
      * @param status
      * @return List<LymallUserCouponDTO> 集合
      */
     @Override
-    public List<LymallUserCouponDTO> selectByUserIdFindAllCoupon(Integer userId, Integer couponId, Short status,Integer currentPage,Integer limit) {
+    public List<LymallUserCouponDTO> selectByUserIdFindAllCoupon(Integer userId, Integer couponId, Short status, Integer currentPage, Integer limit) {
 
-        PageHelper.startPage(currentPage,limit);
+        PageHelper.startPage(currentPage, limit);
 
-        return couponUserMapper.selectByUserIdFindAllCouponInfo(userId,couponId,status);
+        return couponUserMapper.selectByUserIdFindAllCouponInfo(userId, couponId, status);
     }
 
     /**

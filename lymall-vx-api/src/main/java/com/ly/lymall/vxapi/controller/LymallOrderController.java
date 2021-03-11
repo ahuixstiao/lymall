@@ -15,7 +15,7 @@ import java.util.Map;
 public class LymallOrderController {
 
     @GetMapping(path = "")
-    public Object orderInfoSubmit(@RequestBody Map<String,Object> param){
+    public Object orderInfoSubmit(@RequestBody Map<String, Object> param) {
 
         return null;
     }
