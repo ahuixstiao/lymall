@@ -26,7 +26,7 @@ import java.time.LocalDateTime;
  * @Date: 2020-11-18 - 14:23
  */
 @RestController
-@RequestMapping("/wx")
+@RequestMapping(path = "/wx")
 public class LymallUserController {
 
     /**
@@ -50,7 +50,7 @@ public class LymallUserController {
      * @param user
      * @return Object
      */
-    @RequestMapping("/auth/login")
+    @RequestMapping(path = "/auth/login")
     public Object login(LymallUser user, HttpServletRequest request){
         LymallUser lymallUser=new LymallUser();
         lymallUser.setUserUsername(user.getUserUsername());
@@ -101,7 +101,7 @@ public class LymallUserController {
      * @param request
      * @return 返回 boolean
      */
-    @RequestMapping("/checkCookie")
+    @RequestMapping(path = "/checkCookie")
     public boolean checkCookie(HttpServletRequest request){
 
         //获取登录成功时生成的Session会话
@@ -119,7 +119,7 @@ public class LymallUserController {
      * @param user
      * @return Object
      */
-    @RequestMapping("/auth/register")
+    @RequestMapping(path = "/auth/register")
     public Object insertUserInfo(LymallUser user, HttpServletRequest request) throws IOException, InterruptedException {
         LymallUser lymallUser=new LymallUser();
         lymallUser.setUserUsername(user.getUserUsername());
@@ -152,7 +152,7 @@ public class LymallUserController {
      * @param user
      * @return Object
      */
-    @RequestMapping("/auth/reset")
+    @RequestMapping(path = "/auth/reset")
     public Object retrievePassword(@RequestBody LymallUser user){
         LymallUser lymallUser=new LymallUser();
         lymallUser.setUserUsername(user.getUserUsername());

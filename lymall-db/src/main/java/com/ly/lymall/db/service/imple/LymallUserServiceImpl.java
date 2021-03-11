@@ -95,7 +95,7 @@ public class LymallUserServiceImpl implements LymallUserService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class, isolation = Isolation.READ_COMMITTED)
-    public int updateLastLoginTime(LocalDateTime userLastLoginTime, String userUsername) {
+    public synchronized int updateLastLoginTime(LocalDateTime userLastLoginTime, String userUsername) {
 
         return userMapper.updateByLastLoginTime(userLastLoginTime, userUsername);
     }
@@ -111,7 +111,7 @@ public class LymallUserServiceImpl implements LymallUserService {
      */
     @Override
     @Transactional(rollbackFor = {IOException.class, InterruptedException.class}, isolation = Isolation.READ_COMMITTED)
-    public int registerUserInfo(LymallUser user, HttpServletRequest request) throws IOException, InterruptedException {
+    public synchronized int registerUserInfo(LymallUser user, HttpServletRequest request) throws IOException, InterruptedException {
         //转为Spring文件解析器的request
         MultipartHttpServletRequest multipartHttpServletRequest=(MultipartHttpServletRequest)request;
         //获取文件
@@ -148,7 +148,7 @@ public class LymallUserServiceImpl implements LymallUserService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class, isolation = Isolation.READ_COMMITTED)
-    public int updateByrePassword(String userPassword, String userUsername) {
+    public synchronized int updateByrePassword(String userPassword, String userUsername) {
 
         return userMapper.updateByrePassword(userPassword, userUsername);
     }

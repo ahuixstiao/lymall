@@ -18,7 +18,7 @@ import java.util.Map;
  * @DateTime: 2020/12/29 - 13:06
  **/
 @RestController
-@RequestMapping("/wx")
+@RequestMapping(path = "/wx")
 public class LymallGoodsInfoController {
 
     /**
@@ -50,7 +50,7 @@ public class LymallGoodsInfoController {
      * @param goodsId
      * @return Object
      */
-    @RequestMapping("select/goods")
+    @RequestMapping(path = "select/goods")
     public Object selectByGoodsIdFindGoodsInfo(Integer goodsId,Integer userId){
         //此Map用于封装返回值
         Map<String,Object> map=new HashMap<>();
@@ -136,7 +136,7 @@ public class LymallGoodsInfoController {
      * 查询热门商品信息
      * @return Object
      */
-    @RequestMapping("select/hotgoodsinfo")
+    @RequestMapping(path = "select/hotgoodsinfo")
     public Object selectByPopularProduct(Integer currentPage, Integer limit){
 
         return ResponseUtil.okListPage(goodsService.selectByHotOrNewGoodsFindInfo("goods_is_hot",currentPage,limit));

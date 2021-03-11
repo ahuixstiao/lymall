@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * @DateTime: 2020/12/21 - 12:45 下午
  **/
 @RestController
-@RequestMapping("/wx")
+@RequestMapping(path = "/wx")
 public class LymallSearchController {
 
     /**
@@ -56,7 +56,7 @@ public class LymallSearchController {
      * @param limit 信息条数
      * @return Object 返回
      */
-    @GetMapping("search/index")
+    @GetMapping(path = "search/index")
     public Object selectFindAllKeyWords(Integer userId, Integer currentPage, Integer limit){
         //保存默认关键字返回值
         List<LymallKeyword> lymallKeywordList=keywordService.selectAllHotOrDefaultKeywords("keyword_is_default",1,currentPage,limit);
@@ -84,7 +84,7 @@ public class LymallSearchController {
      * @param categoryId //商品分类id
      * @return Object
      */
-    @RequestMapping("search/result")
+    @RequestMapping(path = "search/result")
     public Object searchProducts(String keyword, String orderColumn, String orderType,Integer categoryId){
         //声明map集合 封装返回值
         Map<String,Object> result=new HashMap<>();
@@ -113,7 +113,7 @@ public class LymallSearchController {
      * @param keyword 用户输入的关键字
      * @return Object
      */
-    @RequestMapping("search/helper")
+    @RequestMapping(path = "search/helper")
     public Object searchHelperKeyword(String keyword){
 
         //声明一个集合来封装返回参数
@@ -132,7 +132,7 @@ public class LymallSearchController {
      * @return Object
      */
 
-    @RequestMapping("search/createhistory")
+    @RequestMapping(path = "search/createhistory")
     public Object createSearchHistory(String keyword,Integer userId){
 
         return searchHistoryService.createByHistoryKeyword(keyword,userId)==1?ResponseUtil.ok():0;
@@ -143,7 +143,7 @@ public class LymallSearchController {
      * @param userId
      * @return Object
      */
-    @RequestMapping("search/clearhistory")
+    @RequestMapping(path = "search/clearhistory")
     public Object clearSearchHistory(Integer userId){
         
         return ResponseUtil.ok(searchHistoryService.deleteByHistoryKeyword(userId));

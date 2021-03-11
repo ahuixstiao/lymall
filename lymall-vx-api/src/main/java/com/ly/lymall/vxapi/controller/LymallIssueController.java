@@ -15,7 +15,7 @@ import java.util.List;
  * @Description: 常见问题 表现层Controller类
  */
 @RestController
-@RequestMapping("/wx")
+@RequestMapping(path = "/wx")
 public class LymallIssueController {
 
     @Resource
@@ -27,7 +27,7 @@ public class LymallIssueController {
      * @param limit
      * @return Object
      */
-    @RequestMapping("issue/list")
+    @RequestMapping(path = "issue/list")
     public Object getIssueByPage(Integer currentPage,Integer limit){
 
        List<LymallIssue> issueList=issueService.getIssueByPage(currentPage, limit);

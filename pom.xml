@@ -13,7 +13,7 @@
     <!-- 父项目名称、版本、包名信息 -->
     <groupId>com.ly.lymall</groupId>
     <artifactId>lymall</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.4-SNAPSHOT</version>
     <name>lymall</name>
     <packaging>pom</packaging><!-- pom打包 -->
     <description>微信小程序商城系统</description><!-- 项目描述 -->

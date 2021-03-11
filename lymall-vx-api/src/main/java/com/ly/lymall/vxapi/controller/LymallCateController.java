@@ -19,7 +19,7 @@ import java.util.Map;
  * @DateTime: 2021/1/5 - 09:28
  **/
 @RestController
-@RequestMapping("/wx")
+@RequestMapping(path = "/wx")
 public class LymallCateController {
     /**
      * Goods 业务层接口
@@ -36,7 +36,7 @@ public class LymallCateController {
      * 由于分类页面点击时需要加载数据 则先默认查出父分类并且查询第一个父分类的其子分类
      * @return Object
      */
-    @RequestMapping("catalog/index")
+    @RequestMapping(path = "catalog/index")
     public Object getCategoryIndexPage(){
         //最终返回封装集合
         Map<String,Object> result=new HashMap<>(16);
@@ -61,7 +61,7 @@ public class LymallCateController {
      * @param categoryPid
      * @return Object
      */
-    @RequestMapping("catalog/currentCategory")
+    @RequestMapping(path = "catalog/currentCategory")
     public Object getCurrentCategory(Integer categoryPid){
 
         return ResponseUtil.ok(categoryService.selectByCategoryPidFindInfo(categoryPid));
@@ -72,7 +72,7 @@ public class LymallCateController {
      * @param categoryId
      * @return Object
      */
-    @RequestMapping("catalog/currentCategoryGoodsList")
+    @RequestMapping(path = "catalog/currentCategoryGoodsList")
     public Object getGoodsList(Integer categoryId){
 
         return ResponseUtil.ok(goodsService.selectByCategoryIdFindAllGoodsInfo(categoryId));

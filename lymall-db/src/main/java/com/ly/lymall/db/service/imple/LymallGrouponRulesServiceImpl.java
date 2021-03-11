@@ -27,7 +27,7 @@ public class LymallGrouponRulesServiceImpl implements LymallGrouponRulesService 
      */
     @Override
     public List<LymallGrouponRulesDTO> findAllGroupbuy(Integer currentPage, Integer limit) {
-        //分页
+        //设置页数与每一页显示的信息条数
         PageHelper.startPage(currentPage,limit);
 
         return grouponRulesMapper.findAllGroupbuy();

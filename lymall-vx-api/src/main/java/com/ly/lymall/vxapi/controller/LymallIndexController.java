@@ -23,7 +23,7 @@ import java.util.Map;
  */
 
 @RestController
-@RequestMapping("/wx")
+@RequestMapping(path = "/wx")
 public class LymallIndexController {
 
     /**
@@ -75,7 +75,7 @@ public class LymallIndexController {
      * @param limit
      * @return Object
      */
-    @RequestMapping("/home/index")
+    @RequestMapping(path = "/home/index")
     public Object indexPageInforMationQuery(Integer categoryPid, Integer currentPage,Integer limit){
         //商品总数
         int goodsCount=goodsService.selectByAllCount();
@@ -107,6 +107,8 @@ public class LymallIndexController {
         //返回
         return ResponseUtil.ok(result);
     }
+
+
 
 
 }

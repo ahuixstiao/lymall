@@ -20,7 +20,7 @@ import java.util.List;
  * @DateTime: 2021/1/20 - 11:42
  **/
 @RestController
-@RequestMapping("/wx")
+@RequestMapping(path = "/wx")
 public class LymallCouponController {
 
     /**
@@ -41,7 +41,7 @@ public class LymallCouponController {
      * @param userId
      * @return Object
      */
-    @RequestMapping("coupon/getCoupon")
+    @RequestMapping(path = "coupon/getCoupon")
     public Object getCouponInfo(Integer couponId,Integer userId,Short status){
         //查询用户要领取的优惠券信息
         LymallCoupon coupon=couponService.selectByCouponIdFindCouponInfo(couponId);
@@ -69,7 +69,7 @@ public class LymallCouponController {
      * @param status
      * @return Object
      */
-    @RequestMapping("coupon/selectUserCoupon")
+    @RequestMapping(path = "coupon/selectUserCoupon")
     public Object getUserCouponInfo(Integer userId,Short status,Integer currentPage,Integer limit){
         /**
          * 查询用户已有优惠券 按照userId与status状态来查询
@@ -88,7 +88,7 @@ public class LymallCouponController {
      * @param userId
      * @return Object
      */
-    @RequestMapping("coupon/promoCodGetCoupon")
+    @RequestMapping(path = "coupon/promoCodGetCoupon")
     public Object byPromoCodGetCoupon(String code,Integer userId){
         //通过兑换码查询是否存在该优惠券 再查询用户是否已领取
         LymallCoupon lymallCoupon=couponService.selectByPromoCodFindCoupon(code);

@@ -14,7 +14,7 @@ import javax.annotation.Resource;
  * @DateTime: 2021/1/4 - 15:35
  **/
 @RestController
-@RequestMapping("/wx")
+@RequestMapping(path = "/wx")
 public class LymallBrandController {
 
     /**
@@ -32,7 +32,7 @@ public class LymallBrandController {
      * 查询全部品牌商信息
      * @return 返回的是一个List分页集合
      */
-    @RequestMapping("brand/list")
+    @RequestMapping(path = "brand/list")
     public Object selectFindAllBrandInfo(){
 
         return ResponseUtil.okListPage(brandService.selectFindAll(1,999999));
@@ -43,7 +43,7 @@ public class LymallBrandController {
      * @param brandId
      * @return 返回一个品牌商类对象
      */
-    @RequestMapping("brand/detail")
+    @RequestMapping(path = "brand/detail")
     public Object selectByBrandIdFindBrandDetail(Integer brandId){
 
         return ResponseUtil.ok(brandService.selectByBrandIdFindInfo(brandId));
@@ -54,7 +54,7 @@ public class LymallBrandController {
      * @param brandId
      * @return 返回一个集合
      */
-    @RequestMapping("brand/goodslist")
+    @RequestMapping(path = "brand/goodslist")
     public Object selectByBrandIdFindAllGoodsInfo(Integer brandId){
 
         return ResponseUtil.ok(goodsService.selectByBrandIdFindAllGoodsInfo(brandId));

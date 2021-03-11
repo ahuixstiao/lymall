@@ -3,14 +3,10 @@ package com.ly.lymall.db.service.imple;
 import com.ly.lymall.db.dao.mapper.LymallAdMapper;
 import com.ly.lymall.db.domian.LymallAd;
 import com.ly.lymall.db.service.LymallAdService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheConfig;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.lang.reflect.Method;
 import java.util.List;
 
 /**
