@@ -2,7 +2,10 @@ package com.ly.lymall.db.service.imple;
 import com.ly.lymall.db.dao.mapper.LymallAddressMapper;
 import com.ly.lymall.db.domian.LymallAddress;
 import com.ly.lymall.db.service.LymallAddressService;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -17,6 +20,9 @@ public class LymallAddressServiceImpl implements LymallAddressService {
 
     @Resource
     private LymallAddressMapper addressMapper;
+
+    @Resource
+    private RedisTemplate<String,Object> redisTemplate;
 
     /**
      * 根据UserId来查询收货地址
@@ -34,6 +40,7 @@ public class LymallAddressServiceImpl implements LymallAddressService {
      * @return int
      */
     @Override
+    @Transactional(rollbackFor = Exception.class, isolation = Isolation.REPEATABLE_READ)
     public int insertByAddress(LymallAddress address) {
 
         return addressMapper.insert(address);

@@ -95,15 +95,16 @@ public interface LymallUserMapper {
             "user_last_login_ip, user_level, user_nickname, user_mobile, user_avatar, user_weixin_openid, ",
             "user_session_key, user_status, user_add_time, user_update_time, user_deleted",
             "from lymall_user",
-            "where user_id=#{userId} or user_username=#{userUsername} or user_mobile=#{userMobile}"
+            "where user_username=#{userUsername} or user_password=#{userPassword} or user_mobile=#{userMobile}"
     })
     @ResultMap("userResult")
     LymallUser selectUserInfo(LymallUser lymallUser);
 
     /**
-     * 登录验证 账号密码是否正确
+     * 验证用户输入的账号密码是否正确
      *
-     * @return LymallUser
+     * @param userUsername 用户账号
+     * @param userPassword 用户密码
      */
     @Select({
             "select",
@@ -114,7 +115,7 @@ public interface LymallUserMapper {
             "where user_username=#{userUsername} and user_password=#{userPassword}"
     })
     @ResultMap("userResult")
-    LymallUser selectByUserNameAndPassword(LymallUser user);
+    LymallUser loginAuthentication(String userUsername, String userPassword);
 
 
     //------------------------------------------------------------------------------------------------------------------------------------------------

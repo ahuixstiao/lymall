@@ -70,16 +70,17 @@ public class LymallUserServiceImpl implements LymallUserService {
      * Spring可以对某些可以针对只读事务进行优化的资源就可以执行相应的优化措施，
      * 需要手动将readOnly设置成true。但是方法若是执行增删改会抛出异常
      *
-     * @param user 传递一个user实体类查询数据
-     * @return Object
+     * @param userUsername 用户账号
+     * @param userPassword 用户密码
+     * @return LymallUser 返回一个当前用户的对象
      */
     @Override
     @Transactional(readOnly = true, rollbackFor = Exception.class, isolation = Isolation.REPEATABLE_READ)
-    public LymallUser login(LymallUser user) {
-        //将密码加密
-        user.setUserPassword(MD5.md5(user.getUserPassword()));
+    public LymallUser loginAuthentication(String userUsername, String userPassword) {
+        //密码加密
+        String md5Password=MD5.md5(userPassword);
         //保存结果
-        LymallUser info=userMapper.selectByUserNameAndPassword(user);
+        LymallUser info = userMapper.loginAuthentication(userUsername,md5Password);
         //保存缓存
         redisTemplate.opsForValue().set("login",info);
         //传递到mapper查询
@@ -131,7 +132,7 @@ public class LymallUserServiceImpl implements LymallUserService {
         String url = tencentCloud.putAvatar(key, inputStream);
         //将要上传至腾讯云的图片路径保存到user实体类
         user.setUserAvatar(url);
-        //将用户密码加盐加密
+        //将用户密码加密
         user.setUserPassword(MD5.md5(user.getUserPassword()));
         //将账号信息插入缓存中
         redisTemplate.opsForValue().set(user.getUserId().toString(),user);

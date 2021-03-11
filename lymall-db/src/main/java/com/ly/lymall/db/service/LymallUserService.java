@@ -27,10 +27,11 @@ public interface LymallUserService {
     /**
      * 登录校验
      *
-     * @param user
-     * @return LymallUser
+     * @param userUsername 用户账号
+     * @param userPassword 用户密码
+     * @return LymallUser 返回一个当前用户的对象
      */
-    LymallUser login(LymallUser user);
+    LymallUser loginAuthentication(String userUsername, String userPassword);
 
     /**
      * 修改最后一次登录时间
