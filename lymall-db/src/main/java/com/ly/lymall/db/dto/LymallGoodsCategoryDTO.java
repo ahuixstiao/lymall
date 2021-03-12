@@ -12,7 +12,6 @@ import java.util.Date;
 public class LymallGoodsCategoryDTO implements Serializable {
 
     //category
-
     private Integer categoryId;
 
     private String categoryName;
@@ -38,7 +37,6 @@ public class LymallGoodsCategoryDTO implements Serializable {
     private Boolean categoryDeleted;
 
     //goods
-
     private Integer goodsId;
 
     private String goodsSn;
