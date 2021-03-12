@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Mapper
 public interface LymallUserMapper {
@@ -98,13 +99,15 @@ public interface LymallUserMapper {
             "where user_username=#{userUsername} or user_password=#{userPassword} or user_mobile=#{userMobile}"
     })
     @ResultMap("userResult")
-    LymallUser selectUserInfo(LymallUser lymallUser);
+    LymallUser selectUserInfo(Map<String,Object> mapParameters);
 
     /**
-     * 验证用户输入的账号密码是否正确
+     * 验证用户输入的账号密码与数据库中的账号密码是否能匹配
+     * 匹配 返回 一个有该用户数据，类型为UserPOJO对象
+     * 不匹配 返回 一个空的UserPOJO对象
      *
-     * @param userUsername 用户账号
-     * @param userPassword 用户密码
+     * @param userUsername 账号
+     * @param userPassword 密码
      */
     @Select({
             "select",
@@ -142,7 +145,7 @@ public interface LymallUserMapper {
             "set user_password=#{userPassword}",
             "where user_username=#{userUsername}"
     })
-    int updateByrePassword(String userPassword, String userUsername);
+    int updateByRePassword(String userPassword, String userUsername);
 
 
     @UpdateProvider(type = LymallUserSqlProvider.class, method = "updateByPrimaryKeySelective")

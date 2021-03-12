@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 /**
  * @Author: Ahui
@@ -54,13 +55,13 @@ public class LymallUserServiceImpl implements LymallUserService {
     /**
      * 根据传递进来的实体参数查询相应的用户数据 目前支持 id username password
      *
-     * @param lymallUser 传递一个user实体类来向数据库查询数据
+     * @param mapParameters 传递一个map来向数据库查询数据
      * @return LymallUser
      */
     @Override
-    public LymallUser checkUserInfo(LymallUser lymallUser) {
+    public LymallUser checkUserInfo(Map<String, Object> mapParameters) {
 
-        return userMapper.selectUserInfo(lymallUser);
+        return userMapper.selectUserInfo(mapParameters);
     }
 
     /**
@@ -149,8 +150,8 @@ public class LymallUserServiceImpl implements LymallUserService {
      */
     @Override
     @Transactional(rollbackFor = Exception.class, isolation = Isolation.READ_COMMITTED)
-    public synchronized int updateByrePassword(String userPassword, String userUsername) {
+    public synchronized int updateByRePassword(String userUsername, String userPassword) {
 
-        return userMapper.updateByrePassword(userPassword, userUsername);
+        return userMapper.updateByRePassword(userUsername,MD5.md5(userPassword));
     }
 }

@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 /**
  * @Author: ahui
@@ -17,12 +18,12 @@ import java.time.LocalDateTime;
 public interface LymallUserService {
 
     /**
-     * 通过传递进来的实体参数查询相应的用户数据 目前支持 id username password
+     * 通过传递进来的实体参数查询相应的用户数据 目前支持 id username password 尝试用map来实现要查询的内容
      *
-     * @param lymallUser
+     * @param mapParameters
      * @return LymallUser
      */
-    LymallUser checkUserInfo(LymallUser lymallUser);
+    LymallUser checkUserInfo(Map<String,Object> mapParameters);
 
     /**
      * 登录校验
@@ -57,6 +58,6 @@ public interface LymallUserService {
      * @param userUsername
      * @return updateByrePassword
      */
-    int updateByrePassword(String userPassword, String userUsername);
+    int updateByRePassword(String userUsername,String userPassword);
 
 }

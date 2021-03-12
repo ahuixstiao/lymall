@@ -1,5 +1,6 @@
 package com.ly.lymall.vxapi.controller;
 
+import com.ly.lymall.core.utils.MD5;
 import com.ly.lymall.core.utils.ResponseUtil;
 import com.ly.lymall.db.domian.LymallUser;
 import com.ly.lymall.db.service.LymallUserService;
@@ -14,6 +15,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -26,7 +30,7 @@ import java.util.UUID;
 public class LymallUserController {
 
     /**
-     *  user业务的Service接口
+     * user业务的Service接口
      */
     @Resource
     private LymallUserService userService;
@@ -42,11 +46,17 @@ public class LymallUserController {
     Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
-     * login请求处理 账号验证是否正确 设置Session会话 设置最后一次登录的时间
+     * 登录处理
+     * 先账号验证是否正确
+     * 正确
+     * 创建Session
+     * 设置最后一次登录的时间
+     * 错误
+     * 返回错误信息让前端弹出提示
      *
      * @param userUsername 用户账号
      * @param userPassword 用户密码
-     * @return Object
+     * @return Object 正确 返回用户信息，错误 返回错误信息
      */
     @RequestMapping(path = "/auth/login")
     public Object login(String userUsername, String userPassword, HttpServletRequest request) {
@@ -59,7 +69,7 @@ public class LymallUserController {
             //日志打印出当前登录的用户
             logger.info("用户信息：" + lymallUserInfo.toString());
             //将用户的账号与UUID拼接作为session会话的ID
-            sessionId = UUID.randomUUID().toString().replaceAll("-","") + lymallUserInfo.getUserUsername();
+            sessionId = UUID.randomUUID().toString().replaceAll("-", "") + lymallUserInfo.getUserUsername();
             //设置session会话
             request.getSession().setAttribute(sessionId, lymallUserInfo);
             //根据用户账号 修改最后一次登录时间
@@ -99,13 +109,15 @@ public class LymallUserController {
      */
     @RequestMapping(path = "/auth/register")
     public Object insertUserInfo(LymallUser user, HttpServletRequest request) throws IOException, InterruptedException {
-        LymallUser lymallUser = new LymallUser();
-        lymallUser.setUserUsername(user.getUserUsername());
-        lymallUser.setUserMobile(user.getUserMobile());
+
+        Map<String,Object> mapParameters = new HashMap<>();
+        mapParameters.put("userUsername",user.getUserUsername());
+        mapParameters.put("userMobile",user.getUserMobile());
+
         //验证账户是否已注册
-        LymallUser checkUserName = userService.checkUserInfo(lymallUser);
+        LymallUser checkUserName = userService.checkUserInfo(mapParameters);
         //验证手机号是否已注册
-        LymallUser checkeMobile = userService.checkUserInfo(lymallUser);
+        LymallUser checkeMobile = userService.checkUserInfo(mapParameters);
 
         //判断用户名或手机号是否已存在
         if (checkUserName != null) {
@@ -128,21 +140,15 @@ public class LymallUserController {
     /**
      * 修改密码
      *
-     * @param user
+     * @param userUsername
+     * @param userPassword
      * @return Object
      */
     @RequestMapping(path = "/auth/reset")
-    public Object retrievePassword(@RequestBody LymallUser user) {
-        LymallUser lymallUser = new LymallUser();
-        lymallUser.setUserUsername(user.getUserUsername());
-        lymallUser.setUserMobile(user.getUserMobile());
-        //保存业务层实现类的返回值 该方法查询用户账号与手机号是否对应
-        LymallUser checkUser = userService.checkUserInfo(lymallUser);
-        if (checkUser == null) {
-            return ResponseUtil.fail(ExceptionCode.ACCOUNT_DOES_NOT_EXIST, "用户名或手机号不正确");
-        } else {
-            userService.updateByrePassword(user.getUserPassword(), user.getUserUsername());
-            return ResponseUtil.ok();
-        }
+    public Object retrievePassword(String userUsername, String userPassword) {
+        //传入用户账号与新密码；
+        int result = userService.updateByRePassword(userUsername, userPassword);
+
+        return  result>0?ResponseUtil.ok():ResponseUtil.fail(ExceptionCode.PASSWORD_MODIFICATION_FAILED,"密码修改失败请重试！");
     }
 }

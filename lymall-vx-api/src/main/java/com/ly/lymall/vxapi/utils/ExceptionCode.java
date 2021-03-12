@@ -11,28 +11,23 @@ public final class ExceptionCode {
     /**
      * 没有收货地址
      */
-    public static final int NO_DELIVERY_ADDRESS_YET=695;
-
+    public static final int NO_DELIVERY_ADDRESS_YET = 695;
     /**
      * 地址删除失败
      */
-    public static final int ADDRESS_DELETION_FAILED=696;
-
+    public static final int ADDRESS_DELETION_FAILED = 696;
     /**
      * 校验失败
      */
-    public static final int VERIFICATION_FAILED=697;
-
+    public static final int VERIFICATION_FAILED = 697;
     /**
      * 注册失败
      */
-    public static final int REGISTRATION_FAILED=698;
-
+    public static final int REGISTRATION_FAILED = 698;
     /**
      * 用户名不存在
      */
-    public static final int ACCOUNT_DOES_NOT_EXIST= 699;
-
+    public static final int ACCOUNT_DOES_NOT_EXIST = 699;
     /**
      * 账号密码不对
      */
@@ -49,6 +44,10 @@ public final class ExceptionCode {
      * 验证码错误
      */
     public static final int AUTH_CAPTCHA_UNMATCH = 703;
+    /**
+     * 密码修改失败
+     */
+    public static final int PASSWORD_MODIFICATION_FAILED = 694;
     /**
      * 用户名已注册
      */
