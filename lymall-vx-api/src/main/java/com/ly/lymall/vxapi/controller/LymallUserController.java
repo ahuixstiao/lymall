@@ -1,13 +1,12 @@
 package com.ly.lymall.vxapi.controller;
 
-import com.ly.lymall.core.utils.MD5;
 import com.ly.lymall.core.utils.ResponseUtil;
 import com.ly.lymall.db.domian.LymallUser;
 import com.ly.lymall.db.service.LymallUserService;
 import com.ly.lymall.vxapi.utils.ExceptionCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -58,7 +56,7 @@ public class LymallUserController {
      * @param userPassword 用户密码
      * @return Object 正确 返回用户信息，错误 返回错误信息
      */
-    @RequestMapping(path = "/auth/login")
+    @PostMapping(path = "/auth/login")
     public Object login(String userUsername, String userPassword, HttpServletRequest request) {
 
         //保存业务层返回的用户信息

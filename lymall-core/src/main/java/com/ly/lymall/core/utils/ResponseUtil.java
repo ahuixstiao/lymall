@@ -15,6 +15,23 @@ import java.util.Map;
 public class ResponseUtil {
 
     /**
+     * 返回值 请求成功状态码
+     */
+    private static final int SUCCESS_STATUS_CODE=0;
+    /**
+     * 返回值 请求成功信息
+     */
+    private static final String SUCCESS_MESSAGE="请求成功";
+    /**
+     * 返回值 请求失败状态码
+     */
+    private static final int FAILURE_STATUS_CODE=1;
+    /**
+     * 返回值 请求失败信息
+     */
+    private static final String FAILURE_MESSAGE="请求失败";
+
+    /**
      * 请求成功 但不返回参数
      *
      * @return Object
@@ -22,8 +39,8 @@ public class ResponseUtil {
     public static Object ok() {
         //实例Map接口
         Map<String, Object> result = new HashMap<>();
-        result.put("errno", 0);
-        result.put("errmsg", "成功");
+        result.put("status", SUCCESS_STATUS_CODE);
+        result.put("message", SUCCESS_MESSAGE);
         return result;
     }
 
@@ -36,8 +53,8 @@ public class ResponseUtil {
     public static Object ok(Object data) {
         //实例Map接口
         Map<String, Object> result = new HashMap<>();
-        result.put("errno", 0);
-        result.put("errmsg", "成功");
+        result.put("status", SUCCESS_STATUS_CODE);
+        result.put("message", SUCCESS_MESSAGE);
         result.put("data", data);
 
         return result;
@@ -79,8 +96,8 @@ public class ResponseUtil {
 
         Map<String, Object> result = new HashMap<>();
 
-        result.put("errorNum", 1);
-        result.put("errorMessage", "失败");
+        result.put("status", FAILURE_STATUS_CODE);
+        result.put("message", FAILURE_MESSAGE);
 
         return result;
     }
@@ -96,9 +113,9 @@ public class ResponseUtil {
         //实例Map接口
         Map<String, Object> result = new HashMap<>();
         //错误码
-        result.put("errorNum", errorNum);
+        result.put("status", errorNum);
         //错误信息
-        result.put("errorMessage", errorMessage);
+        result.put("message", errorMessage);
 
         return result;
     }

@@ -5,6 +5,7 @@ import com.ly.lymall.db.domian.LymallSearchHistory;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Mapper
@@ -41,7 +42,7 @@ public interface LymallSearchHistoryMapper {
      * @return int
      */
     @InsertProvider(type=LymallSearchHistorySqlProvider.class,method="insertByUserIdCreateHistoryKeyword")
-    int createHistoryKeyword(String keyword,Integer userId);
+    int createHistoryKeyword(String keyword, Integer userId, LocalDateTime addTime);
 
     @InsertProvider(type= LymallSearchHistorySqlProvider.class, method="insertSelective")
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="searchHistoryId", before=false, resultType=Integer.class)

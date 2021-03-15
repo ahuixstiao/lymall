@@ -3,6 +3,8 @@ package com.ly.lymall.db.dao.provider;
 import com.ly.lymall.db.domian.LymallSearchHistory;
 import org.apache.ibatis.jdbc.SQL;
 
+import java.time.LocalDateTime;
+
 public class LymallSearchHistorySqlProvider {
     public String insertSelective(LymallSearchHistory record) {
         SQL sql = new SQL();
@@ -83,16 +85,18 @@ public class LymallSearchHistorySqlProvider {
     }
 
     /**
-     * 根据userId插入历史搜索关键字
+     * 根据userId插入历史搜索关键字与添加时间
      * @param keyword
      * @param userId
+     * @param addTime
      * @return String
      */
-    public String insertByUserIdCreateHistoryKeyword(String keyword, Integer userId){
+    public String insertByUserIdCreateHistoryKeyword(String keyword, Integer userId, LocalDateTime addTime){
         SQL sql=new SQL();
         sql.INSERT_INTO("lymall_search_history")
                 .VALUES("search_keyword","'"+keyword+"'")
-                .VALUES("user_id",userId.toString());
+                .VALUES("user_id",userId.toString())
+                .VALUES("search_history_add_time", "'"+addTime+"'");
         return sql.toString();
     }
 
@@ -104,8 +108,8 @@ public class LymallSearchHistorySqlProvider {
     public String deleteByUseridAndHistoryKeywordId(Integer userId){
         SQL sql=new SQL();
 
-        sql.DELETE_FROM("lymall_search_history").WHERE("user_id="+userId);
-
+        sql.DELETE_FROM("lymall_search_history")
+                .WHERE("user_id="+userId);
         return sql.toString();
     }
 }

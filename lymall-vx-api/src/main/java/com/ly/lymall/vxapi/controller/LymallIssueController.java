@@ -22,7 +22,7 @@ public class LymallIssueController {
     private LymallIssueService issueService;
 
     /**
-     * 查询全部常见问题并分页
+     * 查询全部常见问题
      *
      * @param currentPage
      * @param limit

@@ -1,6 +1,7 @@
 package com.ly.lymall.db.domian;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class LymallSearchHistory implements Serializable {
@@ -12,9 +13,9 @@ public class LymallSearchHistory implements Serializable {
 
     private String searchFrom;
 
-    private Date searchHistoryAddTime;
+    private LocalDateTime searchHistoryAddTime;
 
-    private Date searchHistoryUpdateTime;
+    private LocalDateTime searchHistoryUpdateTime;
 
     private Boolean searchHistoryDeleted;
 
@@ -50,19 +51,19 @@ public class LymallSearchHistory implements Serializable {
         this.searchFrom = searchFrom;
     }
 
-    public Date getSearchHistoryAddTime() {
+    public LocalDateTime getSearchHistoryAddTime() {
         return searchHistoryAddTime;
     }
 
-    public void setSearchHistoryAddTime(Date searchHistoryAddTime) {
+    public void setSearchHistoryAddTime(LocalDateTime searchHistoryAddTime) {
         this.searchHistoryAddTime = searchHistoryAddTime;
     }
 
-    public Date getSearchHistoryUpdateTime() {
+    public LocalDateTime getSearchHistoryUpdateTime() {
         return searchHistoryUpdateTime;
     }
 
-    public void setSearchHistoryUpdateTime(Date searchHistoryUpdateTime) {
+    public void setSearchHistoryUpdateTime(LocalDateTime searchHistoryUpdateTime) {
         this.searchHistoryUpdateTime = searchHistoryUpdateTime;
     }
 

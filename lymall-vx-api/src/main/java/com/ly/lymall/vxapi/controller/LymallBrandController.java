@@ -3,6 +3,7 @@ package com.ly.lymall.vxapi.controller;
 import com.ly.lymall.core.utils.ResponseUtil;
 import com.ly.lymall.db.service.LymallBrandService;
 import com.ly.lymall.db.service.LymallGoodsService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,7 +34,7 @@ public class LymallBrandController {
      *
      * @return 返回的是一个List分页集合
      */
-    @RequestMapping(path = "brand/list")
+    @GetMapping(path = "brand/list")
     public Object selectFindAllBrandInfo() {
 
         return ResponseUtil.okListPage(brandService.selectFindAll(1, 999999));

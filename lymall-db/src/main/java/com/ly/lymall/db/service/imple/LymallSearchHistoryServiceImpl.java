@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -20,6 +21,9 @@ import java.util.List;
 @Service
 public class LymallSearchHistoryServiceImpl implements LymallSearchHistoryService {
 
+    /**
+     * 注入mapper接口
+     */
     @Resource
     private LymallSearchHistoryMapper searchHistoryMapper;
 
@@ -42,17 +46,18 @@ public class LymallSearchHistoryServiceImpl implements LymallSearchHistoryServic
     }
 
     /**
-     * 根据用户的Id插入历史搜索关键字，若该id下已存在输入的关键字则不执行插入
+     * 查询用户的历史搜索关键字 用以判断：
+     * 该userID下是否已存在输入的关键字，有则不执行插入 无则根据用户userID进行插入并设置添加的时间
      *
      * @param keyword 该参数 属于String类型 用于传入用户搜索的历史关键字
      * @param userId  该参数 属于int类型 用于传入用户的Id
      * @return 返回结果为int类型 表示受影响的条数
      */
     @Override
-    @Transactional(rollbackFor = Exception.class, isolation = Isolation.READ_COMMITTED)
-    public int createByHistoryKeyword(String keyword, Integer userId) {
+    @Transactional(rollbackFor = Exception.class, isolation = Isolation.REPEATABLE_READ)
+    public synchronized int createByHistoryKeyword(String keyword, Integer userId) {
 
-        //查询数据库中是否已有历史关键字
+        //查询用户数据库中的历史关键字
         List<LymallSearchHistory> searchHistoryList = searchHistoryMapper.selectByUserIdFindHistory(userId);
         //遍历返回的集合
         for (LymallSearchHistory lymallSearchHistory : searchHistoryList) {
@@ -62,7 +67,7 @@ public class LymallSearchHistoryServiceImpl implements LymallSearchHistoryServic
             }
         }
         //不存在则执行添加操作
-        return searchHistoryMapper.createHistoryKeyword(keyword, userId);
+        return searchHistoryMapper.createHistoryKeyword(keyword, userId,LocalDateTime.now());
     }
 
     /**
@@ -75,10 +80,8 @@ public class LymallSearchHistoryServiceImpl implements LymallSearchHistoryServic
      */
     @Override
     @Transactional(rollbackFor = Exception.class, isolation = Isolation.READ_COMMITTED)
-    public int deleteByHistoryKeyword(Integer userId) {
+    public synchronized int deleteByHistoryKeyword(Integer userId) {
 
         return searchHistoryMapper.deleteByHistoryKeyword(userId);
     }
-
-
 }

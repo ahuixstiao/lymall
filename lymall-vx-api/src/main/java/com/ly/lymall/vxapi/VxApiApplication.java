@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * VxApi主配置类
@@ -20,6 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication(scanBasePackages = {"com.ly.lymall.db", "com.ly.lymall.core", "com.ly.lymall.vxapi"})
 @MapperScan("com.ly.lymall.db.dao.mapper")
 @EnableCaching
+@EnableSwagger2
 @EnableTransactionManagement(proxyTargetClass = true)
 public class VxApiApplication {
 
