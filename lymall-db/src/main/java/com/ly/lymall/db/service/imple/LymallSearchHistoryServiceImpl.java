@@ -37,10 +37,8 @@ public class LymallSearchHistoryServiceImpl implements LymallSearchHistoryServic
      */
     @Override
     public List<LymallSearchHistory> selectByHistory(Integer userId, Integer currentPage, Integer limit) {
-
         //分页
         PageHelper.startPage(currentPage, limit);
-
         //返回
         return searchHistoryMapper.selectByUserIdFindHistory(userId);
     }
