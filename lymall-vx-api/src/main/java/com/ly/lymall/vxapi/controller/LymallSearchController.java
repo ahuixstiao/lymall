@@ -19,7 +19,7 @@ import java.util.*;
  * @DateTime: 2020/12/21 - 12:45 下午
  **/
 @RestController
-@RequestMapping(path = "/wx")
+@RequestMapping(path = "/wx/search")
 public class LymallSearchController {
 
     /**
@@ -54,7 +54,7 @@ public class LymallSearchController {
      * @param limit       信息条数
      * @return Object 返回
      */
-    @GetMapping(path = "search/index")
+    @GetMapping(path = "/index")
     public Object selectFindAllKeyWords(Integer userId, Integer currentPage, Integer limit) {
         //保存默认关键字返回值
         List<LymallKeyword> lymallKeywordList = keywordService.selectAllHotOrDefaultKeywords("keyword_is_default", 1, currentPage, limit);
@@ -83,7 +83,7 @@ public class LymallSearchController {
      * @param categoryId  //商品分类id
      * @return Object
      */
-    @GetMapping(path = "search/result")
+    @GetMapping(path = "/result")
     public Object searchProducts(String keyword, String orderColumn, String orderType, Integer categoryId) {
         // 声明map集合 封装返回值
         Map<String, Object> result = new HashMap<>();
@@ -115,7 +115,7 @@ public class LymallSearchController {
      * @param keyword 用户输入的关键字
      * @return Object
      */
-    @RequestMapping(path = "search/helper")
+    @RequestMapping(path = "/helper")
     public Object searchHelperKeyword(String keyword) {
         //声明一个集合来封装返回参数
         Map<String, Object> result = new HashMap<>();
@@ -134,7 +134,7 @@ public class LymallSearchController {
      * @return Object
      */
 
-    @RequestMapping(path = "search/createhistory")
+    @RequestMapping(path = "/createhistory")
     public Object createSearchHistory(String keyword, Integer userId) {
 
         return searchHistoryService.createByHistoryKeyword(keyword, userId) == 1 ? ResponseUtil.ok() : ResponseUtil.fail();
@@ -146,7 +146,7 @@ public class LymallSearchController {
      * @param userId
      * @return Object
      */
-    @RequestMapping(path = "search/clearhistory")
+    @RequestMapping(path = "/clearhistory")
     public Object clearSearchHistory(Integer userId) {
 
         return ResponseUtil.ok(searchHistoryService.deleteByHistoryKeyword(userId));

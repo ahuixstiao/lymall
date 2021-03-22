@@ -17,7 +17,7 @@ import java.util.List;
  * @Description: 收货地址 表现层Controller类
  */
 @RestController
-@RequestMapping(path = "/wx")
+@RequestMapping(path = "/wx/address")
 public class LymallAddressController {
 
     @Resource
@@ -28,9 +28,8 @@ public class LymallAddressController {
      *
      * @return List<LymallAddress>
      */
-    @RequestMapping(path = "address/list")
+    @RequestMapping(path = "/list")
     public Object selectByShippingAddress(Integer userId) {
-
         //执行查询
         List<LymallAddress> list = addressService.selectFindAllAddRess(userId);
         //判断返回的集合是否为空
@@ -46,7 +45,7 @@ public class LymallAddressController {
      * @param address
      * @return Object
      */
-    @RequestMapping(path = "address/save")
+    @RequestMapping(path = "/save")
     public Object insertByAddress(LymallAddress address) {
 
         int insertAddress = addressService.insertByAddress(address);
@@ -62,7 +61,7 @@ public class LymallAddressController {
      * @param addressId
      * @return Object
      */
-    @RequestMapping(path = "address/delete")
+    @RequestMapping(path = "/delete")
     public Object deleteByshippingAddress(Integer addressId) {
 
         //执行业务层删除方法

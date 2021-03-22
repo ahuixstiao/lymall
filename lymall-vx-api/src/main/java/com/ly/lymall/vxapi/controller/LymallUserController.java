@@ -24,7 +24,7 @@ import java.util.UUID;
  * @Date: 2020-11-18 - 14:23
  */
 @RestController
-@RequestMapping(path = "/wx")
+@RequestMapping(path = "/wx/auth")
 public class LymallUserController {
 
     /**
@@ -46,17 +46,14 @@ public class LymallUserController {
     /**
      * 登录处理
      * 先账号验证是否正确
-     * 正确
-     * 创建Session
-     * 设置最后一次登录的时间
-     * 错误
-     * 返回错误信息让前端弹出提示
+     * 正确 创建Session 设置最后一次登录的时间 并返回成功让用户登陆
+     * 错误 返回错误信息让前端弹出提示
      *
      * @param userUsername 用户账号
      * @param userPassword 用户密码
      * @return Object 正确 返回用户信息，错误 返回错误信息
      */
-    @PostMapping(path = "/auth/login")
+    @PostMapping(path = "/login")
     public Object login(String userUsername, String userPassword, HttpServletRequest request) {
 
         //保存业务层返回的用户信息
@@ -87,13 +84,13 @@ public class LymallUserController {
      * @return 返回 boolean
      */
     @RequestMapping(path = "/checkCookie")
-    public boolean checkCookie(HttpServletRequest request) {
+    public Object checkCookie(HttpServletRequest request) {
         //获取登录成功时生成的Session会话
         Object object = request.getSession().getAttribute(sessionId);
 
         //判断Session会话是否存在
         if (object != null) {
-            return true;
+            return ResponseUtil.unlogin();
         }
         return false;
     }
@@ -104,7 +101,7 @@ public class LymallUserController {
      * @param user
      * @return Object
      */
-    @RequestMapping(path = "/auth/register")
+    @RequestMapping(path = "/register")
     public Object insertUserInfo(LymallUser user, HttpServletRequest request) throws IOException, InterruptedException {
 
         Map<String,Object> mapParameters = new HashMap<>();
@@ -141,7 +138,7 @@ public class LymallUserController {
      * @param userPassword
      * @return Object
      */
-    @RequestMapping(path = "/auth/reset")
+    @RequestMapping(path = "/reset")
     public Object retrievePassword(String userUsername, String userPassword) {
         //传入用户账号与新密码；
         int result = userService.updateByRePassword(userUsername, userPassword);
