@@ -1,6 +1,7 @@
 package com.ly.lymall.core.utils;
 
 import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 
 import java.util.HashMap;
 import java.util.List;

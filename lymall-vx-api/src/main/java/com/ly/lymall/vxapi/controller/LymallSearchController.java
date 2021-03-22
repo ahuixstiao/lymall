@@ -120,7 +120,6 @@ public class LymallSearchController {
      */
     @RequestMapping(path = "search/helper")
     public Object searchHelperKeyword(String keyword) {
-
         //声明一个集合来封装返回参数
         Map<String, Object> result = new HashMap<>();
 
@@ -141,7 +140,7 @@ public class LymallSearchController {
     @RequestMapping(path = "search/createhistory")
     public Object createSearchHistory(String keyword, Integer userId) {
 
-        return searchHistoryService.createByHistoryKeyword(keyword, userId) == 1 ? ResponseUtil.ok() : 0;
+        return searchHistoryService.createByHistoryKeyword(keyword, userId) == 1 ? ResponseUtil.ok() : ResponseUtil.fail();
     }
 
     /**

@@ -88,7 +88,6 @@ public class LymallUserController {
      */
     @RequestMapping(path = "/checkCookie")
     public boolean checkCookie(HttpServletRequest request) {
-
         //获取登录成功时生成的Session会话
         Object object = request.getSession().getAttribute(sessionId);
 

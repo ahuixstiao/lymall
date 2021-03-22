@@ -34,7 +34,7 @@ public class LymallAddressController {
         //执行查询
         List<LymallAddress> list = addressService.selectFindAllAddRess(userId);
         //判断返回的集合是否为空
-        if (list != null && !list.isEmpty()) {
+        if (!list.isEmpty()) {
             return ResponseUtil.ok(list);
         }
         return ResponseUtil.fail(ExceptionCode.NO_DELIVERY_ADDRESS_YET, "尚无收货地址~ 添加一个收货地址让你心爱的快递到家吧！");

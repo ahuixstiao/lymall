@@ -5,17 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent><!-- 父项目 -->
-        <artifactId>lymall</artifactId>
         <groupId>com.ly.lymall</groupId>
+        <artifactId>lymall</artifactId>
         <version>0.0.4-SNAPSHOT</version>
     </parent>
 
-    <properties>
-        <!-- 在docker运行时要用的，只是一个前缀而已，就像包名一样,可自己任意定义此名称 -->
-        <docker.image.prefix>lymall</docker.image.prefix>
-    </properties>
-
     <artifactId>lymall-vx-api</artifactId><!-- 项目名称 -->
+    <packaging>jar</packaging>
 
     <dependencies>
         <!-- 引入子db项目依赖  子项目之间只需要一方引入另一方就会形成间接依赖 如dao模块依赖了base模块，那么service模块依赖dao模块时就会间接依赖base模块 -->
@@ -37,28 +33,8 @@
                 <fork>true</fork> <!-- fork=true,用于明确表示编译版本配置的可用 -->
             </configuration>
         </plugin>
-
-        <!-- docker 插件 begin -->
-<!--        <plugin>-->
-<!--            <groupId>com.spotify</groupId>-->
-<!--            <artifactId>docker-maven-plugin</artifactId>-->
-<!--            <version>1.0.0</version>-->
-
-<!--            <configuration>-->
-<!--                <imageName>${docker.image.prefix}/${project.artifactId}</imageName>-->
-<!--                <dockerDirectory>src/main/docker</dockerDirectory>-->
-<!--                <resources>-->
-<!--                    <resource>-->
-<!--                        <targetPath>/</targetPath>-->
-<!--                        <directory>${project.build.directory}</directory>-->
-<!--                        <include>${project.build.finalName}.jar</include>-->
-<!--                    </resource>-->
-<!--                </resources>-->
-<!--            </configuration>-->
-<!--        </plugin>-->
-        <!-- docker 插件 end -->
     </plugins>
         <!--打包后文件名称-->
-<!--    <finalName>docker-lymall</finalName>-->
+    <finalName>lymall</finalName>
     </build>
 </project>

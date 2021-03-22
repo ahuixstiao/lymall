@@ -64,6 +64,7 @@ public class LymallSearchHistoryServiceImpl implements LymallSearchHistoryServic
                 return 0;
             }
         }
+
         //不存在则执行添加操作
         return searchHistoryMapper.createHistoryKeyword(keyword, userId,LocalDateTime.now());
     }

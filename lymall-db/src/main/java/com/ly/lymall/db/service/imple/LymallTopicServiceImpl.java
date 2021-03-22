@@ -27,7 +27,6 @@ public class LymallTopicServiceImpl implements LymallTopicService {
      */
     @Override
     public List<LymallTopic> selectByfindAll(Integer currentPage, Integer limit) {
-
         PageHelper.startPage(currentPage, limit);
 
         return topicMapper.selectByfindAll();

@@ -33,7 +33,7 @@ public class LymallIssueController {
 
         List<LymallIssue> issueList = issueService.getIssueByPage(currentPage, limit);
 
-        if (issueList != null) {
+        if (issueList.size()>0) {
             return ResponseUtil.okListPage(issueList);
         }
         return ResponseUtil.fail();

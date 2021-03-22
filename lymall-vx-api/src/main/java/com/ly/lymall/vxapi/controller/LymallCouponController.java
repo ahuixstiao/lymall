@@ -50,7 +50,7 @@ public class LymallCouponController {
         List<LymallUserCouponDTO> couponUsers = couponUserService.selectByUserIdFindAllCoupon(userId, couponId, status, 1, 10);
 
         //判断该用户未领取该优惠券或该优惠券不处于未使用状态
-        if (couponUsers == null && couponUsers.size() == 0) {
+        if (couponUsers.isEmpty()) {
             LymallCouponUser lymallCouponUser = new LymallCouponUser();
             lymallCouponUser.setUserId(userId);
             lymallCouponUser.setCouponId(couponId);

@@ -32,7 +32,6 @@ public class LymallKeywordServiceImpl implements LymallKeywordService {
     public List<LymallKeyword> selectAllHotOrDefaultKeywords(String keywordName, Integer type, Integer currentPage, Integer limit) {
         //分页
         PageHelper.startPage(currentPage, limit);
-
         //返回
         return keywordMapper.selectAllHotOrDefault(keywordName, type);
     }
