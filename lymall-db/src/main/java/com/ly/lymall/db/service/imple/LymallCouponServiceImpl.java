@@ -2,8 +2,7 @@ package com.ly.lymall.db.service.imple;
 
 import com.github.pagehelper.PageHelper;
 import com.ly.lymall.db.dao.mapper.LymallCouponMapper;
-import com.ly.lymall.db.domian.LymallCoupon;
-import com.ly.lymall.db.domian.LymallCouponUser;
+import com.ly.lymall.db.domain.LymallCoupon;
 import com.ly.lymall.db.service.LymallCouponService;
 import org.springframework.stereotype.Service;
 

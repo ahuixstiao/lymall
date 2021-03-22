@@ -1,6 +1,6 @@
 package com.ly.lymall.db.dao.provider;
 
-import com.ly.lymall.db.domian.LymallComment;
+import com.ly.lymall.db.domain.LymallComment;
 import org.apache.ibatis.jdbc.SQL;
 
 public class LymallCommentSqlProvider {

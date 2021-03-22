@@ -1,6 +1,6 @@
 package com.ly.lymall.db.dao.provider;
 
-import com.ly.lymall.db.domian.LymallGrouponRules;
+import com.ly.lymall.db.domain.LymallGrouponRules;
 import org.apache.ibatis.jdbc.SQL;
 
 public class LymallGrouponRulesSqlProvider {

@@ -1,6 +1,6 @@
 package com.ly.lymall.db.dao.provider;
 
-import com.ly.lymall.db.domian.LymallFeedback;
+import com.ly.lymall.db.domain.LymallFeedback;
 import org.apache.ibatis.jdbc.SQL;
 
 public class LymallFeedbackSqlProvider {

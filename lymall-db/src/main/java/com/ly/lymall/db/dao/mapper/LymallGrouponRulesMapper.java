@@ -1,7 +1,7 @@
 package com.ly.lymall.db.dao.mapper;
 
 import com.ly.lymall.db.dao.provider.LymallGrouponRulesSqlProvider;
-import com.ly.lymall.db.domian.LymallGrouponRules;
+import com.ly.lymall.db.domain.LymallGrouponRules;
 import com.ly.lymall.db.dto.LymallGrouponRulesDTO;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;

@@ -3,7 +3,7 @@ package com.ly.lymall.db.service.imple;
 import com.ly.lymall.core.tencent.TencentCloud;
 import com.ly.lymall.core.utils.MD5;
 import com.ly.lymall.db.dao.mapper.LymallUserMapper;
-import com.ly.lymall.db.domian.LymallUser;
+import com.ly.lymall.db.domain.LymallUser;
 import com.ly.lymall.db.service.LymallUserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;

@@ -39,7 +39,7 @@
         </jdbcConnection>
 
         <!--指定POJO生成的位置  targetPackage生成位置 targetProject生成的类所在的硬盘位置  -->
-        <javaModelGenerator targetPackage="com.ly.lymall.db.domian" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.ly.lymall.db.domain" targetProject="src/main/java">
             <!-- 设置是否在setter方法中，对String类型字段调用trim()方法(如果你用Lombok，忽略这个) -->
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>

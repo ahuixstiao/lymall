@@ -1,6 +1,6 @@
 package com.ly.lymall.db.dao.provider;
 
-import com.ly.lymall.db.domian.LymallCategory;
+import com.ly.lymall.db.domain.LymallCategory;
 import org.apache.ibatis.jdbc.SQL;
 
 import java.util.Set;

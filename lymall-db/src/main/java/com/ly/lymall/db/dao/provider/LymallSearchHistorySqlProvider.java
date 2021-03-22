@@ -1,6 +1,6 @@
 package com.ly.lymall.db.dao.provider;
 
-import com.ly.lymall.db.domian.LymallSearchHistory;
+import com.ly.lymall.db.domain.LymallSearchHistory;
 import org.apache.ibatis.jdbc.SQL;
 
 import java.time.LocalDateTime;

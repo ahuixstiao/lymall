@@ -3,7 +3,7 @@ package com.ly.lymall.db.service.imple;
 import com.github.pagehelper.PageHelper;
 import com.ly.lymall.core.utils.ResponseUtil;
 import com.ly.lymall.db.dao.mapper.LymallCategoryMapper;
-import com.ly.lymall.db.domian.LymallCategory;
+import com.ly.lymall.db.domain.LymallCategory;
 import com.ly.lymall.db.service.LymallCategoryService;
 import org.springframework.stereotype.Service;
 

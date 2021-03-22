@@ -1,20 +1,17 @@
 package com.ly.lymall.vxapi.controller;
 
 import com.ly.lymall.core.utils.ResponseUtil;
-import com.ly.lymall.db.domian.*;
+import com.ly.lymall.db.domain.*;
 import com.ly.lymall.db.service.LymallCategoryService;
 import com.ly.lymall.db.service.LymallGoodsService;
 import com.ly.lymall.db.service.LymallKeywordService;
 import com.ly.lymall.db.service.LymallSearchHistoryService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @Author: Ahui

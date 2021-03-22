@@ -1,7 +1,7 @@
 package com.ly.lymall.vxapi.controller;
 
 import com.ly.lymall.core.utils.ResponseUtil;
-import com.ly.lymall.db.domian.LymallGoodsSpecification;
+import com.ly.lymall.db.domain.LymallGoodsSpecification;
 import com.ly.lymall.db.service.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

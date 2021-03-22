@@ -1,7 +1,7 @@
 package com.ly.lymall.vxapi.controller;
 
 import com.ly.lymall.core.utils.ResponseUtil;
-import com.ly.lymall.db.domian.LymallUser;
+import com.ly.lymall.db.domain.LymallUser;
 import com.ly.lymall.db.service.LymallUserService;
 import com.ly.lymall.vxapi.utils.ExceptionCode;
 import org.slf4j.Logger;

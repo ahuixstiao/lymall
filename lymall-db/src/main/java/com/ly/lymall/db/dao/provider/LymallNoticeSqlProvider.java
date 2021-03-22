@@ -1,6 +1,6 @@
 package com.ly.lymall.db.dao.provider;
 
-import com.ly.lymall.db.domian.LymallNotice;
+import com.ly.lymall.db.domain.LymallNotice;
 import org.apache.ibatis.jdbc.SQL;
 
 public class LymallNoticeSqlProvider {

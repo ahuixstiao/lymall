@@ -1,6 +1,6 @@
 package com.ly.lymall.db.dao.provider;
 
-import com.ly.lymall.db.domian.LymallPermission;
+import com.ly.lymall.db.domain.LymallPermission;
 import org.apache.ibatis.jdbc.SQL;
 
 public class LymallPermissionSqlProvider {

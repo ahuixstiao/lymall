@@ -1,6 +1,6 @@
 package com.ly.lymall.db.dao.provider;
 
-import com.ly.lymall.db.domian.LymallGoodsAttribute;
+import com.ly.lymall.db.domain.LymallGoodsAttribute;
 import org.apache.ibatis.jdbc.SQL;
 
 public class LymallGoodsAttributeSqlProvider {

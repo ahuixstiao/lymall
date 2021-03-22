@@ -1,9 +1,8 @@
 package com.ly.lymall.db.service.imple;
 
 import com.github.pagehelper.PageHelper;
-import com.ly.lymall.core.utils.ResponseUtil;
 import com.ly.lymall.db.dao.mapper.LymallSearchHistoryMapper;
-import com.ly.lymall.db.domian.LymallSearchHistory;
+import com.ly.lymall.db.domain.LymallSearchHistory;
 import com.ly.lymall.db.service.LymallSearchHistoryService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;

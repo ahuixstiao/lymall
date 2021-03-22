@@ -1,6 +1,6 @@
 package com.ly.lymall.db.dao.provider;
 
-import com.ly.lymall.db.domian.LymallRole;
+import com.ly.lymall.db.domain.LymallRole;
 import org.apache.ibatis.jdbc.SQL;
 
 public class LymallRoleSqlProvider {

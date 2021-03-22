@@ -1,7 +1,7 @@
 package com.ly.lymall.db.dao.mapper;
 
 import com.ly.lymall.db.dao.provider.LymallAdminSqlProvider;
-import com.ly.lymall.db.domian.LymallAdmin;
+import com.ly.lymall.db.domain.LymallAdmin;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 

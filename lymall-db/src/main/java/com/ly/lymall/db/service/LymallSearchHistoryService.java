@@ -1,6 +1,6 @@
 package com.ly.lymall.db.service;
 
-import com.ly.lymall.db.domian.LymallSearchHistory;
+import com.ly.lymall.db.domain.LymallSearchHistory;
 
 import java.util.List;
 

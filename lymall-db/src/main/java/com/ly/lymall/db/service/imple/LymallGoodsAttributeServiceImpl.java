@@ -1,7 +1,7 @@
 package com.ly.lymall.db.service.imple;
 
 import com.ly.lymall.db.dao.mapper.LymallGoodsAttributeMapper;
-import com.ly.lymall.db.domian.LymallGoodsAttribute;
+import com.ly.lymall.db.domain.LymallGoodsAttribute;
 import com.ly.lymall.db.service.LymallGoodsAttributeService;
 import org.springframework.stereotype.Service;
 

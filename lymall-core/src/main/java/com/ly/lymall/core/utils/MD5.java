@@ -13,6 +13,10 @@ import java.security.NoSuchAlgorithmException;
  */
 public class MD5 {
 
+    public static void main(String[] args) {
+        System.out.println(MD5.md5("admin"));
+    }
+
     /**
      * 首先初始化一个字符数组，用来存放每个16进制字符
      */

@@ -1,9 +1,8 @@
 package com.ly.lymall.db.service.imple;
 
-import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.ly.lymall.db.dao.mapper.LymallIssueMapper;
-import com.ly.lymall.db.domian.LymallIssue;
+import com.ly.lymall.db.domain.LymallIssue;
 import com.ly.lymall.db.service.LymallIssueService;
 import org.springframework.stereotype.Service;
 

@@ -1,12 +1,9 @@
 package com.ly.lymall.db.service;
 
-import com.ly.lymall.db.domian.LymallUser;
+import com.ly.lymall.db.domain.LymallUser;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.Map;
 

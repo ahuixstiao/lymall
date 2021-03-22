@@ -1,7 +1,7 @@
 package com.ly.lymall.db.dao.mapper;
 
 import com.ly.lymall.db.dao.provider.LymallCouponUserSqlProvider;
-import com.ly.lymall.db.domian.LymallCouponUser;
+import com.ly.lymall.db.domain.LymallCouponUser;
 import com.ly.lymall.db.dto.LymallUserCouponDTO;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;

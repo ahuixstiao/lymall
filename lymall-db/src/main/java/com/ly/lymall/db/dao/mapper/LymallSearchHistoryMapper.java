@@ -1,7 +1,7 @@
 package com.ly.lymall.db.dao.mapper;
 
 import com.ly.lymall.db.dao.provider.LymallSearchHistorySqlProvider;
-import com.ly.lymall.db.domian.LymallSearchHistory;
+import com.ly.lymall.db.domain.LymallSearchHistory;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
 

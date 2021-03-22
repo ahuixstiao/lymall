@@ -1,6 +1,6 @@
 package com.ly.lymall.db.dao.provider;
 
-import com.ly.lymall.db.domian.LymallKeyword;
+import com.ly.lymall.db.domain.LymallKeyword;
 import org.apache.ibatis.jdbc.SQL;
 
 public class LymallKeywordSqlProvider {

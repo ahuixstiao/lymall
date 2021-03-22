@@ -1,6 +1,6 @@
 package com.ly.lymall.db.service;
 
-import com.ly.lymall.db.domian.LymallCouponUser;
+import com.ly.lymall.db.domain.LymallCouponUser;
 import com.ly.lymall.db.dto.LymallUserCouponDTO;
 
 import java.util.List;

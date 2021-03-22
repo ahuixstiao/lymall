@@ -1,8 +1,8 @@
 package com.ly.lymall.vxapi.controller;
 
 import com.ly.lymall.core.utils.ResponseUtil;
-import com.ly.lymall.db.domian.LymallCoupon;
-import com.ly.lymall.db.domian.LymallCouponUser;
+import com.ly.lymall.db.domain.LymallCoupon;
+import com.ly.lymall.db.domain.LymallCouponUser;
 import com.ly.lymall.db.dto.LymallUserCouponDTO;
 import com.ly.lymall.db.service.LymallCouponService;
 import com.ly.lymall.db.service.LymallCouponUserService;

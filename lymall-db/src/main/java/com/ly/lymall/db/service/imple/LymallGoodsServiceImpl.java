@@ -2,9 +2,8 @@ package com.ly.lymall.db.service.imple;
 
 import com.github.pagehelper.PageHelper;
 import com.ly.lymall.db.dao.mapper.LymallGoodsMapper;
-import com.ly.lymall.db.domian.LymallGoods;
+import com.ly.lymall.db.domain.LymallGoods;
 import com.ly.lymall.db.service.LymallGoodsService;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

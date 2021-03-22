@@ -2,7 +2,7 @@ package com.ly.lymall.db.service.imple;
 
 import com.github.pagehelper.PageHelper;
 import com.ly.lymall.db.dao.mapper.LymallBrandMapper;
-import com.ly.lymall.db.domian.LymallBrand;
+import com.ly.lymall.db.domain.LymallBrand;
 import com.ly.lymall.db.service.LymallBrandService;
 import org.springframework.stereotype.Service;
 

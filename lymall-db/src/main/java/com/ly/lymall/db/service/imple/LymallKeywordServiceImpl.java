@@ -2,7 +2,7 @@ package com.ly.lymall.db.service.imple;
 
 import com.github.pagehelper.PageHelper;
 import com.ly.lymall.db.dao.mapper.LymallKeywordMapper;
-import com.ly.lymall.db.domian.LymallKeyword;
+import com.ly.lymall.db.domain.LymallKeyword;
 import com.ly.lymall.db.service.LymallKeywordService;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;

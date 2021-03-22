@@ -1,6 +1,6 @@
 package com.ly.lymall.db.service;
 
-import com.ly.lymall.db.domian.LymallGoods;
+import com.ly.lymall.db.domain.LymallGoods;
 
 import java.util.List;
 

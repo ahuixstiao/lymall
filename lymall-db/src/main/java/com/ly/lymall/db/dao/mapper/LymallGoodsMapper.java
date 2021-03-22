@@ -1,7 +1,7 @@
 package com.ly.lymall.db.dao.mapper;
 
 import com.ly.lymall.db.dao.provider.LymallGoodsSqlProvider;
-import com.ly.lymall.db.domian.LymallGoods;
+import com.ly.lymall.db.domain.LymallGoods;
 import org.apache.ibatis.annotations.*;
 import java.util.List;
 

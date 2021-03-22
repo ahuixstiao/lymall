@@ -1,6 +1,6 @@
 package com.ly.lymall.db.dao.provider;
 
-import com.ly.lymall.db.domian.LymallCart;
+import com.ly.lymall.db.domain.LymallCart;
 import org.apache.ibatis.jdbc.SQL;
 
 public class LymallCartSqlProvider {

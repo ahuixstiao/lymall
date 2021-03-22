@@ -1,14 +1,13 @@
 package com.ly.lymall.vxapi.controller;
 
 import com.ly.lymall.core.utils.ResponseUtil;
-import com.ly.lymall.db.domian.LymallCategory;
+import com.ly.lymall.db.domain.LymallCategory;
 import com.ly.lymall.db.service.LymallCategoryService;
 import com.ly.lymall.db.service.LymallGoodsService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

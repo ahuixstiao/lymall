@@ -1,7 +1,7 @@
 package com.ly.lymall.db.service.imple;
 
 import com.ly.lymall.db.dao.mapper.LymallAddressMapper;
-import com.ly.lymall.db.domian.LymallAddress;
+import com.ly.lymall.db.domain.LymallAddress;
 import com.ly.lymall.db.service.LymallAddressService;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;

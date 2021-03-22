@@ -2,7 +2,6 @@ package com.ly.lymall.db.service.imple;
 
 import com.github.pagehelper.PageHelper;
 import com.ly.lymall.db.dao.mapper.LymallCommentMapper;
-import com.ly.lymall.db.domian.LymallComment;
 import com.ly.lymall.db.dto.LymallUserCommentDTO;
 import com.ly.lymall.db.service.LymallCommentService;
 import org.springframework.stereotype.Service;
