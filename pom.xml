@@ -64,6 +64,13 @@
             <version>1.9.6</version>
         </dependency>
 
+        <!-- hutoolJava工具类库 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.6.2</version>
+        </dependency>
+
         <!-- web模块 启动器 自动导入web所需要的依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

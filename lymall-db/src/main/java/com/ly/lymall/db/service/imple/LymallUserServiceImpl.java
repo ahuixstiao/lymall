@@ -1,7 +1,7 @@
 package com.ly.lymall.db.service.imple;
 
+import cn.hutool.crypto.SecureUtil;
 import com.ly.lymall.core.tencent.TencentCloud;
-import com.ly.lymall.core.utils.MD5;
 import com.ly.lymall.db.dao.mapper.LymallUserMapper;
 import com.ly.lymall.db.domain.LymallUser;
 import com.ly.lymall.db.service.LymallUserService;
@@ -79,7 +79,7 @@ public class LymallUserServiceImpl implements LymallUserService {
     @Transactional(readOnly = true, rollbackFor = Exception.class, isolation = Isolation.REPEATABLE_READ)
     public LymallUser loginAuthentication(String userUsername, String userPassword) {
         //密码加密
-        String md5Password = MD5.md5(userPassword);
+        String md5Password = SecureUtil.md5(userPassword);
         //保存结果
         LymallUser info = userMapper.loginAuthentication(userUsername, md5Password);
         //保存缓存
@@ -91,8 +91,8 @@ public class LymallUserServiceImpl implements LymallUserService {
     /**
      * 修改最后一次登录时间
      *
-     * @param userLastLoginTime
-     * @param userUsername
+     * @param userLastLoginTime 登陆时间
+     * @param userUsername 登陆用户
      * @return int
      */
     @Override
@@ -128,13 +128,12 @@ public class LymallUserServiceImpl implements LymallUserService {
         String sufix = fileName[fileName.length - 1];
         //拼接完整的文件名路径与文件名.后缀
         String key = splicingBucketFilePathAndUsername + "." + sufix;
-
         //将Controller拼接好的key（文件名.后缀）与文件流传入该方法执行
         String url = tencentCloud.putAvatar(key, inputStream);
         //将要上传至腾讯云的图片路径保存到user实体类
         user.setUserAvatar(url);
         //将用户密码加密
-        user.setUserPassword(MD5.md5(user.getUserPassword()));
+        user.setUserPassword(SecureUtil.md5(user.getUserPassword()));
         //将账号信息插入缓存中
         redisTemplate.opsForValue().set(user.getUserId().toString(), user);
         //传入user实体类 执行持久层插入操作
@@ -144,14 +143,14 @@ public class LymallUserServiceImpl implements LymallUserService {
     /**
      * 修改密码
      *
-     * @param userPassword
-     * @param userUsername
+     * @param userPassword 用户密码
+     * @param userUsername 用户账号
      * @return updateByrePassword
      */
     @Override
     @Transactional(rollbackFor = Exception.class, isolation = Isolation.READ_COMMITTED)
     public synchronized int updateByRePassword(String userUsername, String userPassword) {
 
-        return userMapper.updateByRePassword(userUsername,MD5.md5(userPassword));
+        return userMapper.updateByRePassword(userUsername,SecureUtil.md5(userPassword));
     }
 }

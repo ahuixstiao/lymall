@@ -45,9 +45,10 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
     public List<Map<String, Object>> selectfindByGoodsCategory(Integer categoryPid, Integer currentPage, Integer limit) {
         //通过pid查询父分类信息
         List<LymallCategory> list = this.selectByCategoryPidFindInfo(categoryPid);
-
         //最终返回的结果集合
         List<Map<String, Object>> result = new ArrayList<>();
+        //对商品信息分页
+        PageHelper.startPage(currentPage, limit);
 
         //使用lambda表达式 遍历返回的父分类信息集合
         list.stream().forEach((category) -> {
@@ -55,12 +56,8 @@ public class LymallCategoryServiceImpl implements LymallCategoryService {
             Map<String, Object> map = new HashMap<>(16);
             //封装父分类的name
             map.put("name", category.getCategoryName());
-            //对商品信息分页
-            PageHelper.startPage(currentPage, limit);
-            /**
-             * 查询分类的商品信息并分页
-             * selectByCategoryPidFindChildCategoryInfo(): 传入父分类的categoryId进行查询 出父分类的子分类下的商品信息
-             */
+             //查询分类的商品信息
+             //selectByCategoryPidFindChildCategoryInfo(): 传入父分类的categoryId进行查询 出父分类的子分类下的商品信息
             map.put("goodsList", ResponseUtil.okListPage(categoryMapper.selectByCategoryPidFindChildCategoryInfo(category.getCategoryId())));
             //保存map集合参数
             result.add(map);

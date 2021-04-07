@@ -52,13 +52,12 @@ public class LymallGoodsInfoController {
      * @return Object
      */
     @RequestMapping(path = "select/goods")
-    public Object selectByGoodsIdFindGoodsInfo(Integer goodsId, Integer userId) {
+    public Object selectByGoodsIdFindGoodsInfo (Integer goodsId, Integer userId) {
         //此Map用于封装返回值
         Map<String, Object> map = new HashMap<>();
 
         //查询出商品的规格
         List<LymallGoodsSpecification> goodsSpecificationListServiceImpl = goodsSpecificationService.selectByGoodsIdFindSpecification(goodsId);
-
         /**
          *  声明局部内部类 保存返回的规格参数
          *  tips: 声明在方法中的是局部内部类 方法外是外部类中内部类
@@ -66,17 +65,14 @@ public class LymallGoodsInfoController {
         class SpecificationResult {
             String name;
             List<LymallGoodsSpecification> goodsSpecifications;
-
             public SpecificationResult(String name, List<LymallGoodsSpecification> goodsSpecifications) {
                 super();
                 this.name = name;
                 this.goodsSpecifications = goodsSpecifications;
             }
-
             public String getName() {
                 return name;
             }
-
             public void setName(String name) {
                 this.name = name;
             }
@@ -101,9 +97,9 @@ public class LymallGoodsInfoController {
             LymallGoodsSpecification specification = goodsSpecificationListServiceImpl.get(i);
             //遍历并判断最终返回集合中是否已存在该规格名称
             for (int j = 0; j < specificationResultList.size(); j++) {
-                //声明临时内部类对象 保存最终返回集合的参数
+                //使用内部类 保存最终返回集合的参数
                 SpecificationResult specificationResult = specificationResultList.get(j);
-                //判断规格名称是否相同 若相同则进入保存规格参数
+                //判断规格名称是否相同
                 if (specification.getGoodsSpecificationSpecification().equals(specificationResult.name)) {
                     //将商品规格对象 保存到内部类集合
                     specificationResult.goodsSpecifications.add(specification);
