@@ -27,22 +27,10 @@ import java.util.Map;
  */
 @Service
 public class LymallUserServiceImpl implements LymallUserService {
-
-    /**
-     * Mapper接口依赖注入
-     */
     @Resource
     private LymallUserMapper userMapper;
-
-    /**
-     * TencentCloud注入
-     */
     @Resource
     private TencentCloud tencentCloud;
-
-    /**
-     * redis
-     */
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
@@ -60,7 +48,6 @@ public class LymallUserServiceImpl implements LymallUserService {
      */
     @Override
     public LymallUser checkUserInfo(Map<String, Object> mapParameters) {
-
         return userMapper.selectUserInfo(mapParameters);
     }
 
@@ -98,7 +85,6 @@ public class LymallUserServiceImpl implements LymallUserService {
     @Override
     @Transactional(rollbackFor = Exception.class, isolation = Isolation.READ_COMMITTED)
     public synchronized int updateLastLoginTime(LocalDateTime userLastLoginTime, String userUsername) {
-
         return userMapper.updateByLastLoginTime(userLastLoginTime, userUsername);
     }
 
@@ -150,7 +136,6 @@ public class LymallUserServiceImpl implements LymallUserService {
     @Override
     @Transactional(rollbackFor = Exception.class, isolation = Isolation.READ_COMMITTED)
     public synchronized int updateByRePassword(String userUsername, String userPassword) {
-
         return userMapper.updateByRePassword(userUsername,SecureUtil.md5(userPassword));
     }
 }

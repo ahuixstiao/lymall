@@ -2,6 +2,7 @@ package com.ly.lymall.vxapi.controller;
 
 import com.ly.lymall.core.utils.ResponseUtil;
 import com.ly.lymall.db.service.*;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,65 +19,31 @@ import java.util.Map;
 @RestController
 @RequestMapping(path = "/wx/home")
 public class LymallIndexController {
-
-    /**
-     * 商品 业务层接口
-     */
     @Resource
     private LymallGoodsService goodsService;
-
-    /**
-     * 广告 业务层接口
-     */
     @Resource
     private LymallAdService adService;
-
-    /**
-     * 类别 业务层接口
-     */
     @Resource
     private LymallCategoryService categoryService;
-
-    /**
-     * 优惠券 业务层接口
-     */
     @Resource
     private LymallCouponService couponService;
-
-    /**
-     * 团购规则 业务层接口
-     */
     @Resource
     private LymallGrouponRulesService grouponRulesService;
-
-    /**
-     * 品牌制造商直供 业务层接口
-     */
     @Resource
     private LymallBrandService brandService;
-
-    /**
-     * 专题精选 业务层接口
-     */
     @Resource
     private LymallTopicService topicService;
-
     /**
      * 主页查询
-     *
      * @param categoryPid
      * @param currentPage
      * @param limit
      * @return Object
      */
-    @RequestMapping(path = "/list")
+    @GetMapping(path = "/list")
     public Object indexPageInforMationQuery(Integer categoryPid, Integer currentPage, Integer limit) {
-        //商品总数
         int goodsCount = goodsService.selectByAllCount();
-
-        //使用Map集合封装返回
         Map<String, Object> result = new HashMap<>();
-
         //商品总数
         result.put("goodsCount", goodsCount);
         //广告信息
@@ -97,10 +64,7 @@ public class LymallIndexController {
         result.put("topics", ResponseUtil.okListPage(topicService.selectByfindAll(currentPage, limit)));
         //更多好物
         result.put("floorGoods", categoryService.selectfindByGoodsCategory(categoryPid, currentPage, limit));
-
         //返回
         return ResponseUtil.ok(result);
     }
-
-
 }

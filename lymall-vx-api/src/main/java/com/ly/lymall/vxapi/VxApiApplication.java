@@ -1,6 +1,9 @@
 package com.ly.lymall.vxapi;
 
+import cn.hutool.system.SystemUtil;
 import org.mybatis.spring.annotation.MapperScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -24,9 +27,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableTransactionManagement(proxyTargetClass = true)
 public class VxApiApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(VxApiApplication.class, args);
-        System.out.println("------------------------------------------------------------------------------------------------项目启动成功------------------------------------------------------------------------------------------------");
+        Logger logger = LoggerFactory.getLogger(VxApiApplication.class);
+        logger.info("------------------------------------------------------------------------------------------------项目启动成功------------------------------------------------------------------------------------------------");
+        //打印运行时Java信息
+        SystemUtil.getJavaRuntimeInfo();
+        //运行时信息，包括内存总大小、已用大小、可用大小等
+        SystemUtil.getRuntimeInfo();
     }
 }

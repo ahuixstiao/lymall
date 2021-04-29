@@ -48,9 +48,7 @@ public class RedisConfig extends CachingConfigurerSupport {
          */
         //lambda表达式
         //KeyGenerator keyGeneratorLambda=(target,method,params)->method.getName()+"("+ Arrays.asList(params)+")";
-
         KeyGenerator keyGeneratorLambda = ((target, method, params) -> method.getName());
-
         return keyGeneratorLambda;
     }
 
@@ -71,19 +69,15 @@ public class RedisConfig extends CachingConfigurerSupport {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         // 配置连接工厂
         template.setConnectionFactory(factory);
-
         // 该转换器可用于绑定到类型化的bean或未类型化的HashMap实例
         Jackson2JsonRedisSerializer serializer = new Jackson2JsonRedisSerializer(Object.class);
-
         // Json序列化配置
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         objectMapper.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         serializer.setObjectMapper(objectMapper);
-
         //String序列化
         StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
-
         // key采用String的序列化方式
         template.setKeySerializer(stringRedisSerializer);
         // hashKey采用String的序列化方式
@@ -92,10 +86,8 @@ public class RedisConfig extends CachingConfigurerSupport {
         template.setValueSerializer(serializer);
         // hashValue采用jackson的序列化方式
         template.setHashValueSerializer(serializer);
-
         // 设置序列化方式, 前面只是声明, 该方法才实际注入序列化方式
         template.afterPropertiesSet();
-
         return template;
     }
 

@@ -4,9 +4,11 @@ import com.ly.lymall.core.utils.ResponseUtil;
 import com.ly.lymall.db.domain.LymallUser;
 import com.ly.lymall.db.service.LymallUserService;
 import com.ly.lymall.vxapi.utils.ExceptionCode;
+import io.swagger.annotations.Api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,16 +25,15 @@ import java.util.UUID;
  * @Description: 登录校验 表现层Controller类
  * @Date: 2020-11-18 - 14:23
  */
+@Api("登陆")
 @RestController
 @RequestMapping(path = "/wx/auth")
 public class LymallUserController {
-
     /**
      * user业务的Service接口
      */
     @Resource
     private LymallUserService userService;
-
     /**
      * 定义一个全局类变量 来保存用户SessionID
      */
@@ -45,9 +46,9 @@ public class LymallUserController {
 
     /**
      * 登录处理
-     * 先账号验证是否正确
+     * 验证账号是否正确
      * 正确 创建Session 设置最后一次登录的时间 并返回成功让用户登陆
-     * 错误 返回错误信息让前端弹出提示
+     * 错误 返回错误信息
      *
      * @param userUsername 用户账号
      * @param userPassword 用户密码
@@ -55,10 +56,8 @@ public class LymallUserController {
      */
     @PostMapping(path = "/login")
     public Object login(String userUsername, String userPassword, HttpServletRequest request) {
-
         //保存业务层返回的用户信息
         LymallUser lymallUserInfo = userService.loginAuthentication(userUsername, userPassword);
-
         //判断是否登录成功
         if (lymallUserInfo != null) {
             //日志打印出当前登录的用户
@@ -87,7 +86,6 @@ public class LymallUserController {
     public Object checkCookie(HttpServletRequest request) {
         //获取登录成功时生成的Session会话
         Object object = request.getSession().getAttribute(sessionId);
-
         //判断Session会话是否存在
         if (object != null) {
             return ResponseUtil.unlogin();
@@ -101,7 +99,7 @@ public class LymallUserController {
      * @param user
      * @return Object
      */
-    @RequestMapping(path = "/register")
+    @PostMapping(path = "/register")
     public Object insertUserInfo(LymallUser user, HttpServletRequest request) throws IOException, InterruptedException {
 
         Map<String,Object> mapParameters = new HashMap<>();
@@ -138,11 +136,10 @@ public class LymallUserController {
      * @param userPassword
      * @return Object
      */
-    @RequestMapping(path = "/reset")
+    @PutMapping(path = "/reset")
     public Object retrievePassword(String userUsername, String userPassword) {
         //传入用户账号与新密码；
         int result = userService.updateByRePassword(userUsername, userPassword);
-
         return  result>0?ResponseUtil.ok():ResponseUtil.fail(ExceptionCode.PASSWORD_MODIFICATION_FAILED,"密码修改失败请重试！");
     }
 }

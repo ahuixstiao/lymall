@@ -16,10 +16,6 @@ import org.springframework.context.annotation.Configuration;
  **/
 @Configuration
 public class TencentCosConfig {
-
-    /**
-     * 后期需要把这些属性抽离封装
-     */
     @Value("${tencent.config.secretId}")
     private String secretId;
     @Value("${tencent.config.secretKey}")
