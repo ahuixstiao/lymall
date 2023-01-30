@@ -28,7 +28,7 @@
 
         <!--数据库连接信息-->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://39.101.150.201:3306/lymall?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC"
+                        connectionURL="jdbc:mysql://localhost:3306/lymall?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC"
                         userId="root"
                         password="root">
             <!-- mysql 驱动8.x版本需要设置时区 value设置为GMT、UTC都可以 -->
