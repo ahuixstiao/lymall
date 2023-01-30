@@ -2,9 +2,9 @@
 tencent:
   config:
     #id
-    secretId: AKIDh9JQ6XyVQ5QQ9cRY4JHAQwDBh4hDfIn2
+    secretId: 
     #key
-    secretKey: A4uf2A2rsRluj4AAwKUPIS0JNGmqfLUE
+    secretKey: 
     #bucketName
     bucketName: lymall-ahui-1304796949
     #地域
